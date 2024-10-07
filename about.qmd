@@ -33,6 +33,10 @@ Bridget is a senior studying Political Science with minors in Statistics and Eco
 ## Brenton Mac
 
 Brenton is a junior majoring in Data Science. He is from Framingham, MA.
+
+## Taiyo Nakai
+Taiyo is a senior studying Data Science with a minor in Statistics. He is originally from Malden, MA.
+
 <!-- Please leave in the information below -->
 
 ### About this Template.
