@@ -19,16 +19,12 @@ about:
 
 This comes from the file `about.qmd`.
 
-This is a website for the final project for MA[46]15 Data Science with R by Team TEAMNAME.
+This is a website for the final project for MA[46]15 Data Science with R by Group 11.
 The members of this team are below.
 
-## Chang Liu
+## Brianna Li
 
-Luis is a Ph.D. student in Stats and is the Teaching Fellow for the course.
-
-## Dan Sussman
-
-Dan is a professor in the Math/Stat department and is the instructor for the course.
+Brianna is a senior studying Math and Computer Science, and is from Boston, MA.
 
 <!-- Please leave in the information below -->
 
