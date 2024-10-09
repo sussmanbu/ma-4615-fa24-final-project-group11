@@ -1,0 +1,33 @@
+---
+title: "blog_post_1"
+subtitle: "Exploring Three Data Sets"
+author: "All"
+date: "2024-10-09"
+date-modified: "2024-10-09"
+draft: FALSE
+---
+
+Cardiovascular Disease Mortality
+
+Rates and Trends in Hypertension-related Cardiovascular Disease Mortality Among US Adults (35+) by County, Age Group, Race/Ethnicity, and Sex – 2000-2019 - Catalog (data.gov)
+
+This dataset provided by the U.S. Department of Health & Human Services contains county-level estimates of hypertension-related cardiovascular disease (CVD) from 2000 to 2019, as well as two 10-year trends (2000-2010, 2010-2019), by age group, race/ethnicity, and sex. Each year and 10-year period contains 50,176 rows. About half of the values for “Data_Value” are na (empty), possibly because some demographics are not represented in state populations.
+
+We may be more interested in looking at individual years, as 1. the total dataset amounts to over 1 million rows, and 2. the rows concerning 10-year trends are calculated through a Bayesian model and do not represent raw data. 
+
+
+Household Pulse Survey 
+
+https://www.cdc.gov/nchs/covid19/health-care-access-and-mental-health.htm
+
+The Household Pulse Survey surveys households across the country on a variety of different measures of wellbeing including mental health, food access, and housing. This survey has been collected since 2020 and is collected using a two weeks on, two weeks off approach. This means that there are several data sets spanning the past four years. Looking at one survey period, there are 51281 rows and 163 columns. 
+
+The data is collected to get quick information on the social and economic wellbeing of households across the country. Looking at this data we could examine changes in mental health across different states and over the past four years. We could also look at different economic factors for example housing and food insecurity across time and regions. There are several potential challenges with this data set. First, since this survey is distributed so frequently, there are close to 60 data sets per year which may be difficult to sift through. Additionally, as the data looks at a wide range of factors it may be difficult to focus on one or two. 
+
+Drug Overdose Death Rates
+
+https://catalog.data.gov/dataset/drug-overdose-death-rates-by-drug-type-sex-age-race-and-hispanic-origin-united-states-3f72f 
+
+The Centers for Disease Control and Prevention documented drug overdose death rates based on drug type, sex, age, race, and Hispanic origin. The dataset dates from 1999 to 2018, with 6228 rows and 16 columns. The CDC has released datasets containing this information annually since 1999 and has data up to 2019, but isn’t publicly available on their website.
+
+We are hoping to analyze the disparities in drug overdoses based on race from the 20 years of data collection. From the data, we could also determine which races have the highest access (potentially finding what race the majority of the youngest age, documented as “Under 15 years,” drug overdoses occur) to certain drugs e.g. heroin and natural and semisynthetic opioids, and the death rates associated with each drug. The time progression can show trends in access to drugs and deaths, although a possible challenge is that we might see rising numbers in deaths solely as a byproduct of the growing population. This might mean we need to standardize the data with respect to population count. Another concern is there are 11 values in the “STUB_LABEL” column, so we may need to group columns to visualize the effects of race on drug overdose better.
