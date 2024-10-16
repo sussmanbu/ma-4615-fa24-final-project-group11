@@ -5,6 +5,26 @@ toc: true
 draft: false
 ---
 
+## The Data
+
+This data comes from a partnership between the Census Bureau, the NCHS (National Center for Health Statistics) and other federal agencies. It is a 20 minute online survey and is published every 2 weeks beginning on April 23, 2020. The specific data we are looking at from the August 20 - September 16, 2024 survey period and can be found on the Census Bureau website at: https://www.census.gov/programs-surveys/household-pulse-survey/data/datasets.html 
+
+
+The survey was designed to complement the ability of the federal statistical system to rapidly respond and provide relevant information about the impact of COVID-19 in the United States. While the data was collected with a variety of federal agencies, collection was lead by the Census Bureau. 
+
+## Variables
+
+The data included a wide variety of variables from veteran status to the impacts of natural disasters. However, we decided to make the data more managable and focused by only examamining the following variables:
+
+
+
+#Cleaning the Data
+
+
+
+
+## Page Info 
+
 ![](images/data-import-cheatsheet-thumbs.png)
 
 
