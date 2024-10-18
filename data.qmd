@@ -1,6 +1,6 @@
 ---
 title: Data
-description: We describe the sources of our data and the cleaning process.
+description: We describe the sources of our data and the cleaning process. The data and information on the data was found through the census website (www.census.gov) 
 toc: true
 draft: false
 ---
@@ -12,11 +12,59 @@ This data comes from a partnership between the Census Bureau, the NCHS (National
 
 The survey was designed to complement the ability of the federal statistical system to rapidly respond and provide relevant information about the impact of COVID-19 in the United States. While the data was collected with a variety of federal agencies, collection was lead by the Census Bureau. 
 
+The data for the Household Pulse Survey was collected in response to COVID-19 in order to quickly respond and provide relevant information about the pandemic in the United States. This produces data representing social and economic matters affecting American households, which gets released in near real-time to determine state and federal action. For instance, this survey guiding emergency responses was fundamental, primarily during the pandemic’s peak. There are surveys that track similar data, but the data collection rate is not as frequent and the turnaround time is typically longer. There is existing research on this data. This includes a project evaluating the household pulse survey experiments, and focuses on how the survey can be more effective. Renee Reeves and Kayla Varela, the leads of this research, asked what implementations resulted in higher response rates, particularly contact strategies, e.g., text vs. email, short URL vs. long URL. Reeves and Varela determined that sending texts instead of emails, using shorter URLs containing census.gov over longer URLs, and sending only texts instead of both texts and emails generate more responses. There is a range of other research, including identifying the demographic characteristics of nonrespondents and respondents who select non-definitive response categories, as well as which demographics were more likely to respond to sexual orientation and gender identity (SOGI) questions.
+
+## Potential Issues/Biases
+
+The main issue with this data is that it is voluntary and self reported. This means that individuals may have different interpretations of the scales and numbers especially as it relates to levels of worry, anxiety, and loneliness. This is particularly the case for mental health data as there remains a lot of stigma around mental health, however, it is also harder to collect other more accurate data. Further demonstrating this problem, there are several questions that respondents skipped and did not answer. 
+
+Additionally,  while people are randomly selected to participate, they have the option not to participate. Those that opt out of participating may be more distrustful of the government or too busy to take the time to fill out the survey. Both of these factors could be correlated with other variables in the survey. Respondents are also selected using household addresses. This automatically excludes people experiencing homelessness, as they may not have a household address.
+
+Further, the data questioning has changed throughout the phases of the survey. Before Phase 3.2, the screening questions for mental health concerns asked “Over the last 7 days, how often have you been bothered by … having little interest or pleasure in doing things? Would you say not at all, several days, more than half the days, or nearly every day?” Phase 3.2 altered the question to “Over the last 14 days,” as opposed to the previously stated “7 days.” This could have changed responses given the timeframe is different — having a larger number of days n is more likely to create more varying data since there is more data to report. So, someone might respond “more than half the days” in a 14-day span, but “several days” in a 7-day span. 
+
 ## Variables
 
-The data included a wide variety of variables from veteran status to the impacts of natural disasters. However, we decided to make the data more managable and focused by only examamining the following variables:
+The data included a wide variety of variables from veteran status to the impacts of natural disasters. However, we decided to make the data more manageable and focused by only examining the following variables that we were particularly interested in:
 
+Birth Year
 
+Hispanic or Non-Hispanic
+
+Race
+
+Education
+
+Marital Status
+
+Gender at Birth
+
+Gender Identity
+
+Sexuality
+
+School Type
+
+Active Duty and Veteran Status
+
+Job Loss
+
+Employment Status
+
+Kind of Work 
+
+Reason for Not Working
+
+Anxiousness, Worry, Interest
+
+Children's Mental Health Treatment
+
+Social Support and Loneliness
+
+Private v Public Health Care
+
+State
+
+Household Income
 
 #Cleaning the Data
 
@@ -26,26 +74,6 @@ The data included a wide variety of variables from veteran status to the impacts
 ## Page Info 
 
 ![](images/data-import-cheatsheet-thumbs.png)
-
-
-This comes from the file `data.qmd`.
-
-Your first steps in this project will be to find data to work on.
-
-I recommend trying to find data that interests you and that you are knowledgeable about. A bad example would be if you have no interest in video games but your data set is about video games. I also recommend finding data that is related to current events, social justice, and other areas that have an impact.
-
-
-Initially, you will study _one dataset_ but later you will need to combine that data with another dataset. For this reason, I recommend finding data that has some date and/or location components. These types of data are conducive to interesting visualizations and analysis and you can also combine this data with other data that also has a date or location variable.
-Data from the census, weather data, economic data, are all relatively easy to combine with other data with time/location components.
-
-
-## What makes a good data set?
-
-* Data you are interested in and care about.
-* Data where there are a lot of potential questions that you can explore.
-* A data set that isn't completely cleaned already.
-* Multiple sources for data that you can combine.
-* Some type of time and/or location component.
 
 
 ## Where to keep data?
