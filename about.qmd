@@ -30,6 +30,17 @@ Brianna is a senior studying Math and Computer Science, and is from Boston, MA.
 
 Bridget is a senior studying Political Science with minors in Statistics and Economics. She is originally from Takoma Park, MD. 
 
+## Brenton Mac
+
+Brenton is a junior majoring in Data Science. He is from Framingham, MA.
+
+## Taiyo Nakai
+
+Taiyo is a senior studying Data Science with a minor in Statistics. He is originally from Malden, MA.
+
+## Nicole Liu
+Nicole is a junior majoring in Data Science and minoring in Innovation & Entrepreneurship. She is from Irvine, CA.
+
 <!-- Please leave in the information below -->
 
 ### About this Template.
