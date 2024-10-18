@@ -24,47 +24,55 @@ Further, the data questioning has changed throughout the phases of the survey. B
 
 ## Variables
 
-The data included a wide variety of variables from veteran status to the impacts of natural disasters. However, we decided to make the data more manageable and focused by only examining the following variables that we were particularly interested in:
+The data included a wide variety of variables from veteran status to the impacts of natural disasters. However, we decided to make the data more manageable and focused by only examining the following variables that we were particularly interested in. We also took out variable where a large portion of the data was missing, including school type. 
 
-Birth Year
+We kept basic descriptive variables of individuals such as Birth Year, State, Race and Ethnicity, Marital Status, Gender and Sexuality. We also wanted to include information about education and employment to see if that factored into mental health data. This includes level of education, school type (public, private, homeschooled) for children in the household, employment status, job loss and reason for not working. We also included if an individual was active duty or a veteran. Finally we examined the specific variables regarding mental health:
 
-Hispanic or Non-Hispanic
+* Anxiousness
+* Worry
+* Interest
+* Feeling Down
+* Children's Mental Health Treatment (Need, if they received treatment, difficulty in finding treatment)
+* Social Support and Loneliness
+* Private v Public Health Care
 
-Race
 
-Education
+Our full list of variables is used is as follows:
 
-Marital Status
+Basic Descriptors Variables
+* Birth Year
+* Hispanic v Non-Hispanic
+* Race
+* Marital Status
+* Gender at Birth
+* Gender Identity
+* Sexuality
+* State
+* Househodl Income
 
-Gender at Birth
+Education and Employment
+* Education Level 
+* Job Loss
+* Employment Status
+* Kind of Work
+* Reason not Working
 
-Gender Identity
+Active Duty and Veteran Status 
+* Active Duty
+* Veteran
 
-Sexuality
-
-School Type
-
-Active Duty and Veteran Status
-
-Job Loss
-
-Employment Status
-
-Kind of Work 
-
-Reason for Not Working
-
-Anxiousness, Worry, Interest
-
-Children's Mental Health Treatment
-
-Social Support and Loneliness
-
-Private v Public Health Care
-
-State
-
-Household Income
+Mental Health 
+* Anxious
+* Worry
+* Interest
+* Down
+* Children need for mental health treatment
+* Children receiving mental health treatment
+* Difficulty in obtaining treatment
+* Satisfaction with treatment 
+* Social Support
+* Loneliness
+* Public vs Private Health Care
 
 #Cleaning the Data
 
