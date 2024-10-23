@@ -1,148 +1,87 @@
 ---
 title: Data
-description: We describe the sources of our data and the cleaning process.
+description: We describe the sources of our data and the cleaning process. The data and information on the data was found through the census website (www.census.gov) 
 toc: true
 draft: false
 ---
 
 ## The Data
 
-This data comes from a partnership between the Census Bureau, the NCHS (National Center for Health Statistics) and other federal agencies. It is a 20 minute online survey and is published every 2 weeks beginning on April 23, 2020. The specific data we are looking at from the August 20 - September 16, 2024 survey period and can be found on the Census Bureau website at: https://www.census.gov/programs-surveys/household-pulse-survey/data/datasets.html 
+This data comes from a partnership between the Census Bureau, the NCHS (National Center for Health Statistics) and other federal agencies. It is a 20 minute online survey and is published every 2 weeks beginning on April 23, 2020. The specific data we are looking at from the August 20 - September 16, 2024 survey period and can be found on the [Census Bureau website](https://www.census.gov/programs-surveys/household-pulse-survey/data/datasets.html).
 
 
 The survey was designed to complement the ability of the federal statistical system to rapidly respond and provide relevant information about the impact of COVID-19 in the United States. While the data was collected with a variety of federal agencies, collection was lead by the Census Bureau. 
 
+The data for the Household Pulse Survey was collected in response to COVID-19 in order to quickly respond and provide relevant information about the pandemic in the United States. This produces data representing social and economic matters affecting American households, which gets released in near real-time to determine state and federal action. For instance, this survey guiding emergency responses was fundamental, primarily during the pandemic’s peak. There are surveys that track similar data, but the data collection rate is not as frequent and the turnaround time is typically longer. There is existing research on this data. This includes a project evaluating the household pulse survey experiments, and focuses on how the survey can be more effective. Renee Reeves and Kayla Varela, the leads of this research, asked what implementations resulted in higher response rates, particularly contact strategies, e.g., text vs. email, short URL vs. long URL. Reeves and Varela determined that sending texts instead of emails, using shorter URLs containing census.gov over longer URLs, and sending only texts instead of both texts and emails generate more responses. There is a range of other research, including identifying the demographic characteristics of nonrespondents and respondents who select non-definitive response categories, as well as which demographics were more likely to respond to sexual orientation and gender identity (SOGI) questions.
+
+### Potential Issues/Biases
+
+The main issue with this data is that it is voluntary and self reported. This means that individuals may have different interpretations of the scales and numbers especially as it relates to levels of worry, anxiety, and loneliness. This is particularly the case for mental health data as there remains a lot of stigma around mental health, however, it is also harder to collect other more accurate data. Further demonstrating this problem, there are several questions that respondents skipped and did not answer. 
+
+Additionally,  while people are randomly selected to participate, they have the option not to participate. Those that opt out of participating may be more distrustful of the government or too busy to take the time to fill out the survey. Both of these factors could be correlated with other variables in the survey. Respondents are also selected using household addresses. This automatically excludes people experiencing homelessness, as they may not have a household address.
+
+Further, the data questioning has changed throughout the phases of the survey. Before Phase 3.2, the screening questions for mental health concerns asked “Over the last 7 days, how often have you been bothered by … having little interest or pleasure in doing things? Would you say not at all, several days, more than half the days, or nearly every day?” Phase 3.2 altered the question to “Over the last 14 days,” as opposed to the previously stated “7 days.” This could have changed responses given the timeframe is different — having a larger number of days n is more likely to create more varying data since there is more data to report. So, someone might respond “more than half the days” in a 14-day span, but “several days” in a 7-day span. 
+
 ## Variables
 
-The data included a wide variety of variables from veteran status to the impacts of natural disasters. However, we decided to make the data more managable and focused by only examining the following variables:
+The data included a wide variety of variables from veteran status to the impacts of natural disasters. However, we decided to make the data more manageable and focused by only examining the following variables that we were particularly interested in. We also took out variable where a large portion of the data was missing, including school type. 
+
+We kept basic descriptive variables of individuals such as Birth Year, State, Race and Ethnicity, Marital Status, Gender and Sexuality. We also wanted to include information about education and employment to see if that factored into mental health data. This includes level of education, school type (public, private, homeschooled) for children in the household, employment status, job loss and reason for not working. We also included if an individual was active duty or a veteran. Finally we examined the specific variables regarding mental health:
+
+* Anxiousness
+* Worry
+* Interest
+* Feeling Down
+* Children's Mental Health Treatment (Need, if they received treatment, difficulty in finding treatment)
+* Social Support and Loneliness
+* Private v Public Health Care
 
 
+Our full list of variables is used is as follows:
 
-#Cleaning the Data
+Basic Descriptors Variables
+* Birth Year
+* Hispanic v Non-Hispanic
+* Race
+* Marital Status
+* Gender at Birth
+* Gender Identity
+* Sexuality
+* State
+* Household Income
 
-First, we load the data.
-```{r}
-library(readr)
-library(ggplot2)
-library(dplyr)
-# install.packages("patchwork")
-library(patchwork)
-data_unclean <- read_csv("dataset/data_unclean.csv")
-```
+Education and Employment
+* Education Level 
+* Job Loss
+* Employment Status
+* Kind of Work
+* Reason not Working
 
-Out of 220 variables (columns), we will keep 43 that we find may be useful.
-Furthermore, many variables contain the values "-88" and "-99".
-"-88" indicates "Missing / Did not report", which we interpret as NA.
-"-99" indicates "Question seen but category not selected", which we convert to 0. This makes histograms concise (and makes regression easier, although that is not our focus).
-```{r}
-data_unclean <- read_csv("dataset/data_unclean.csv", na = c("-88"))
-columns = c(
-  "TBIRTH_YEAR",
-  "RHISPANIC",
-  "RRACE",
-  "EEDUC",
-  "MS",
-  "EGENID_BIRTH",
-  "RGENID_DESCRIBE",
-  "SEXUAL_ORIENTATION_RV",
-  "ENRPUBCHK",
-  "ENRPRVCHK",
-  "ENRHMSCHK",
-  "ACTVDUTY1",
-  "ACTVDUTY2",
-  "ACTVDUTY3",
-  "ACTVDUTY4",
-  "ACTVDUTY5",
-  "VETERAN1",
-  "VETERAN2",
-  "VETERAN3",
-  "VETERAN4",
-  "VETERAN5",
-  "WRKLOSSRV",
-  "ANYWORK",
-  "KINDWORK",
-  "RSNNOWRKRV",
-  "ANXIOUS",
-  "WORRY",
-  "INTEREST",
-  "DOWN",
-  "MHLTH_NEED",
-  "MHLTH_GET",
-  "MHLTH_SATISFD",
-  "MHLTH_DIFFCLT",
-  "SOCIAL1",
-  "SOCIAL2",
-  "PRIVHLTH",
-  "PUBHLTH",
-  "EST_ST",
-  "INCOME",
-  "SUPPORT1",
-  "SUPPORT2",
-  "SUPPORT3",
-  "SUPPORT4_RV"
-)
+Active Duty and Veteran Status 
+* Active Duty
+* Veteran
 
-data_unclean = data_unclean[columns]
-data_unclean[data_unclean == -99] = 0
+Mental Health 
+* Anxious
+* Worry
+* Interest
+* Down
+* Children need for mental health treatment
+* Children receiving mental health treatment
+* Difficulty in obtaining treatment
+* Satisfaction with treatment 
+* Social Support
+* Loneliness
+* Public vs Private Health Care
 
-```
+## Cleaning the Data
 
-Next, we see how many values are NA in each variable.
-```{r}
-colSums(is.na(data_unclean[columns]))
-```
-The output indicates many NA (including "-88") values.
 
-However, we believe the data is already quite clean, as many questions are only given to some survey participants.
-For example, MHLTH_DIFFCLT represents a question asking whether the survey participant has difficulty finding mental health treatment for their child(ren). Evidently, only a small fraction of the 51280 participants have answered this question.
-```{r}
-sum(!is.na(data_unclean$MHLTH_DIFFCLT))
-```
-
-The histogram below plots the responses to MHLTH_DIFFCLT against the birth year of participants.
-```{r}
-# https://www.statology.org/r-convert-numeric-to-factor/
-plot = ggplot(
-  data = data_unclean[!is.na(data_unclean$MHLTH_DIFFCLT),],
-  mapping = aes(x = TBIRTH_YEAR, fill = as.factor(MHLTH_DIFFCLT))
-) + geom_histogram() + ggtitle("MHLTH_DIFFCLT vs birth year",
-                               subtitle="MHLTH_DIFFCLT: A participant's difficulty finding mental health treatment for their child(ren)")
-
-plot
-
-```
-Here,
-0: Question seen but category not selected
-1: Not difficult
-2: Somewhat difficult
-3: Very difficult
-4: Unable to get treatment due to difficulty
-5: Did not try to get treatment
 
 
 ## Page Info 
 
 ![](images/data-import-cheatsheet-thumbs.png)
-
-
-This comes from the file `data.qmd`.
-
-Your first steps in this project will be to find data to work on.
-
-I recommend trying to find data that interests you and that you are knowledgeable about. A bad example would be if you have no interest in video games but your data set is about video games. I also recommend finding data that is related to current events, social justice, and other areas that have an impact.
-
-
-Initially, you will study _one dataset_ but later you will need to combine that data with another dataset. For this reason, I recommend finding data that has some date and/or location components. These types of data are conducive to interesting visualizations and analysis and you can also combine this data with other data that also has a date or location variable.
-Data from the census, weather data, economic data, are all relatively easy to combine with other data with time/location components.
-
-
-## What makes a good data set?
-
-* Data you are interested in and care about.
-* Data where there are a lot of potential questions that you can explore.
-* A data set that isn't completely cleaned already.
-* Multiple sources for data that you can combine.
-* Some type of time and/or location component.
 
 
 ## Where to keep data?

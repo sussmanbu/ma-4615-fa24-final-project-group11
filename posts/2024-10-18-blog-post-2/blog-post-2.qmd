@@ -3,10 +3,10 @@ title: "Blog Post 2"
 subtitle: "Finalized Data Set Research and Initial Cleaning"
 author: "All"
 date: "2024-10-18"
-date-modified: "2024-10-18"
+date-modified: "2024-10-23"
 draft: FALSE
 ---
-This past week, we have been focused on fine-tuning our data. We had an issue last week where our blog post wasn’t published, despite committing it to our main page, which we resolved during class. Because Professor Sussman wasn’t able to view our first blog post where we pitched our dataset, we ran it by him in class and he approved. We are also mindful that there are potential biases from this dataset and other research has shown how certain question orderings impact responses. Despite this, we are continuing to explore this dataset because it’s guided federal emergency responses during the peak of COVID-19, meaning it’s played a significant role in policy.
+This past week, we finalized our data set, the Household Pulse Survey, and have been focused on fine-tuning our data. We had an issue last week where our blog post wasn’t published, despite committing it to our main page, which we resolved during class. Because Professor Sussman wasn’t able to view our first blog post where we pitched our dataset, we ran it by him in class and he approved. We are also mindful that there are potential biases from this dataset and other research has shown how certain question orderings impact responses. Despite this, we are continuing to explore this dataset because it’s guided federal emergency responses during the peak of COVID-19, meaning it’s played a significant role in policy.
 
 #
 After receiving approval, we did a deeper dive on all the columns in our selected dataset and chose the specific columns we wanted to look into further. For instance, some of the columns we’re analyzing are employment status, marital status, specific mental health concerns, as well as information about identities (gender identity, sexuality, race, etc.). We’re wondering if there is any correlation between mental health concerns against people’s identities and factors of their lives (education, school type, veteran/active duty, etc.). We started with 220 columns and reduced it down to 43 columns, and have plans for how we will clean the data next week, such as removing null values and recoding portions of our data. \n
