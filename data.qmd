@@ -75,9 +75,61 @@ Mental Health
 * Public vs Private Health Care
 
 ## Cleaning the Data
+ 
+First, we load the data.
+```{r}
+library(readr)
+library(ggplot2)
+library(dplyr)
+# install.packages("patchwork")
+library(patchwork)
+data_unclean <- read_csv("dataset/data_unclean.csv")
+```
 
-
-
+Out of 220 variables (columns), we will keep 43 that we find may be useful.
+Furthermore, many variables contain the values "-88" and "-99".
+"-88" indicates "Missing / Did not report", which we interpret as NA.
+"-99" indicates "Question seen but category not selected", which we convert to 0. This makes histograms concise (and makes regression easier, although that is not our focus).
+```{r}
+data_unclean <- read_csv("dataset/data_unclean.csv", na = c("-88"))
+columns = c("TBIRTH_YEAR", "RHISPANIC", "RRACE", "EEDUC", "MS", "EGENID_BIRTH", "RGENID_DESCRIBE", "SEXUAL_ORIENTATION_RV", "ENRPUBCHK", "ENRPRVCHK", "ENRHMSCHK", "ACTVDUTY1", "ACTVDUTY2", "ACTVDUTY3", "ACTVDUTY4", "ACTVDUTY5", "VETERAN1", "VETERAN2", "VETERAN3", "VETERAN4", "VETERAN5", "WRKLOSSRV", "ANYWORK", "KINDWORK", "RSNNOWRKRV", "ANXIOUS", "WORRY", "INTEREST", "DOWN", "MHLTH_NEED", "MHLTH_GET", "MHLTH_SATISFD", "MHLTH_DIFFCLT", "SOCIAL1", "SOCIAL2", "PRIVHLTH", "PUBHLTH", "EST_ST", "INCOME", "SUPPORT1", "SUPPORT2", "SUPPORT3", "SUPPORT4_RV")
+ 
+data_unclean = data_unclean[columns]
+data_unclean[data_unclean == -99] = 0
+ 
+```
+ 
+Next, we see how many values are NA in each variable.
+```{r}
+colSums(is.na(data_unclean[columns]))
+```
+The output indicates many NA (including "-88") values.
+ 
+However, we believe the data is already quite clean, as many questions are only given to some survey participants.
+For example, MHLTH_DIFFCLT represents a question asking whether the survey participant has difficulty finding mental health treatment for their child(ren). Evidently, only a small fraction of the 51280 participants have answered this question.
+```{r}
+sum(!is.na(data_unclean$MHLTH_DIFFCLT))
+```
+ 
+The histogram below plots the responses to MHLTH_DIFFCLT against the birth year of participants.
+```{r}
+# https://www.statology.org/r-convert-numeric-to-factor/
+plot = ggplot(
+  data = data_unclean[!is.na(data_unclean$MHLTH_DIFFCLT),],
+  mapping = aes(x = TBIRTH_YEAR, fill = as.factor(MHLTH_DIFFCLT))
+) + geom_histogram() + ggtitle("MHLTH_DIFFCLT vs birth year",
+                               subtitle="MHLTH_DIFFCLT: A participant's difficulty finding mental health treatment for their child(ren)")
+ 
+plot
+ 
+```
+Here,
+0: Question seen but category not selected
+1: Not difficult
+2: Somewhat difficult
+3: Very difficult
+4: Unable to get treatment due to difficulty
+5: Did not try to get treatment
 
 ## Page Info 
 
