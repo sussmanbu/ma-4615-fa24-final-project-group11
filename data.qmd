@@ -7,14 +7,14 @@ draft: false
 
 ## The Data
 
-This data comes from a partnership between the Census Bureau, the NCHS (National Center for Health Statistics) and other federal agencies. It is a 20 minute online survey and is published every 2 weeks beginning on April 23, 2020. The specific data we are looking at from the August 20 - September 16, 2024 survey period and can be found on the Census Bureau website at: https://www.census.gov/programs-surveys/household-pulse-survey/data/datasets.html 
+This data comes from a partnership between the Census Bureau, the NCHS (National Center for Health Statistics) and other federal agencies. It is a 20 minute online survey and is published every 2 weeks beginning on April 23, 2020. The specific data we are looking at from the August 20 - September 16, 2024 survey period and can be found on the [Census Bureau website](https://www.census.gov/programs-surveys/household-pulse-survey/data/datasets.html).
 
 
 The survey was designed to complement the ability of the federal statistical system to rapidly respond and provide relevant information about the impact of COVID-19 in the United States. While the data was collected with a variety of federal agencies, collection was lead by the Census Bureau. 
 
 The data for the Household Pulse Survey was collected in response to COVID-19 in order to quickly respond and provide relevant information about the pandemic in the United States. This produces data representing social and economic matters affecting American households, which gets released in near real-time to determine state and federal action. For instance, this survey guiding emergency responses was fundamental, primarily during the pandemic’s peak. There are surveys that track similar data, but the data collection rate is not as frequent and the turnaround time is typically longer. There is existing research on this data. This includes a project evaluating the household pulse survey experiments, and focuses on how the survey can be more effective. Renee Reeves and Kayla Varela, the leads of this research, asked what implementations resulted in higher response rates, particularly contact strategies, e.g., text vs. email, short URL vs. long URL. Reeves and Varela determined that sending texts instead of emails, using shorter URLs containing census.gov over longer URLs, and sending only texts instead of both texts and emails generate more responses. There is a range of other research, including identifying the demographic characteristics of nonrespondents and respondents who select non-definitive response categories, as well as which demographics were more likely to respond to sexual orientation and gender identity (SOGI) questions.
 
-## Potential Issues/Biases
+### Potential Issues/Biases
 
 The main issue with this data is that it is voluntary and self reported. This means that individuals may have different interpretations of the scales and numbers especially as it relates to levels of worry, anxiety, and loneliness. This is particularly the case for mental health data as there remains a lot of stigma around mental health, however, it is also harder to collect other more accurate data. Further demonstrating this problem, there are several questions that respondents skipped and did not answer. 
 
@@ -74,16 +74,7 @@ Mental Health
 * Loneliness
 * Public vs Private Health Care
 
-#Creating Codebook
-
-The data came with a codebook, however, we adapted it to make it readable. We also deleted rows of variable that we decided not to examine. 
-
-```{r cbooj}
-
-
-
-```
-#Cleaning the Data
+## Cleaning the Data
 
 
 
