@@ -131,6 +131,10 @@ Here,
 4: Unable to get treatment due to difficulty
 5: Did not try to get treatment
 
+## Codebook
+
+
+
 ## Page Info 
 
 ![](images/data-import-cheatsheet-thumbs.png)
