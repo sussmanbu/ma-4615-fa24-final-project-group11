@@ -231,6 +231,131 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="cleaning-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="cleaning-the-data">Cleaning the Data</h2>
+<p>First, we load the data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("patchwork")</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>data_unclean <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"dataset/data_unclean.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 51280 Columns: 220</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): SCRAM, EST_ST
+dbl (218): CYCLE, EST_MSA, REGION, HWEIGHT, PWEIGHT, TBIRTH_YEAR, ABIRTH_YEA...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<p>Out of 220 variables (columns), we will keep 43 that we find may be useful. Furthermore, many variables contain the values “-88” and “-99”. “-88” indicates “Missing / Did not report”, which we interpret as NA. “-99” indicates “Question seen but category not selected”, which we convert to 0. This makes histograms concise (and makes regression easier, although that is not our focus).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data_unclean <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"dataset/data_unclean.csv"</span>, <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"-88"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: One or more parsing issues, call `problems()` on your data frame for details,
+e.g.:
+  dat &lt;- vroom(...)
+  problems(dat)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 51280 Columns: 220
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): SCRAM, EST_ST
+dbl (218): CYCLE, EST_MSA, REGION, HWEIGHT, PWEIGHT, TBIRTH_YEAR, ABIRTH_YEA...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>columns <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"TBIRTH_YEAR"</span>, <span class="st">"RHISPANIC"</span>, <span class="st">"RRACE"</span>, <span class="st">"EEDUC"</span>, <span class="st">"MS"</span>, <span class="st">"EGENID_BIRTH"</span>, <span class="st">"RGENID_DESCRIBE"</span>, <span class="st">"SEXUAL_ORIENTATION_RV"</span>, <span class="st">"ENRPUBCHK"</span>, <span class="st">"ENRPRVCHK"</span>, <span class="st">"ENRHMSCHK"</span>, <span class="st">"ACTVDUTY1"</span>, <span class="st">"ACTVDUTY2"</span>, <span class="st">"ACTVDUTY3"</span>, <span class="st">"ACTVDUTY4"</span>, <span class="st">"ACTVDUTY5"</span>, <span class="st">"VETERAN1"</span>, <span class="st">"VETERAN2"</span>, <span class="st">"VETERAN3"</span>, <span class="st">"VETERAN4"</span>, <span class="st">"VETERAN5"</span>, <span class="st">"WRKLOSSRV"</span>, <span class="st">"ANYWORK"</span>, <span class="st">"KINDWORK"</span>, <span class="st">"RSNNOWRKRV"</span>, <span class="st">"ANXIOUS"</span>, <span class="st">"WORRY"</span>, <span class="st">"INTEREST"</span>, <span class="st">"DOWN"</span>, <span class="st">"MHLTH_NEED"</span>, <span class="st">"MHLTH_GET"</span>, <span class="st">"MHLTH_SATISFD"</span>, <span class="st">"MHLTH_DIFFCLT"</span>, <span class="st">"SOCIAL1"</span>, <span class="st">"SOCIAL2"</span>, <span class="st">"PRIVHLTH"</span>, <span class="st">"PUBHLTH"</span>, <span class="st">"EST_ST"</span>, <span class="st">"INCOME"</span>, <span class="st">"SUPPORT1"</span>, <span class="st">"SUPPORT2"</span>, <span class="st">"SUPPORT3"</span>, <span class="st">"SUPPORT4_RV"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>data_unclean <span class="ot">=</span> data_unclean[columns]</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>data_unclean[data_unclean <span class="sc">==</span> <span class="sc">-</span><span class="dv">99</span>] <span class="ot">=</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, we see how many values are NA in each variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(data_unclean[columns]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          TBIRTH_YEAR             RHISPANIC                 RRACE 
+                    0                     0                     0 
+                EEDUC                    MS          EGENID_BIRTH 
+                    0                   120                     0 
+      RGENID_DESCRIBE SEXUAL_ORIENTATION_RV             ENRPUBCHK 
+                  120                   120                 37071 
+            ENRPRVCHK             ENRHMSCHK             ACTVDUTY1 
+                37071                 37071                   120 
+            ACTVDUTY2             ACTVDUTY3             ACTVDUTY4 
+                  120                   120                   120 
+            ACTVDUTY5              VETERAN1              VETERAN2 
+                  120                   912                   912 
+             VETERAN3              VETERAN4              VETERAN5 
+                  912                   912                   912 
+            WRKLOSSRV               ANYWORK              KINDWORK 
+                  120                   120                 22126 
+           RSNNOWRKRV               ANXIOUS                 WORRY 
+                29685                   120                   120 
+             INTEREST                  DOWN            MHLTH_NEED 
+                  120                   120                 37162 
+            MHLTH_GET         MHLTH_SATISFD         MHLTH_DIFFCLT 
+                48718                 49021                 48718 
+              SOCIAL1               SOCIAL2              PRIVHLTH 
+                  726                   726                     0 
+              PUBHLTH                EST_ST                INCOME 
+                    0                     0                  6519 
+             SUPPORT1              SUPPORT2              SUPPORT3 
+                 1362                  1362                  1362 
+          SUPPORT4_RV 
+                 1362 </code></pre>
+</div>
+</div>
+<p>The output indicates many NA (including “-88”) values.</p>
+<p>However, we believe the data is already quite clean, as many questions are only given to some survey participants. For example, MHLTH_DIFFCLT represents a question asking whether the survey participant has difficulty finding mental health treatment for their child(ren). Evidently, only a small fraction of the 51280 participants have answered this question.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(data_unclean<span class="sc">$</span>MHLTH_DIFFCLT))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2562</code></pre>
+</div>
+</div>
+<p>The histogram below plots the responses to MHLTH_DIFFCLT against the birth year of participants.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># https://www.statology.org/r-convert-numeric-to-factor/</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plot <span class="ot">=</span> <span class="fu">ggplot</span>(</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data_unclean[<span class="sc">!</span><span class="fu">is.na</span>(data_unclean<span class="sc">$</span>MHLTH_DIFFCLT),],</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> TBIRTH_YEAR, <span class="at">fill =</span> <span class="fu">as.factor</span>(MHLTH_DIFFCLT))</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span> <span class="fu">geom_histogram</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"MHLTH_DIFFCLT vs birth year"</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                               <span class="at">subtitle=</span><span class="st">"MHLTH_DIFFCLT: A participant's difficulty finding mental health treatment for their child(ren)"</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Here, 0: Question seen but category not selected 1: Not difficult 2: Somewhat difficult 3: Very difficult 4: Unable to get treatment due to difficulty 5: Did not try to get treatment</p>
 </section>
 <section id="page-info" class="level2">
 <h2 class="anchored" data-anchor-id="page-info">Page Info</h2>
@@ -247,21 +372,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>For larger datasets, you’ll need to create a new folder in the project root directory named <code>dataset-ignore</code>. This will be ignored by git (based off the <code>.gitignore</code> file in the project root directory) which will help you avoid issues with Github’s size limits. Your team will have to manually make sure the data files in <code>dataset-ignore</code> are synced across team members.</p>
 <p>Your <a href="./scripts/load_and_clean_data.R">load_and_clean_data.R</a> file is how you will load and clean your data. Here is a an example of a very simple one.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"scripts/load_and_clean_data.R"</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">echo =</span> <span class="cn">TRUE</span> <span class="co"># Use echo=FALSE or omit it to avoid code output  </span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"scripts/load_and_clean_data.R"</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">echo =</span> <span class="cn">TRUE</span> <span class="co"># Use echo=FALSE or omit it to avoid code output  </span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 &gt; library(tidyverse)</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
 ✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-✔ purrr     1.0.2     
+✔ lubridate 1.9.3     ✔ tibble    3.2.1
+✔ purrr     1.0.2     ✔ tidyr     1.3.1
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
