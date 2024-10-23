@@ -48,7 +48,7 @@ Basic Descriptors Variables
 * Gender Identity
 * Sexuality
 * State
-* Househodl Income
+* Household Income
 
 Education and Employment
 * Education Level 
