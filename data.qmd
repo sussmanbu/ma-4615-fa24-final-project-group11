@@ -74,6 +74,15 @@ Mental Health
 * Loneliness
 * Public vs Private Health Care
 
+#Creating Codebook
+
+The data came with a codebook, however, we adapted it to make it readable. We also deleted rows of variable that we decided not to examine. 
+
+```{r cbooj}
+
+
+
+```
 #Cleaning the Data
 
 
