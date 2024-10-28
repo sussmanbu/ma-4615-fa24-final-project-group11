@@ -1,0 +1,51 @@
+---
+title: "Blog Post 3"
+subtitle: "Data Cleaning and Exploration"
+author: "All"
+date: "2024-10-27"
+date-modified: "2024-10-27"
+draft: FALSE
+---
+
+During this week, we continued to clean and explore the Household Pulse Survey data that we chose. Within the cleaning procedure, we have removed all columns that do not align with what we want to focus on, which is mental health. We reduced the column size from about 220 to 43, making the data much more manageable for our data processing. Furthermore, we have modified the source’s null values, which were -88, into NULL values to change the data into a form that we are comfortable with. 
+
+Now that we have cleaned our data, we are also able to do some exploratory data analysis to see some initial trends and potential biases within our data. Our data cleaning and exploration can be found in the data segment of the project, but below is one of our most interesting graphs:
+
+```{r}
+#| echo: false
+#| include: false
+
+library("tidyverse")
+
+data_unclean <- read_csv("dataset/data_unclean.csv", na = c("-88"))
+columns = c("TBIRTH_YEAR", "RHISPANIC", "RRACE", "EEDUC", "MS", "EGENID_BIRTH", "RGENID_DESCRIBE", "SEXUAL_ORIENTATION_RV", "ENRPUBCHK", "ENRPRVCHK", "ENRHMSCHK", "ACTVDUTY1", "ACTVDUTY2", "ACTVDUTY3", "ACTVDUTY4", "ACTVDUTY5", "VETERAN1", "VETERAN2", "VETERAN3", "VETERAN4", "VETERAN5", "WRKLOSSRV", "ANYWORK", "KINDWORK", "RSNNOWRKRV", "ANXIOUS", "WORRY", "INTEREST", "DOWN", "MHLTH_NEED", "MHLTH_GET", "MHLTH_SATISFD", "MHLTH_DIFFCLT", "SOCIAL1", "SOCIAL2", "PRIVHLTH", "PUBHLTH", "EST_ST", "INCOME", "SUPPORT1", "SUPPORT2", "SUPPORT3", "SUPPORT4_RV")
+ 
+data_unclean = data_unclean[columns]
+data_unclean[data_unclean == -99] = 0
+ 
+```
+
+
+```{r}
+#| echo: false
+#| include: true
+# https://www.statology.org/r-convert-numeric-to-factor/
+plot = ggplot(
+  data = data_unclean[!is.na(data_unclean$MHLTH_DIFFCLT),],
+  mapping = aes(x = TBIRTH_YEAR, fill = as.factor(MHLTH_DIFFCLT))
+) + geom_histogram() + ggtitle("MHLTH_DIFFCLT vs birth year",
+                               subtitle="MHLTH_DIFFCLT: A participant's difficulty finding mental health treatment for their child(ren)")
+ 
+plot
+ 
+```
+
+This is a graph that shows the distribution of a participant's birth year, and while also showing the difficulty of finding mental health treatment for their children. The first thing to notice is that most of the birth years are centralized between 1970 - 1990, and this is probably because most of the people who are considered parents within the survey were born between 1970-1990. The colors that represent the difficulty of finding mental health shows high counts of 1 and 2, implying that it is not very difficult to find mental health resources for children. We plan on working on analyzing mental health data, so these preliminary graphs can help us understand some things about the data that are not visible from just looking at the table.
+
+
+
+
+
+
+
+

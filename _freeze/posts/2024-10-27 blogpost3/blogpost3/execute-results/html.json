@@ -1,0 +1,17 @@
+{
+  "hash": "817a6558e6ea1f63bfa883c1c34808d5",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Blog Post 3\"\nsubtitle: \"Data Cleaning and Exploration\"\nauthor: \"All\"\ndate: \"2024-10-27\"\ndate-modified: \"2024-10-27\"\ndraft: FALSE\n---\n\n\nDuring this week, we continued to clean and explore the Household Pulse Survey data that we chose. Within the cleaning procedure, we have removed all columns that do not align with what we want to focus on, which is mental health. We reduced the column size from about 220 to 43, making the data much more manageable for our data processing. Furthermore, we have modified the source’s null values, which were -88, into NULL values to change the data into a form that we are comfortable with. \n\nNow that we have cleaned our data, we are also able to do some exploratory data analysis to see some initial trends and potential biases within our data. Our data cleaning and exploration can be found in the data segment of the project, but below is one of our most interesting graphs:\n\n\n\n\n::: {.cell}\n::: {.cell-output .cell-output-stderr}\n\n```\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n```\n\n\n:::\n\n::: {.cell-output-display}\n![](blogpost3_files/figure-html/unnamed-chunk-2-1.png){width=672}\n:::\n:::\n\n\nThis is a graph that shows the distribution of a participant's birth year, and while also showing the difficulty of finding mental health treatment for their children. The first thing to notice is that most of the birth years are centralized between 1970 - 1990, and this is probably because most of the people who are considered parents within the survey were born between 1970-1990. The colors that represent the difficulty of finding mental health shows high counts of 1 and 2, implying that it is not very difficult to find mental health resources for children. We plan on working on analyzing mental health data, so these preliminary graphs can help us understand some things about the data that are not visible from just looking at the table.\n\n\n\n\n\n\n\n\n",
+    "supporting": [
+      "blogpost3_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
