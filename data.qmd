@@ -78,12 +78,13 @@ Mental Health
  
 First, we load the data.
 ```{r}
+suppressMessages({
 library(readr)
 library(ggplot2)
 library(dplyr)
 # install.packages("patchwork")
-library(patchwork)
-data_unclean <- read_csv("dataset/data_unclean.csv")
+library(patchwork) 
+data_unclean <- read_csv("dataset/data_unclean.csv") })
 ```
 
 Out of 220 variables (columns), we will keep 43 that we find may be useful.
@@ -91,7 +92,9 @@ Furthermore, many variables contain the values "-88" and "-99".
 "-88" indicates "Missing / Did not report", which we interpret as NA.
 "-99" indicates "Question seen but category not selected", which we convert to 0. This makes histograms concise (and makes regression easier, although that is not our focus).
 ```{r}
-data_unclean <- read_csv("dataset/data_unclean.csv", na = c("-88"))
+suppressWarnings(suppressMessages({
+  data_unclean <- read_csv("dataset/data_unclean.csv", na = c("-88"))
+}))
 columns = c("TBIRTH_YEAR", "RHISPANIC", "RRACE", "EEDUC", "MS", "EGENID_BIRTH", "RGENID_DESCRIBE", "SEXUAL_ORIENTATION_RV", "ENRPUBCHK", "ENRPRVCHK", "ENRHMSCHK", "ACTVDUTY1", "ACTVDUTY2", "ACTVDUTY3", "ACTVDUTY4", "ACTVDUTY5", "VETERAN1", "VETERAN2", "VETERAN3", "VETERAN4", "VETERAN5", "WRKLOSSRV", "ANYWORK", "KINDWORK", "RSNNOWRKRV", "ANXIOUS", "WORRY", "INTEREST", "DOWN", "MHLTH_NEED", "MHLTH_GET", "MHLTH_SATISFD", "MHLTH_DIFFCLT", "SOCIAL1", "SOCIAL2", "PRIVHLTH", "PUBHLTH", "EST_ST", "INCOME", "SUPPORT1", "SUPPORT2", "SUPPORT3", "SUPPORT4_RV")
  
 data_unclean = data_unclean[columns]
