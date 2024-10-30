@@ -131,6 +131,14 @@ Here,
 4: Unable to get treatment due to difficulty
 5: Did not try to get treatment
 
+
+Finally, let's save `data_unclean` as an .rds file.
+```{r}
+write_rds(data_unclean, "dataset/data_clean.rds")
+```
+
+
+
 ## Codebook
 
 
