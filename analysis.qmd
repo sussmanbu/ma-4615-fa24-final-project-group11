@@ -6,6 +6,12 @@ draft: false
 ---
 
 ![](https://upload.wikimedia.org/wikipedia/commons/7/77/Pebbleswithquarzite.jpg)
+## Main Questions
+- How does access to mental health services change based on factors such as income, education, and race?
+- How do measures of mental wellbeing (levels of worry, anxiety, etc.) change based on age, income, education, and race?
+- How does veteran/active duty status effect mental health?
+
+
 
 This comes from the file `analysis.qmd`.
 
