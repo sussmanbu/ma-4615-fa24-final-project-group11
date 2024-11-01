@@ -140,19 +140,6 @@ Finally, let's save `data_unclean` as an .rds file.
 write_rds(data_unclean, "dataset/data_clean.rds")
 ```
 
-
-
-## Codebook
-
-``` {r cbook}
-cbook <- read_csv("dataset/data.dictionary.csv") |>
-  filter(row_number() != c(1,2,3)) |>
-  
-  
-  
-
-```
-
 ## Page Info 
 
 ![](images/data-import-cheatsheet-thumbs.png)
