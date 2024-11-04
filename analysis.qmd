@@ -41,16 +41,24 @@ data_clean <- read_rds("dataset/data_clean.rds") |>
 
 avg_mh_by_income <- data_clean |>
   group_by(INCOME) |>
-  summarize(avg_mh = mean(avg_mentalhealth))
+  summarize(avg_mh = mean(avg_mentalhealth), avg_anxiety = mean(ANXIOUS), avg_worry = mean(WORRY), avg_interest = mean(INTEREST), avg_down = mean(DOWN))
 
 ggplot(data_clean, aes(x=INCOME, y = avg_mentalhealth)) +
   geom_point(alpha = 0.01) +
   geom_smooth(method = "lm", se = FALSE, color = "blue") + 
   labs(x = "Income", y = "Totalled Mental Health Score", title = "Income vs. Mental Health")
 
-ggplot(avg_mh_by_income, aes(x=INCOME, y = avg_mh)) +
-  geom_point(alpha = 0.01) +
-  geom_smooth(method = "lm", se = FALSE, color = "blue") + 
+ggplot(avg_mh_by_income) +
+  geom_point(aes(x=INCOME, y = avg_mh), alpha = 0.01) +
+  geom_smooth(aes(x=INCOME, y = avg_mh), method = "lm", se = FALSE, color = "blue") + 
+  geom_point(aes(x=INCOME, y = avg_anxiety), alpha = 0.01) +
+  geom_smooth(aes(x=INCOME, y = avg_anxiety), method = "lm", se = FALSE, color = "red") + 
+  geom_point(aes(x=INCOME, y = avg_worry), alpha = 0.01) +
+  geom_smooth(aes(x=INCOME, y = avg_worry), method = "lm", se = FALSE, color = "green") + 
+  geom_point(aes(x=INCOME, y = avg_interest), alpha = 0.01) +
+  geom_smooth(aes(x=INCOME, y = avg_interest), method = "lm", se = FALSE, color = "purple") + 
+  geom_point(aes(x=INCOME, y = avg_down), alpha = 0.01) +
+  geom_smooth(aes(x=INCOME, y = avg_down), method = "lm", se = FALSE, color = "pink") + 
   labs(x = "Income", y = "Average Mental Health Score", title = "Income vs. Mental Health")
 
 income_mh <- lm(INCOME ~ avg_mentalhealth, data_clean)
