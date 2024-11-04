@@ -37,13 +37,13 @@ data <- read_rds(here::here("dataset/loan_refusal_clean.rds"))
 ```
 ```{r}
 data_clean <- read_rds("dataset/data_clean.rds") |>
-  mutate(avg_mentalhealth = ANXIOUS + WORRY + INTEREST + DOWN)
+  mutate(total_mentalhealth = ANXIOUS + WORRY + INTEREST + DOWN)
 
 avg_mh_by_income <- data_clean |>
   group_by(INCOME) |>
-  summarize(avg_mh = mean(avg_mentalhealth), avg_anxiety = mean(ANXIOUS), avg_worry = mean(WORRY), avg_interest = mean(INTEREST), avg_down = mean(DOWN))
+  summarize(avg_mh = mean(total_mentalhealth), avg_anxiety = mean(ANXIOUS), avg_worry = mean(WORRY), avg_interest = mean(INTEREST), avg_down = mean(DOWN))
 
-ggplot(data_clean, aes(x=INCOME, y = avg_mentalhealth)) +
+ggplot(data_clean, aes(x=INCOME, y = total_mentalhealth)) +
   geom_point(alpha = 0.01) +
   geom_smooth(method = "lm", se = FALSE, color = "blue") + 
   labs(x = "Income", y = "Totalled Mental Health Score", title = "Income vs. Mental Health")
@@ -67,6 +67,80 @@ summary(income_mh)
   
 
 ```
+``` {r}
+library(dplyr)
+library(ggplot2)
+library(maps)
+
+us_map <- map_data("state")
+
+state_lookup <- c(
+  '01'='alabama',
+  '02'='alaska',
+  '04'='arizona',
+  '05'='arkansas',
+  '06'='california',
+  '08'='colorado',
+  '09'='connecticut',
+  '10'='delaware',
+  '11'='district of columbia',
+  '12'='florida',
+  '13'='georgia',
+  '15'='hawaii',
+  '16'='idaho',
+  '17'='illinois',
+  '18'='indiana',
+  '19'='iowa',
+  '20'='kansas',
+  '21'='kentucky',
+  '22'='louisiana',
+  '23'='maine',
+  '24'='maryland',
+  '25'='massachusetts',
+  '26'='michigan',
+  '27'='minnesota',
+  '28'='mississippi',
+  '29'='missouri',
+  '30'='montana',
+  '31'='nebraska',
+  '32'='nevada',
+  '33'='new hampshire',
+  '34'='new jersey',
+  '35'='new mexico',
+  '36'='new york',
+  '37'='north carolina',
+  '38'='north dakota',
+  '39'='ohio',
+  '40'='oklahoma',
+  '41'='oregon',
+  '42'='pennsylvania',
+  '44'='rhode island',
+  '45'='south carolina',
+  '46'='south dakota',
+  '47'='tennessee',
+  '48'='texas',
+  '49'='utah',
+  '50'='vermont',
+  '51'='virginia',
+  '53'='washington',
+  '54'='west virginia',
+  '55'='wisconsin',
+  '56'='wyoming' )
+
+data_by_state <- data_clean |>
+  mutate(region = recode(as.character(EST_ST), !!!state_lookup))
+
+
+us_map_data <- us_map |>
+  left_join(data_by_state, by = "region")
+
+ggplot(us_map_data, aes(x = long, y = lat, group = group)) +
+  geom_polygon(fill = "lightblue", color = "black") +
+  theme_void() +
+  labs(title = "Map of the United States")
+
+```
+
 ## Note on Attribution
 
 In general, you should try to provide links to relevant resources, especially those that helped you. You don't have to link to every StackOverflow post you used but if there are explainers on aspects of the data or specific models that you found helpful, try to link to those. Also, try to link to other sources that might support (or refute) your analysis. These can just be regular hyperlinks. You don't need a formal citation.
