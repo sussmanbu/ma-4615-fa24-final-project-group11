@@ -150,6 +150,23 @@ ggplot(us_map_data, aes(x = long, y = lat, group = group)) +
 
 ```
 
+```{r}
+race_dep_data <- data_unclean |>
+  filter(Race %in% c(1,2,3,4)) |>
+  mutate(Race = factor(Race, levels = c(1,2,3,4), labels = c("White", "Black", "Native American", "Asian Indian")))
+
+avg_freqs <- data_unclean |>
+  group_by(Race) |>
+  summarise(across(c(Depressed_Frequency, Worry_Frequency, Little_Interest_Frequency, Anxious_Frequency), mean, na.rm = TRUE)) |>
+  pivot_longer(cols = c(Depressed_Frequency, Worry_Frequency, Little_Interest_Frequency, Anxious_Frequency), names_to = "Variable", values_to = "Mean")
+
+ggplot(avg_freqs, aes(x = Race, y = Mean, fill = Variable)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(x = "Race", y = "Mean Value of Mental Health Ratings", title = "Average Mental Health Concern Frequencies by Race") + 
+  facet_wrap(~ Variable) +
+  theme(axis.text.x = element_text(angle = 25))
+```
+
 =======
 
 ```{r}
