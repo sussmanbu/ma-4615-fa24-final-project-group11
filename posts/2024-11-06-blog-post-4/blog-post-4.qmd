@@ -1,0 +1,37 @@
+---
+title: "Blog Post 4"
+subtitle: "Linear Modeling Test & Final Cleaning"
+author: "All"
+date: "2024-10-27"
+date-modified: "2024-10-27"
+draft: FALSE
+---
+
+During this week, we have further cleaned the data to prepare it for modeling and analysis. Some of the changes we have made to the data are to make the data more comprehensive without a data dictionary. For example, the column ACTVDUTY1 represents whether one or one’s spouse currently is not active in the U.S. Armed Forces. We changed the column name to Not_Currently_Serving_in_US_Armed_Forces. We have also changed the row data since our row data was just numbers that represented values. For example, for the row RHISPANIC, which has been renamed to Hispanic, the values within the column is either 1 or 2, based on whether the person is hispanic or not. We have changed it to Yes or No to help us understand the data more efficiently.
+
+Other than cleaning, we have begun putting effort into modeling and analysis. We have created a new column that aggregates the values within the mental health columns such as anxiety, worry, feeling down, and interest. This will help us understand the effect of certain variables on mental health overall. With this new column, we were able to compare it to household income using the lm() function in R. The results of our model are interesting, and some of our results can be seen below with our Normal QQ plot: 
+
+```{r}
+#| echo: false
+#| include: true
+
+library("tidyverse")
+
+data_clean <- read_rds("dataset/data_clean.rds") |>
+  mutate(
+    total_mentalhealth = Anxious_Frequency + Worry_Frequency + Little_Interest_Frequency + Depressed_Frequency,
+    avg_mentalhealth = total_mentalhealth / 4
+  )
+
+avg_mh_by_income <- data_clean |>
+  group_by(Household_Income) |>
+  summarize(avg_mh = mean(total_mentalhealth), avg_anxiety = mean(Anxious_Frequency), avg_worry = mean(Worry_Frequency), avg_interest = mean(Little_Interest_Frequency), avg_down = mean(Depressed_Frequency))
+
+income_mh <- lm(Household_Income ~ avg_mentalhealth, data_clean)
+plots <- plot(income_mh, which = 2)
+
+```
+
+	This plot shows that our distribution of residuals are not normally distributed. Within the middle quantiles, the residuals follow the normal distribution, but the farther quantiles from the mean show a difference from the normal distribution. These differences imply that within the farther quantiles, the data says very similar in their residuals, signaling that there may be some sort of boundaries in our data that the data cannot exceed.
+
+
