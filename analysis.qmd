@@ -33,29 +33,39 @@ The code below shows an example of loading the loan refusal data set (which you 
 ```{r}
 library(tidyverse)
 print(getwd())
-data <- read_rds(here::here("dataset/loan_refusal_clean.rds"))
+data_clean <- read_rds("dataset/data_clean.rds")
 ```
 
 ```{r}
 data_clean <- read_rds("dataset/data_clean.rds") |>
-  mutate(total_mentalhealth = Anxious_Frequency +  Worry_Frequency + Little_Interest_Frequency + Depressed_Frequency)
+  mutate(total_mentalhealth = Anxious_Frequency + Worry_Frequency + 
+         Little_Interest_Frequency + Depressed_Frequency)
 
-avg_mh_by_income <- data_clean |>
-  group_by(INCOME) |>
-  summarize(avg_mh = mean(total_mentalhealth), avg_anxiety = mean(Anxious_Frequency), avg_worry = mean(Worry_Frequency), avg_interest = mean(Little_Interest_Frequency), avg_down = mean(Depressed_Frequency))
+# Create analysis dataset for scatterplots
+scatter_data <- data_clean |>
+  mutate(total_mentalhealth = Anxious_Frequency + Worry_Frequency + 
+         Little_Interest_Frequency + Depressed_Frequency)
 
-ggplot(data_clean, aes(x=INCOME, y = total_mentalhealth)) +
-  mutate(avg_mentalhealth = Anxious_Frequency + Worry_Frequency + Little_Interest_Frequency + Depressed_Frequency)
-
-avg_mh_by_income <- data_clean |>
+# Calculate averages by income
+avg_mh_by_income <- scatter_data |>
   group_by(Household_Income) |>
-  summarize(avg_mh = mean(avg_mentalhealth), avg_anxiety = mean(Anxious_Frequency), avg_worry = mean(Worry_Frequency), avg_interest = mean(Little_Interest_Frequency), avg_down = mean(Depressed_Frequency))
+  summarize(
+    avg_mh = mean(total_mentalhealth),
+    avg_anxiety = mean(Anxious_Frequency),
+    avg_worry = mean(Worry_Frequency),
+    avg_interest = mean(Little_Interest_Frequency),
+    avg_down = mean(Depressed_Frequency)
+  )
 
-ggplot(data_clean, aes(x=Household_Income, y = avg_mentalhealth)) +
+# First plot - Income vs Total Mental Health
+ggplot(scatter_data, aes(x=Household_Income, y = total_mentalhealth)) +
   geom_point(alpha = 0.01) +
   geom_smooth(method = "lm", se = FALSE, color = "blue") + 
-  labs(x = "Income", y = "Totalled Mental Health Score", title = "Income vs. Mental Health")
+  labs(x = "Income", 
+       y = "Total Mental Health Score", 
+       title = "Income vs. Mental Health")
 
+# Second plot - All mental health metrics by income
 ggplot(avg_mh_by_income) +
   geom_point(aes(x=Household_Income, y = avg_mh), alpha = 0.01) +
   geom_smooth(aes(x=Household_Income, y = avg_mh), method = "lm", se = FALSE, color = "blue") + 
@@ -67,13 +77,14 @@ ggplot(avg_mh_by_income) +
   geom_smooth(aes(x=Household_Income, y = avg_interest), method = "lm", se = FALSE, color = "purple") + 
   geom_point(aes(x=Household_Income, y = avg_down), alpha = 0.01) +
   geom_smooth(aes(x=Household_Income, y = avg_down), method = "lm", se = FALSE, color = "pink") + 
-  labs(x = "Income", y = "Average Mental Health Score", title = "Income vs. Mental Health")
+  labs(x = "Income", 
+       y = "Average Mental Health Score", 
+       title = "Income vs. Mental Health Components")
 
-income_mh <- lm(Household_Income ~ avg_mentalhealth, data_clean)
+# Linear regression analysis
+income_mh <- lm(total_mentalhealth ~ Household_Income, data = scatter_data)
 plot(income_mh)
 summary(income_mh)
-  
-
 ```
 <<<<<<< HEAD
 ``` {r}
@@ -137,7 +148,7 @@ state_lookup <- c(
   '56'='wyoming' )
 
 data_by_state <- data_clean |>
-  mutate(region = recode(as.character(EST_ST), !!!state_lookup))
+  mutate(region = recode(as.character(State_Living_in), !!!state_lookup))
 
 
 us_map_data <- us_map |>
@@ -151,11 +162,11 @@ ggplot(us_map_data, aes(x = long, y = lat, group = group)) +
 ```
 
 ```{r}
-race_dep_data <- data_unclean |>
+race_dep_data <- data_clean |>
   filter(Race %in% c(1,2,3,4)) |>
   mutate(Race = factor(Race, levels = c(1,2,3,4), labels = c("White", "Black", "Native American", "Asian Indian")))
 
-avg_freqs <- data_unclean |>
+avg_freqs <- data_clean |>
   group_by(Race) |>
   summarise(across(c(Depressed_Frequency, Worry_Frequency, Little_Interest_Frequency, Anxious_Frequency), mean, na.rm = TRUE)) |>
   pivot_longer(cols = c(Depressed_Frequency, Worry_Frequency, Little_Interest_Frequency, Anxious_Frequency), names_to = "Variable", values_to = "Mean")
@@ -170,7 +181,7 @@ ggplot(avg_freqs, aes(x = Race, y = Mean, fill = Variable)) +
 =======
 
 ```{r}
-colnames(data_unclean)
+colnames(data_clean)
 ```
 >>>>>>> 50f4f57e7ee05a028e285104bb7d6bc038af2ece
 ## Note on Attribution
