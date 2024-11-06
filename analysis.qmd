@@ -38,11 +38,11 @@ data <- read_rds(here::here("dataset/loan_refusal_clean.rds"))
 
 ```{r}
 data_clean <- read_rds("dataset/data_clean.rds") |>
-  mutate(total_mentalhealth = ANXIOUS + WORRY + INTEREST + DOWN)
+  mutate(total_mentalhealth = Anxious_FrequencyS +  Worry_Frequency + Little_Interest_Frequency + Depressed_Frequency)
 
 avg_mh_by_income <- data_clean |>
   group_by(INCOME) |>
-  summarize(avg_mh = mean(total_mentalhealth), avg_anxiety = mean(ANXIOUS), avg_worry = mean(WORRY), avg_interest = mean(INTEREST), avg_down = mean(DOWN))
+  summarize(avg_mh = mean(total_mentalhealth), avg_anxiety = mean(Anxious_Frequency), avg_worry = mean(Worry_Frequency), avg_interest = mean(Little_Interest_Frequency), avg_down = mean(Depressed_Frequency))
 
 ggplot(data_clean, aes(x=INCOME, y = total_mentalhealth)) +
   mutate(avg_mentalhealth = Anxious_Frequency + Worry_Frequency + Little_Interest_Frequency + Depressed_Frequency)
