@@ -161,7 +161,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables">Variables</a></li>
   <li><a href="#cleaning-the-data" id="toc-cleaning-the-data" class="nav-link" data-scroll-target="#cleaning-the-data">Cleaning the Data</a></li>
-  <li><a href="#codebook" id="toc-codebook" class="nav-link" data-scroll-target="#codebook">Codebook</a></li>
   <li><a href="#page-info" id="toc-page-info" class="nav-link" data-scroll-target="#page-info">Page Info</a></li>
   <li><a href="#where-to-keep-data" id="toc-where-to-keep-data" class="nav-link" data-scroll-target="#where-to-keep-data">Where to keep data?</a>
   <ul class="collapse">
@@ -318,13 +317,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Here, 0: Question seen but category not selected 1: Not difficult 2: Somewhat difficult 3: Very difficult 4: Unable to get treatment due to difficulty 5: Did not try to get treatment</p>
+<p>Afterwards, we will rename each of the columns to be more intuitive.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data_unclean <span class="ot">&lt;-</span> data_unclean <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Birth_Year =</span> TBIRTH_YEAR, <span class="at">Hispanic =</span> RHISPANIC, <span class="at">Race =</span> RRACE, <span class="at">Educational_Attainment =</span> EEDUC, <span class="at">Marital_Status =</span> MS, <span class="at">Gender_at_Birth =</span> EGENID_BIRTH, <span class="at">Gender_Identity =</span> RGENID_DESCRIBE, <span class="at">Sexuality =</span> SEXUAL_ORIENTATION_RV, <span class="at">Public_School =</span> ENRPUBCHK, <span class="at">Private_School =</span> ENRPRVCHK, <span class="at">Home_School =</span> ENRHMSCHK, <span class="at">Not_Currently_Serving_in_US_Armed_Forces =</span> ACTVDUTY1, <span class="at">Serving_on_Active_Duty =</span> ACTVDUTY2, <span class="at">Serving_in_Reserve_or_National_Guard =</span> ACTVDUTY3, <span class="at">Spouse_Serving_on_Active_Duty =</span> ACTVDUTY4, <span class="at">Spouse_Serving_in_Reserve_or_National_Guard =</span> ACTVDUTY5, <span class="at">Not_Served_in_US_Armed_Forces =</span> VETERAN1, <span class="at">Served_on_Active_Duty =</span> VETERAN2, <span class="at">Served_in_Reserve_or_National_Guard =</span> VETERAN3, <span class="at">Spouse_Served_on_Active_Duty =</span> VETERAN4, <span class="at">Spouse_Served_in_Reserve_or_National_Guard =</span> VETERAN5, <span class="at">Job_Loss =</span> WRKLOSSRV, <span class="at">Employment_Status =</span> ANYWORK, <span class="at">Kind_of_Work =</span> KINDWORK, <span class="at">Reason_Not_Working =</span> RSNNOWRKRV, <span class="at">Anxious_Frequency =</span> ANXIOUS, <span class="at">Worry_Frequency =</span> WORRY, <span class="at">Little_Interest_Frequency =</span> INTEREST, <span class="at">Depressed_Frequency =</span> DOWN, <span class="at">Children_Need_for_Mental_Health_Treatment =</span> MHLTH_NEED, <span class="at">Children_Receive_Mental_Health_Treatment =</span> MHLTH_GET, <span class="at">Satisfaction_with_Treatment =</span> MHLTH_SATISFD, <span class="at">Difficulty_getting_Treatment =</span> MHLTH_DIFFCLT, <span class="at">Social_and_Emotional_Support =</span> SOCIAL1, <span class="at">Lonely_Frequency =</span> SOCIAL2, <span class="at">Private_Health_Insurance =</span> PRIVHLTH, <span class="at">Public_Health_Insurance =</span> PUBHLTH, <span class="at">State_Living_in =</span> EST_ST, <span class="at">Household_Income =</span> INCOME, <span class="at">Family_Friends_Neighbors_Phonecall_Frequency =</span> SUPPORT1, <span class="at">Friends_Relative_Get_Together_Frequency =</span> SUPPORT2, <span class="at">Church_Religious_Services_Attendance_Frequency =</span> SUPPORT3, <span class="at">Club_Organization_Meetings_Attendance_Frequency =</span> SUPPORT4_RV)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Finally, let’s save <code>data_unclean</code> as an .rds file.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(data_unclean, <span class="st">"dataset/data_clean.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(data_unclean, <span class="st">"dataset/data_clean.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="codebook" class="level2">
-<h2 class="anchored" data-anchor-id="codebook">Codebook</h2>
 </section>
 <section id="page-info" class="level2">
 <h2 class="anchored" data-anchor-id="page-info">Page Info</h2>
@@ -341,10 +342,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>For larger datasets, you’ll need to create a new folder in the project root directory named <code>dataset-ignore</code>. This will be ignored by git (based off the <code>.gitignore</code> file in the project root directory) which will help you avoid issues with Github’s size limits. Your team will have to manually make sure the data files in <code>dataset-ignore</code> are synced across team members.</p>
 <p>Your <a href="./scripts/load_and_clean_data.R">load_and_clean_data.R</a> file is how you will load and clean your data. Here is a an example of a very simple one.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"scripts/load_and_clean_data.R"</span>,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">echo =</span> <span class="cn">TRUE</span> <span class="co"># Use echo=FALSE or omit it to avoid code output  </span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"scripts/load_and_clean_data.R"</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">echo =</span> <span class="cn">TRUE</span> <span class="co"># Use echo=FALSE or omit it to avoid code output  </span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 &gt; library(tidyverse)</code></pre>
