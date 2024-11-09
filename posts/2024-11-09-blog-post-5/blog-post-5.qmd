@@ -1,0 +1,10 @@
+---
+title: "Blog Post 5"
+subtitle: "Descriptions of Combined Datasets"
+author: "All"
+date: "2024-11-09"
+date-modified: "2024-11-09"
+draft: FALSE
+---
+
+We looked into various datasets that could be joined with ours, allowing a more in-depth analysis. Some of our ideas included joining datasets concerning [COVID-19](https://covid.cdc.gov/covid-data-tracker/#datatracker-home), [healthcare accessibility](https://data.hrsa.gov/data/download), [unemployment rates](https://www.bls.gov/data/#unemployment), and [weather](https://www.ncei.noaa.gov/cdo-web/datasets), all joined on either date or region. The COVID-19 dataset could account for any anomalies within our data during the pandemic’s peak, specifically recognizing changes in unemployment status and income, which may have impacted mental health. Healthcare accessibility could influence mental health, as proximity to care facilities affects the frequency of seeing medical providers. Unemployment rates by region could illustrate which places have the highest and lowest unemployment rates, and from there, we could compare which groups of people are most likely to reside in certain regions and whether their demographics impact or are impacted by other variables. Lastly, weather data could find correlations between time of year and poor mental health, potentially showing the effects of seasonal depression. By accounting for these outside variables (the COVID-19 pandemic, accessibility to healthcare facilities, unemployment status by location, and seasonal depression), we could train our model better to recognize these influences.
