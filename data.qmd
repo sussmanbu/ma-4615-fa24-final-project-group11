@@ -147,15 +147,18 @@ write_rds(data_unclean, "dataset/data_clean.rds")
 ```
 
 
-```{r}
 
+## Second Data Set 
+We also used health service information from the [Health Resources and Services Administration](https://data.hrsa.gov/data/download). This data shows the number of different health care providers across different states. As we are mainly focused on mental health, we decided to only use the columns that discussed the number of psychologists, social workers, and counselors per state. 
+
+
+```{r}
 suppressWarnings(suppressMessages({
   care_data <- read_csv("dataset/care_data.csv")
 }))
 
 care_data_sum <- care_data |>
   reframe(st_abbrev, psychol_21, socwk_21, conslrs_21)
-
 
 ```
 ## Page Info 
