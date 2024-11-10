@@ -146,6 +146,18 @@ Finally, let's save `data_unclean` as an .rds file.
 write_rds(data_unclean, "dataset/data_clean.rds")
 ```
 
+
+```{r}
+
+suppressWarnings(suppressMessages({
+  care_data <- read_csv("dataset/care_data.csv")
+}))
+
+care_data_sum <- care_data |>
+  reframe(st_abbrev, psychol_21, socwk_21, conslrs_21)
+
+
+```
 ## Page Info 
 
 ![](images/data-import-cheatsheet-thumbs.png)
