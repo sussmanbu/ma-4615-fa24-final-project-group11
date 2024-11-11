@@ -158,9 +158,11 @@ suppressWarnings(suppressMessages({
 }))
 
 care_data_sum <- care_data |>
-  reframe(st_abbrev, psychol_21, socwk_21, conslrs_21)
+  reframe(st_abbrev, psychol_21, socwk_21, conslrs_21, popn_pums_21)
 
-```
+write_rds(care_data_sum, "dataset/care_data_sum.rds")
+
+
 ## Page Info 
 
 ![](images/data-import-cheatsheet-thumbs.png)
