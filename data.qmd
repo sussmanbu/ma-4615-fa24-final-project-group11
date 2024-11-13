@@ -162,7 +162,7 @@ care_data_sum <- care_data |>
 
 write_rds(care_data_sum, "dataset/care_data_sum.rds")
 
-
+```
 ## Page Info 
 
 ![](images/data-import-cheatsheet-thumbs.png)
