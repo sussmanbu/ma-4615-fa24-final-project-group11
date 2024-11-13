@@ -183,6 +183,14 @@ ggplot(avg_freqs, aes(x = Race, y = Mean, fill = Variable)) +
 ```{r}
 colnames(data_clean)
 ```
+
+
+Merging National Pulse Survey with data from the Health Resources and Services Administration on number of mental health providers in each state.
+```{r}
+care_data_sum <- read_rds("dataset/care_data_sum.rds")
+
+
+```
 >>>>>>> 50f4f57e7ee05a028e285104bb7d6bc038af2ece
 ## Note on Attribution
 
