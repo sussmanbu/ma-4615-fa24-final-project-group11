@@ -187,10 +187,44 @@ colnames(data_clean)
 
 Merging National Pulse Survey with data from the Health Resources and Services Administration on number of mental health providers in each state.
 ```{r}
-care_data_sum <- read_rds("dataset/care_data_sum.rds")
+care_data_sum <- read_csv("dataset/care_data_sum.csv") |>
+  group_by(region)
 
+data_by_state |>
+  group_by(region)
+
+joint_data <- left_join(care_data_sum, data_by_state, by = "region")
+
+library(tidyverse)
+library(sf)
+library(tidycensus)
+
+v2020 <- load_variables(2020, "pl", cache = TRUE)
+
+census_data <- get_decennial(
+  geography = "state",
+  variables = c(
+      "pop_total" = "P1_001N"
+    ) ,
+  year = 2020,
+  geometry = TRUE
+) 
+
+census_data <- census_data |>
+  mutate(region = tolower(NAME))
+
+map_data <- left_join(census_data, joint_data, by = "region")
 
 ```
+``` {r}
+#ggplot(map_data) + 
+  #geom_sf(aes(fill = psychol_21), alpha = 0.1, size = 0.1 ) +
+  #geom_sf(aes(color = Children_Need_for_Mental_Health_Treatment), alpha = 0.1, size = 0.2) +
+  #theme_void()
+```
+
+
+
 >>>>>>> 50f4f57e7ee05a028e285104bb7d6bc038af2ece
 ## Note on Attribution
 

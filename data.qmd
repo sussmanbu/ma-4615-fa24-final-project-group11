@@ -213,11 +213,10 @@ state_names <- c(
   WY = "wyoming"
 )
 
-care_data_sum |>
+care_data_sum <- care_data_sum |>
   mutate(region = recode(st_abbrev, !!!state_names))
 
-write_rds(care_data_sum, "dataset/care_data_sum.rds")
-
+write_csv(care_data_sum, "dataset/care_data_sum.csv")
 
 ```
 ## Page Info 
