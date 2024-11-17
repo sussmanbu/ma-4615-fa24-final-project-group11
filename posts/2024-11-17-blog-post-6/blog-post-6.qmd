@@ -1,0 +1,9 @@
+---
+title: "Blog Post 6"
+author: "All"
+date: "2024-11-17"
+date-modified: "2024-11-17"
+draft: FALSE
+---
+
+This week, we finished merging our two datasets. We had some initial issues because we had to make adjustments to our primary dataset by assigning new values to a column. The column “EST_ST,” representing the state that the participants live in, had values 1-50 to reflect each state. However, the dataset that we are merging (healthcare accessibility data) had the states written out to reflect where participants lived, so we had to convert values (Alabama = 1, Alaska = 2, …).  Once this was changed, we were able to merge the data and perform initial analyses.
