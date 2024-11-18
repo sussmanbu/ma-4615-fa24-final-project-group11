@@ -1,0 +1,17 @@
+{
+  "hash": "d1bc2e7dac6fdcb1f324a7dcf51c7a52",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Blog Post 6\"\nauthor: \"All\"\ndate: \"2024-11-17\"\ndate-modified: \"2024-11-17\"\ndraft: FALSE\n---\n\n\n\nThis week, we finished merging our two datasets. We had some initial issues because we had to make adjustments to our primary dataset by assigning new values to a column. The column “EST_ST,” representing the state that the participants live in, had values 1-50 to reflect each state. However, the dataset that we are merging (healthcare accessibility data) had the states written out to reflect where participants lived, so we had to convert values (Alabama = 1, Alaska = 2, …).  Once this was changed, we were able to merge the data and perform initial analyses.\n\nWe created some plots to explore what the relationship between our variables that are new to the data: psychol_21 (number of psychologists in the state), socwk_21 (number of social workers in the state), conslrs_21 (number of counselors in the state). We faceted 3 plots where these were the x values and the y were the average mental health values grouped by state. The results are below:\n\n\n\n::: {.cell}\n::: {.cell-output .cell-output-stderr}\n\n```\nWarning: package 'tidyverse' was built under R version 4.2.3\n```\n\n\n:::\n\n::: {.cell-output .cell-output-stderr}\n\n```\nWarning: package 'ggplot2' was built under R version 4.2.3\n```\n\n\n:::\n\n::: {.cell-output .cell-output-stderr}\n\n```\nWarning: package 'tibble' was built under R version 4.2.3\n```\n\n\n:::\n\n::: {.cell-output .cell-output-stderr}\n\n```\nWarning: package 'tidyr' was built under R version 4.2.3\n```\n\n\n:::\n\n::: {.cell-output .cell-output-stderr}\n\n```\nWarning: package 'readr' was built under R version 4.2.3\n```\n\n\n:::\n\n::: {.cell-output .cell-output-stderr}\n\n```\nWarning: package 'purrr' was built under R version 4.2.3\n```\n\n\n:::\n\n::: {.cell-output .cell-output-stderr}\n\n```\nWarning: package 'dplyr' was built under R version 4.2.3\n```\n\n\n:::\n\n::: {.cell-output .cell-output-stderr}\n\n```\nWarning: package 'stringr' was built under R version 4.2.3\n```\n\n\n:::\n\n::: {.cell-output .cell-output-stderr}\n\n```\nWarning: package 'forcats' was built under R version 4.2.3\n```\n\n\n:::\n\n::: {.cell-output .cell-output-stderr}\n\n```\nWarning: package 'lubridate' was built under R version 4.2.3\n```\n\n\n:::\n\n::: {.cell-output .cell-output-stderr}\n\n```\n`geom_smooth()` using formula = 'y ~ x'\n```\n\n\n:::\n\n::: {.cell-output-display}\n![](blog-post-6_files/figure-html/unnamed-chunk-1-1.png){width=672}\n:::\n:::\n\n\n\n\nIt seems that there is a slight increase of mental health values as the number of specialists increase. These findings are important because they show that a higher number of specialists benefits the mental health of the state population, although the increase is not very high. We will continue to work with this data in order to find more insight between the number of specialists and the variables of importance in our original dataset.\n",
+    "supporting": [
+      "blog-post-6_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

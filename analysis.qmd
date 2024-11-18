@@ -223,6 +223,10 @@ map_data <- left_join(census_data, joint_data, by = "region")
   #theme_void()
 ```
 
+```{r}
+write_rds(joint_data, "dataset/joint_data.rds")
+write_csv(joint_data, "dataset/joint_data.csv")
+```
 
 
 >>>>>>> 50f4f57e7ee05a028e285104bb7d6bc038af2ece
