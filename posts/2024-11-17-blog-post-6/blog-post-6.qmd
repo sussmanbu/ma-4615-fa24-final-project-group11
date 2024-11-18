@@ -1,5 +1,6 @@
 ---
 title: "Blog Post 6"
+subtitle: “Exploring the Joint Data”
 author: "All"
 date: "2024-11-17"
 date-modified: "2024-11-17"
