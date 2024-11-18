@@ -1,13 +1,15 @@
 ---
 title: "Blog Post 6"
+subtitle: “Exploring the Joint Data”
 author: "All"
 date: "2024-11-17"
 date-modified: "2024-11-17"
 draft: FALSE
 ---
 
-<<<<<<< HEAD
-This week, we finished merging our two datasets. We had some initial issues because we had to make adjustments to our primary dataset by assigning new values to a column. The column “EST_ST,” representing the state that the participants live in, had values 1-50 to reflect each state. However, the dataset that we are merging (healthcare accessibility data) had the states written out to reflect where participants lived, so we had to convert values (Alabama = 1, Alaska = 2, …).  Once this was changed, we were able to merge the data and perform initial analyses.
+This week, we finished merging our two datasets. We had some initial issues because we had to make adjustments to our primary dataset by assigning new values to a column. The column “EST_ST,” representing the state that the participants live in, had values 1-50 to reflect each state. However, the dataset that we are merging (healthcare accessibility data) had the states written out to reflect where participants lived, so we had to convert values (Alabama = 1, Alaska = 2, …).  Once this was changed, we were able to merge the data and perform initial analyses. 
+
+We spent the majority of this week fixing the errors in the merging of our data. Our goal for the coming week is to continue working on analyses of the combined data. Eventually, our plan is to create a series of maps to compare states.
 
 We created some plots to explore what the relationship between our variables that are new to the data: psychol_21 (number of psychologists in the state), socwk_21 (number of social workers in the state), conslrs_21 (number of counselors in the state). We faceted 3 plots where these were the x values and the y were the average mental health values grouped by state. The results are below:
 
@@ -62,13 +64,4 @@ ggplot(plot_data_long, aes(x = Value, y = avg_total_mentalhealth)) +
 
 ```
 
-
 It seems that there is a slight increase of mental health values as the number of specialists increase. These findings are important because they show that a higher number of specialists benefits the mental health of the state population, although the increase is not very high. We will continue to work with this data in order to find more insight between the number of specialists and the variables of importance in our original dataset.
-=======
-This week, we finished merging our two datasets. We had some initial issues because we had to make adjustments to our primary dataset by assigning new values to a column. The column “EST_ST,” representing the state that the participants live in, had values 1-50 to reflect each state. However, the dataset that we are merging (healthcare accessibility data) had the states written out to reflect where participants lived, so we had to convert values (Alabama = 1, Alaska = 2, …).  Once this was changed, we were able to merge the data and perform initial analyses. 
-
-We completed a preliminary analysis of the merged data. This included creating a graph examining the relationship between number of psychiatrists in a state and the number of families reporting a child that needs mental health services. We also began the process of creating a map of the data using the census data. However, we have not finished the map.  
-
-
-We spent the majority of this week fixing the errors in the merging of our data. Our goal for the coming week is to continue working on analyses of the combined data. Eventually, our plan is to create a series of maps to compare states. 
->>>>>>> ddb83a027e3e2751b310c48ea9cc02f153f4965b
