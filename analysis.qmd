@@ -215,12 +215,25 @@ census_data <- census_data |>
 
 map_data <- left_join(census_data, joint_data, by = "region")
 
+write_rds(map_data, "dataset/map_data.rds")
+
 ```
-``` {r}
+```{r}
+
+#ggplot(map_data) +
+ # geom_point(aes(x = Birth_Year, y = total_mentalhealth))
+
+
+```
+
+
+```{r}
+
 #ggplot(map_data) + 
-  #geom_sf(aes(fill = psychol_21), alpha = 0.1, size = 0.1 ) +
-  #geom_sf(aes(color = Children_Need_for_Mental_Health_Treatment), alpha = 0.1, size = 0.2) +
-  #theme_void()
+ # geom_sf(aes(fill = Household_Income), alpha = 0.6, size = 0.1) +
+ # scale_fill_gradient() + 
+ # theme_void()
+
 ```
 
 ```{r}
