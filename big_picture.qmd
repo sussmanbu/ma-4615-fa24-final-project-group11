@@ -64,7 +64,7 @@ server <- function(input, output) {
   # The URL below has to point to a dataset on your github pages website
   # I recommend creating a small-ish rds file that has only the data relevant to 
   # the interactive.
-  data <- read_rds(here::here("dataset","data_clean.rds"))
+  data <- read_rds(here::here("dataset","loan_refusal_clean.rds"))
   
   output$distPlot <- renderPlot({
     ggplot(data, aes(x = Children_Need_for_Mental_Health_Treatment)) +
