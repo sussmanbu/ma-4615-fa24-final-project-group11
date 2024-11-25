@@ -81,9 +81,9 @@ ggplot(avg_mh_by_income) +
        title = "Income vs. Mental Health Components")
 
 # Linear regression analysis income and total mental health 
-income_mh <- lm(total_mentalhealth ~ Household_Income, data = scatter_data)
-plot(income_mh)
-summary(income_mh)
+#income_mh <- lm(total_mentalhealth ~ Household_Income, data = scatter_data)
+#plot(income_mh)
+#summary(income_mh)
 ```
 ```{r}
 # Linear Regression Education and Total Mental Health
