@@ -66,7 +66,7 @@ server <- function(input, output) {
   data <- read_rds(here::here("dataset","loan_refusal_clean.rds"))
   
   output$distPlot <- renderPlot({
-    ggplot(data, aes(x = refusal_rate)) +
+    ggplot(data, aes(x = Children_Need_for_Mental_Health_Treatment)) +
       geom_histogram(bins = input$bins + 1)
 
   })
