@@ -12,7 +12,6 @@ draft: false
 - How does veteran/active duty status effect mental health?
 
 
-
 This comes from the file `analysis.qmd`.
 
 We describe here our detailed data analysis. This page will provide an overview of what questions you addressed, illustrations of relevant aspects of the data with tables and figures, and a statistical model that attempts to answer part of the question. You'll also reflect on next steps and further analysis.
@@ -81,12 +80,26 @@ ggplot(avg_mh_by_income) +
        y = "Average Mental Health Score", 
        title = "Income vs. Mental Health Components")
 
-# Linear regression analysis
+# Linear regression analysis income and total mental health 
 income_mh <- lm(total_mentalhealth ~ Household_Income, data = scatter_data)
 plot(income_mh)
 summary(income_mh)
 ```
-<<<<<<< HEAD
+```{r}
+# Linear Regression Education and Total Mental Health
+ggplot(scatter_data, aes(x=Educational_Attainment, y = total_mentalhealth)) +
+  geom_point(alpha = 0.01) +
+  geom_smooth(method = "lm", se = FALSE, color = "blue") + 
+  labs(x = "Income", 
+       y = "Total Mental Health Score", 
+       title = "Income vs. Mental Health")
+
+education_mh <- lm(total_mentalhealth ~ Educational_Attainment, data = scatter_data)
+plot(education_mh)
+summary(education_mh)
+
+```
+
 ``` {r}
 library(dplyr)
 library(ggplot2)
@@ -187,7 +200,7 @@ colnames(data_clean)
 
 Merging National Pulse Survey with data from the Health Resources and Services Administration on number of mental health providers in each state.
 ```{r}
-care_data_sum <- read_csv("dataset/care_data_sum.csv") |>
+care_data_sum <- read_rds("dataset/care_data_sum.rds") |>
   group_by(region)
 
 data_by_state |>
@@ -215,7 +228,7 @@ census_data <- census_data |>
 
 map_data <- left_join(census_data, joint_data, by = "region")
 
-write_rds(map_data, "dataset/map_data.rds")
+write_rds(map_data, "dataset_ignore/map_data.rds")
 
 ```
 ```{r}
