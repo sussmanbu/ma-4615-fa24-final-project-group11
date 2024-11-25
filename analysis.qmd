@@ -228,7 +228,7 @@ census_data <- census_data |>
 
 map_data <- left_join(census_data, joint_data, by = "region")
 
-write_rds(map_data, "dataset_ignore/map_data.rds")
+write_rds(map_data, "dataset-ignore/map_data.rds")
 
 ```
 ```{r}
@@ -250,7 +250,7 @@ write_rds(map_data, "dataset_ignore/map_data.rds")
 ```
 
 ```{r}
-write_rds(joint_data, "dataset/joint_data.rds")
+write_rds(joint_data, "dataset-ignore/joint_data.rds")
 ```
 
 
