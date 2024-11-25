@@ -228,9 +228,6 @@ write_rds(joint_data, "dataset/joint_data.rds")
 ```
 
 
-
-
->>>>>>> 50f4f57e7ee05a028e285104bb7d6bc038af2ece
 ## Note on Attribution
 
 In general, you should try to provide links to relevant resources, especially those that helped you. You don't have to link to every StackOverflow post you used but if there are explainers on aspects of the data or specific models that you found helpful, try to link to those. Also, try to link to other sources that might support (or refute) your analysis. These can just be regular hyperlinks. You don't need a formal citation.
