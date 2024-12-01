@@ -100,6 +100,8 @@ summary(education_mh)
 
 ```
 
+In the Household Pulse Survey, families are asked to report the frequency of mental health measures such as anxiety or worry. The overall measure of mental health or the Total Mental Health Score was calculated by totaling the other measures of mental health. When income is plotted against average mental health score, both total and individual measures, there shows a slight decrease in the mental health measures as income increases. This demonstrates a correlation between increased income and improved mental health. This decrease is much clearer when examining the total mental health score rather than individual measures. 
+
 ``` {r}
 library(dplyr)
 library(ggplot2)
@@ -226,9 +228,9 @@ census_data <- get_decennial(
 census_data <- census_data |>
   mutate(region = tolower(NAME))
 
-map_data <- left_join(census_data, joint_data, by = "region")
+#map_data <- left_join(census_data, joint_data, by = "region")
 
-write_rds(map_data, "dataset-ignore/map_data.rds")
+#write_rds(map_data, "dataset-ignore/map_data.rds")
 
 ```
 ```{r}
@@ -250,7 +252,7 @@ write_rds(map_data, "dataset-ignore/map_data.rds")
 ```
 
 ```{r}
-write_rds(joint_data, "dataset-ignore/joint_data.rds")
+#write_rds(joint_data, "dataset-ignore/joint_data.rds")
 ```
 
 
