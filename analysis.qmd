@@ -7,6 +7,9 @@ draft: false
 
 ![](https://upload.wikimedia.org/wikipedia/commons/7/77/Pebbleswithquarzite.jpg)
 ## Main Questions
+
+This analysis will focus on how mental wellbeing and mental health services are related to factors such as income, education and race. Specifically, we will look at the following questions:
+
 - How does access to mental health services change based on factors such as income, education, and race?
 - How do measures of mental wellbeing (levels of worry, anxiety, etc.) change based on age, income, education, and race?
 - How does veteran/active duty status effect mental health?
