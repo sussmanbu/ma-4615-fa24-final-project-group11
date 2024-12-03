@@ -144,6 +144,7 @@ Similarly to income, educational attainment has a negative correlation with tota
 
 
 ``` {r}
+
 library(dplyr)
 library(ggplot2)
 library(maps)
@@ -206,12 +207,15 @@ state_lookup <- c(
 data_by_state <- data_clean |>
   mutate(region = recode(as.character(State_Living_in), !!!state_lookup))
 
-
 us_map_data <- us_map |>
-  left_join(data_by_state, by = "region")
+  left_join(data_by_state, by = "region") |>
+  group_by(region) |>
+  mutate(mean_income = mean(Household_Income), mean_total_mh = mean(total_mentalhealth))
+```
 
+```{r}
 ggplot(us_map_data, aes(x = long, y = lat, group = group)) +
-  geom_polygon(fill = "lightblue", color = "black") +
+  geom_polygon(fill = "blue", color = "black") +
   theme_void() +
   labs(title = "Map of the United States")
 
