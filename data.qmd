@@ -68,6 +68,7 @@ We also used health service information from the [Health Resources and Services 
 There a fewer worries of bias within this data as the numbers are not self reported. Additionally, professionals such as psychologists and social workers must be licensed in their state to practice, meaning the government has access to accurate numbers of professionals in each state. However, the simple numbers of professionals does not provide a full story of access to mental health care in a state. For example, there are questions about how many are private versus work for state institutions, what proportion work in crisis care and how many take different types of insurances. Therefore, these numbers are a good starting point to see access to care across different states, but can not give the full story. 
 
 ```{r}
+library(tidyverse)
 suppressWarnings(suppressMessages({
   care_data <- read_csv("dataset/care_data.csv")
 }))

@@ -28,17 +28,8 @@ The style of this paper should aim to be that of an academic paper.
 I don't expect this to be of publication quality but you should keep that aim in mind.
 Avoid using "we" too frequently, for example "We also found that ...". Describe your methodology and your findings but don't describe your whole process.
 
-### Example of loading data
-
-The code below shows an example of loading the loan refusal data set (which you should delete at some point).
-
 ```{r}
 library(tidyverse)
-print(getwd())
-data_clean <- read_rds("dataset/data_clean.rds")
-```
-
-```{r}
 data_clean <- read_rds("dataset/data_clean.rds") |>
   mutate(total_mentalhealth = Anxious_Frequency + Worry_Frequency + 
          Little_Interest_Frequency + Depressed_Frequency)
