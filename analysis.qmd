@@ -238,11 +238,6 @@ ggplot(avg_freqs, aes(x = Race, y = Mean, fill = Variable)) +
   theme(axis.text.x = element_text(angle = 25))
 ```
 
-=======
-
-```{r}
-colnames(data_clean)
-```
 
 
 Merging National Pulse Survey with data from the Health Resources and Services Administration on number of mental health providers in each state.
@@ -273,7 +268,7 @@ census_data <- get_decennial(
 census_data <- census_data |>
   mutate(region = tolower(NAME))
 
-#map_data <- left_join(census_data, joint_data, by = "region")
+map_data <- left_join(census_data, joint_data, by = "region")
 
 #write_rds(map_data, "dataset-ignore/map_data.rds")
 
@@ -288,6 +283,9 @@ census_data <- census_data |>
 
 
 ```{r}
+#map_care_data <- map_data |>
+  #group_by(region) |>
+  #summarize(mean_edu = mean(Educational_Attainment), mean_income = mean(Household_Income))
 
 #ggplot(map_data) + 
  # geom_sf(aes(fill = Household_Income), alpha = 0.6, size = 0.1) +
