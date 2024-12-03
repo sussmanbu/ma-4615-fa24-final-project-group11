@@ -187,7 +187,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Pebbleswithquarzite.jpg" class="img-fluid"> ## Main Questions - How does access to mental health services change based on factors such as income, education, and race? - How do measures of mental wellbeing (levels of worry, anxiety, etc.) change based on age, income, education, and race? - How does veteran/active duty status effect mental health?</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Pebbleswithquarzite.jpg" class="img-fluid"> ## Main Questions</p>
+<p>This analysis will focus on how mental wellbeing and mental health services are related to factors such as income, education and race. Specifically, we will look at the following questions:</p>
+<ul>
+<li>How does access to mental health services change based on factors such as income, education, and race?</li>
+<li>How do measures of mental wellbeing (levels of worry, anxiety, etc.) change based on age, income, education, and race?</li>
+<li>How does veteran/active duty status effect mental health?</li>
+</ul>
 <p>This comes from the file <code>analysis.qmd</code>.</p>
 <p>We describe here our detailed data analysis. This page will provide an overview of what questions you addressed, illustrations of relevant aspects of the data with tables and figures, and a statistical model that attempts to answer part of the question. You’ll also reflect on next steps and further analysis.</p>
 <p>The audience for this page is someone like your class mates, so you can expect that they have some level of statistical and quantitative sophistication and understand ideas like linear and logistic regression, coefficients, confidence intervals, overfitting, etc.</p>
@@ -212,7 +218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">getwd</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/Users/briannali/Repos/ma415/project"</code></pre>
+<pre><code>[1] "/Users/bridgetgriffith/Downloads/MA 416/ma-4615-fa24-final-project-group11"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data_clean <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"dataset/data_clean.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -623,9 +629,10 @@ Attaching package: 'maps'</code></pre>
 <span id="cb47-56"><a href="#cb47-56" aria-hidden="true" tabindex="-1"></a>data_by_state <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span></span>
 <span id="cb47-57"><a href="#cb47-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">region =</span> <span class="fu">recode</span>(<span class="fu">as.character</span>(State_Living_in), <span class="sc">!!!</span>state_lookup))</span>
 <span id="cb47-58"><a href="#cb47-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-59"><a href="#cb47-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-60"><a href="#cb47-60" aria-hidden="true" tabindex="-1"></a>us_map_data <span class="ot">&lt;-</span> us_map <span class="sc">|&gt;</span></span>
-<span id="cb47-61"><a href="#cb47-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(data_by_state, <span class="at">by =</span> <span class="st">"region"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb47-59"><a href="#cb47-59" aria-hidden="true" tabindex="-1"></a>us_map_data <span class="ot">&lt;-</span> us_map <span class="sc">|&gt;</span></span>
+<span id="cb47-60"><a href="#cb47-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(data_by_state, <span class="at">by =</span> <span class="st">"region"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb47-61"><a href="#cb47-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region) <span class="sc">|&gt;</span></span>
+<span id="cb47-62"><a href="#cb47-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mean_income =</span> <span class="fu">mean</span>(Household_Income), <span class="at">mean_total_mh =</span> <span class="fu">mean</span>(total_mentalhealth))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in left_join(us_map, data_by_state, by = "region"): Detected an unexpected many-to-many relationship between `x` and `y`.
 ℹ Row 1 of `x` matches multiple rows in `y`.
@@ -633,14 +640,16 @@ Attaching package: 'maps'</code></pre>
 ℹ If a many-to-many relationship is expected, set `relationship =
   "many-to-many"` to silence this warning.</code></pre>
 </div>
+</div>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(us_map_data, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group)) <span class="sc">+</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
 <span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Map of the United States"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="analysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -676,68 +685,18 @@ Supply arguments directly to `.fns` through an anonymous function instead.
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>=======</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(data_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] "Birth_Year"                                     
- [2] "Hispanic"                                       
- [3] "Race"                                           
- [4] "Educational_Attainment"                         
- [5] "Marital_Status"                                 
- [6] "Gender_at_Birth"                                
- [7] "Gender_Identity"                                
- [8] "Sexuality"                                      
- [9] "Public_School"                                  
-[10] "Private_School"                                 
-[11] "Home_School"                                    
-[12] "Not_Currently_Serving_in_US_Armed_Forces"       
-[13] "Serving_on_Active_Duty"                         
-[14] "Serving_in_Reserve_or_National_Guard"           
-[15] "Spouse_Serving_on_Active_Duty"                  
-[16] "Spouse_Serving_in_Reserve_or_National_Guard"    
-[17] "Not_Served_in_US_Armed_Forces"                  
-[18] "Served_on_Active_Duty"                          
-[19] "Served_in_Reserve_or_National_Guard"            
-[20] "Spouse_Served_on_Active_Duty"                   
-[21] "Spouse_Served_in_Reserve_or_National_Guard"     
-[22] "Job_Loss"                                       
-[23] "Employment_Status"                              
-[24] "Kind_of_Work"                                   
-[25] "Reason_Not_Working"                             
-[26] "Anxious_Frequency"                              
-[27] "Worry_Frequency"                                
-[28] "Little_Interest_Frequency"                      
-[29] "Depressed_Frequency"                            
-[30] "Children_Need_for_Mental_Health_Treatment"      
-[31] "Children_Receive_Mental_Health_Treatment"       
-[32] "Satisfaction_with_Treatment"                    
-[33] "Difficulty_getting_Treatment"                   
-[34] "Social_and_Emotional_Support"                   
-[35] "Lonely_Frequency"                               
-[36] "Private_Health_Insurance"                       
-[37] "Public_Health_Insurance"                        
-[38] "State_Living_in"                                
-[39] "Household_Income"                               
-[40] "Family_Friends_Neighbors_Phonecall_Frequency"   
-[41] "Friends_Relative_Get_Together_Frequency"        
-[42] "Church_Religious_Services_Attendance_Frequency" 
-[43] "Club_Organization_Meetings_Attendance_Frequency"
-[44] "total_mentalhealth"                             </code></pre>
-</div>
-</div>
 <p>Merging National Pulse Survey with data from the Health Resources and Services Administration on number of mental health providers in each state.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>care_data_sum <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"dataset/care_data_sum.rds"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region)</span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>data_by_state <span class="sc">|&gt;</span></span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>care_data_sum <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"dataset/care_data_sum.rds"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region)</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>data_by_state <span class="sc">|&gt;</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 51,280 × 45
 # Groups:   region [51]
@@ -761,35 +720,27 @@ Supply arguments directly to `.fns` through an anonymous function instead.
 #   Spouse_Serving_on_Active_Duty &lt;dbl&gt;,
 #   Spouse_Serving_in_Reserve_or_National_Guard &lt;dbl&gt;, …</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>joint_data <span class="ot">&lt;-</span> <span class="fu">left_join</span>(care_data_sum, data_by_state, <span class="at">by =</span> <span class="st">"region"</span>)</span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>joint_data <span class="ot">&lt;-</span> <span class="fu">left_join</span>(care_data_sum, data_by_state, <span class="at">by =</span> <span class="st">"region"</span>)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Linking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidycensus)</span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>v2020 <span class="ot">&lt;-</span> <span class="fu">load_variables</span>(<span class="dv">2020</span>, <span class="st">"pl"</span>, <span class="at">cache =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>census_data <span class="ot">&lt;-</span> <span class="fu">get_decennial</span>(</span>
-<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">geography =</span> <span class="st">"state"</span>,</span>
-<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">variables =</span> <span class="fu">c</span>(</span>
-<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"pop_total"</span> <span class="ot">=</span> <span class="st">"P1_001N"</span></span>
-<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>    ) ,</span>
-<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="dv">2020</span>,</span>
-<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">geometry =</span> <span class="cn">TRUE</span></span>
-<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidycensus)</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>v2020 <span class="ot">&lt;-</span> <span class="fu">load_variables</span>(<span class="dv">2020</span>, <span class="st">"pl"</span>, <span class="at">cache =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>census_data <span class="ot">&lt;-</span> <span class="fu">get_decennial</span>(</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">geography =</span> <span class="st">"state"</span>,</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">variables =</span> <span class="fu">c</span>(</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"pop_total"</span> <span class="ot">=</span> <span class="st">"P1_001N"</span></span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>    ) ,</span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="dv">2020</span>,</span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">geometry =</span> <span class="cn">TRUE</span></span>
+<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Getting data from the 2020 decennial Census</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: • You have not set a Census API key. Users without a key are limited to 500
-queries per day and may experience performance limitations.
-ℹ For best results, get a Census API key at
-http://api.census.gov/data/key_signup.html and then supply the key to the
-`census_api_key()` function to use it throughout your tidycensus session.
-This warning is displayed once per session.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Downloading feature geometry from the Census website.  To cache shapefiles for use in future sessions, set `options(tigris_use_cache = TRUE)`.</code></pre>
@@ -806,21 +757,15 @@ This warning is displayed once per session.</code></pre>
   |                                                                            
   |=                                                                     |   2%
   |                                                                            
-  |==                                                                    |   2%
-  |                                                                            
   |==                                                                    |   3%
   |                                                                            
   |===                                                                   |   4%
   |                                                                            
   |===                                                                   |   5%
   |                                                                            
-  |====                                                                  |   5%
-  |                                                                            
   |====                                                                  |   6%
   |                                                                            
   |=====                                                                 |   6%
-  |                                                                            
-  |=====                                                                 |   7%
   |                                                                            
   |=====                                                                 |   8%
   |                                                                            
@@ -836,17 +781,13 @@ This warning is displayed once per session.</code></pre>
   |                                                                            
   |========                                                              |  12%
   |                                                                            
-  |=========                                                             |  12%
-  |                                                                            
   |=========                                                             |  13%
   |                                                                            
   |==========                                                            |  14%
   |                                                                            
-  |===========                                                           |  15%
+  |==========                                                            |  15%
   |                                                                            
   |===========                                                           |  16%
-  |                                                                            
-  |============                                                          |  16%
   |                                                                            
   |============                                                          |  17%
   |                                                                            
@@ -858,11 +799,7 @@ This warning is displayed once per session.</code></pre>
   |                                                                            
   |==============                                                        |  21%
   |                                                                            
-  |===============                                                       |  21%
-  |                                                                            
   |===============                                                       |  22%
-  |                                                                            
-  |================                                                      |  22%
   |                                                                            
   |================                                                      |  23%
   |                                                                            
@@ -870,17 +807,15 @@ This warning is displayed once per session.</code></pre>
   |                                                                            
   |=================                                                     |  25%
   |                                                                            
-  |==================                                                    |  25%
-  |                                                                            
   |==================                                                    |  26%
   |                                                                            
   |===================                                                   |  27%
   |                                                                            
-  |===================                                                   |  28%
-  |                                                                            
   |====================                                                  |  28%
   |                                                                            
   |====================                                                  |  29%
+  |                                                                            
+  |=====================                                                 |  29%
   |                                                                            
   |=====================                                                 |  30%
   |                                                                            
@@ -888,23 +823,15 @@ This warning is displayed once per session.</code></pre>
   |                                                                            
   |======================                                                |  32%
   |                                                                            
-  |=======================                                               |  32%
-  |                                                                            
   |=======================                                               |  33%
   |                                                                            
   |=======================                                               |  34%
   |                                                                            
   |========================                                              |  34%
   |                                                                            
-  |========================                                              |  35%
-  |                                                                            
   |=========================                                             |  35%
   |                                                                            
-  |=========================                                             |  36%
-  |                                                                            
   |==========================                                            |  37%
-  |                                                                            
-  |==========================                                            |  38%
   |                                                                            
   |===========================                                           |  38%
   |                                                                            
@@ -914,23 +841,11 @@ This warning is displayed once per session.</code></pre>
   |                                                                            
   |=============================                                         |  41%
   |                                                                            
-  |=============================                                         |  42%
-  |                                                                            
   |==============================                                        |  42%
   |                                                                            
   |==============================                                        |  43%
   |                                                                            
-  |===============================                                       |  44%
-  |                                                                            
-  |===============================                                       |  45%
-  |                                                                            
-  |================================                                      |  45%
-  |                                                                            
-  |================================                                      |  46%
-  |                                                                            
   |=================================                                     |  47%
-  |                                                                            
-  |=================================                                     |  48%
   |                                                                            
   |==================================                                    |  48%
   |                                                                            
@@ -941,10 +856,6 @@ This warning is displayed once per session.</code></pre>
   |===================================                                   |  51%
   |                                                                            
   |====================================                                  |  51%
-  |                                                                            
-  |====================================                                  |  52%
-  |                                                                            
-  |=====================================                                 |  52%
   |                                                                            
   |=====================================                                 |  53%
   |                                                                            
@@ -966,33 +877,19 @@ This warning is displayed once per session.</code></pre>
   |                                                                            
   |==========================================                            |  61%
   |                                                                            
-  |===========================================                           |  61%
-  |                                                                            
   |===========================================                           |  62%
   |                                                                            
   |============================================                          |  63%
-  |                                                                            
-  |=============================================                         |  64%
-  |                                                                            
-  |=============================================                         |  65%
   |                                                                            
   |==============================================                        |  65%
   |                                                                            
   |==============================================                        |  66%
   |                                                                            
-  |===============================================                       |  67%
-  |                                                                            
-  |===============================================                       |  68%
-  |                                                                            
   |================================================                      |  68%
-  |                                                                            
-  |================================================                      |  69%
   |                                                                            
   |=================================================                     |  69%
   |                                                                            
   |=================================================                     |  70%
-  |                                                                            
-  |==================================================                    |  71%
   |                                                                            
   |==================================================                    |  72%
   |                                                                            
@@ -1005,8 +902,6 @@ This warning is displayed once per session.</code></pre>
   |====================================================                  |  74%
   |                                                                            
   |====================================================                  |  75%
-  |                                                                            
-  |=====================================================                 |  75%
   |                                                                            
   |=====================================================                 |  76%
   |                                                                            
@@ -1022,25 +917,11 @@ This warning is displayed once per session.</code></pre>
   |                                                                            
   |=========================================================             |  81%
   |                                                                            
-  |=========================================================             |  82%
-  |                                                                            
-  |==========================================================            |  82%
-  |                                                                            
-  |==========================================================            |  83%
-  |                                                                            
-  |===========================================================           |  84%
-  |                                                                            
   |===========================================================           |  85%
-  |                                                                            
-  |============================================================          |  85%
-  |                                                                            
-  |============================================================          |  86%
   |                                                                            
   |=============================================================         |  86%
   |                                                                            
   |=============================================================         |  87%
-  |                                                                            
-  |=============================================================         |  88%
   |                                                                            
   |==============================================================        |  88%
   |                                                                            
@@ -1050,19 +931,13 @@ This warning is displayed once per session.</code></pre>
   |                                                                            
   |===============================================================       |  91%
   |                                                                            
-  |================================================================      |  91%
-  |                                                                            
   |================================================================      |  92%
   |                                                                            
   |=================================================================     |  92%
   |                                                                            
   |=================================================================     |  93%
   |                                                                            
-  |==================================================================    |  94%
-  |                                                                            
   |==================================================================    |  95%
-  |                                                                            
-  |===================================================================   |  95%
   |                                                                            
   |===================================================================   |  96%
   |                                                                            
@@ -1083,25 +958,29 @@ introduces errors into data to preserve respondent confidentiality.
 ℹ See https://www.census.gov/library/fact-sheets/2021/protecting-the-confidentiality-of-the-2020-census-redistricting-data.html for additional guidance.
 This message is displayed once per session.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>census_data <span class="ot">&lt;-</span> census_data <span class="sc">|&gt;</span></span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">region =</span> <span class="fu">tolower</span>(NAME))</span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="co">#map_data &lt;- left_join(census_data, joint_data, by = "region")</span></span>
-<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a><span class="co">#write_rds(map_data, "dataset-ignore/map_data.rds")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>census_data <span class="ot">&lt;-</span> census_data <span class="sc">|&gt;</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">region =</span> <span class="fu">tolower</span>(NAME))</span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>map_data <span class="ot">&lt;-</span> <span class="fu">left_join</span>(census_data, joint_data, <span class="at">by =</span> <span class="st">"region"</span>)</span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="co">#write_rds(map_data, "dataset-ignore/map_data.rds")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot(map_data) +</span></span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a> <span class="co"># geom_point(aes(x = Birth_Year, y = total_mentalhealth))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot(map_data) +</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a> <span class="co"># geom_point(aes(x = Birth_Year, y = total_mentalhealth))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot(map_data) + </span></span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a> <span class="co"># geom_sf(aes(fill = Household_Income), alpha = 0.6, size = 0.1) +</span></span>
-<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># scale_fill_gradient() + </span></span>
-<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a> <span class="co"># theme_void()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co">#map_care_data &lt;- map_data |&gt;</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#group_by(region) |&gt;</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#summarize(mean_edu = mean(Educational_Attainment), mean_income = mean(Household_Income))</span></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot(map_data) + </span></span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a> <span class="co"># geom_sf(aes(fill = Household_Income), alpha = 0.6, size = 0.1) +</span></span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a> <span class="co"># scale_fill_gradient() + </span></span>
+<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a> <span class="co"># theme_void()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co">#write_rds(joint_data, "dataset-ignore/joint_data.rds")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co">#write_rds(joint_data, "dataset-ignore/joint_data.rds")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <blockquote class="blockquote">
 <blockquote class="blockquote">
