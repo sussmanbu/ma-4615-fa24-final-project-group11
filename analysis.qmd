@@ -3,41 +3,89 @@ title: Analysis
 description: Here we provide a detailed analysis using more sophisticated statistics techniques.
 toc: true
 draft: false
+execute:
+  echo: false
+  warning: false
+  message: false
 ---
 
-![](https://upload.wikimedia.org/wikipedia/commons/7/77/Pebbleswithquarzite.jpg)
-## Main Questions
+## Data Analysis
 
-This analysis will focus on how mental wellbeing and mental health services are related to factors such as income, education and race. Specifically, we will look at the following questions:
+This data analysis on the Household Pulse Survey focuses on understanding the relationships between mental health, mental wellbeing, and various socioeconomic and demographic factors. Data from the Health Resources and Services Administration are incorporated to provide insights into mental health providers across states. The key questions that are being addressed are:
 
-- How does access to mental health services change based on factors such as income, education, and race?
-- How do measures of mental wellbeing (levels of worry, anxiety, etc.) change based on age, income, education, and race?
-- How does veteran/active duty status effect mental health?
-
-
-This comes from the file `analysis.qmd`.
-
-We describe here our detailed data analysis. This page will provide an overview of what questions you addressed, illustrations of relevant aspects of the data with tables and figures, and a statistical model that attempts to answer part of the question. You'll also reflect on next steps and further analysis.
-
-The audience for this page is someone like your class mates, so you can expect that they have some level of statistical and quantitative sophistication and understand ideas like linear and logistic regression, coefficients, confidence intervals, overfitting, etc. 
-
-While the exact number of figures and tables will vary and depend on your analysis, you should target around 5 to 6. An overly long analysis could lead to losing points.
-If you want you can link back to your blog posts or create separate pages with more details.
-
-The style of this paper should aim to be that of an academic paper. 
-I don't expect this to be of publication quality but you should keep that aim in mind.
-Avoid using "we" too frequently, for example "We also found that ...". Describe your methodology and your findings but don't describe your whole process.
+1. How do measures of mental well-being (e.g. levels of worry, anxiety and other mental health indicators) change according to age, income, education, race?
+2. How does access to mental health services vary based on income level, educational attainment and race/ethnicity?
 
 ```{r}
 library(tidyverse)
+
+data <- read_rds("dataset/data_clean.rds") # load in cleaned data
+data_clean <- read_rds("dataset/data_clean.rds") # load in cleaned data
+data_by_state <- read_rds("dataset/data_by_state.rds") # load in data by state
+```
+
+#### Findings
+Summarize the findings here
+
+### I. Frequency of Mental Health Symptoms
+The Household Pulse Survey collects data on how frequently respondents experience various mental health symptoms, including anxiety, worry, disinterest, and depression. For each symptom, respondents choose from four possible values: `1` (Not at all), `2` (Several days), `3` (More than half the days), and `4` (Nearly every day). These individual responses are then summed to create a mental health score, with a lower score indicating less frequent experience of mental health symptoms.
+
+#### Basic Analysis
+When examining mental health trends across demographics, younger adults (18-24) report higher levels of mental health challenges compared to older age groups, with mental health scores gradually improving as age increases. This may be due to life transitions, academic or career pressures, and the impact of social media, while older individuals may experience more stability in their personal and professional lives, leading to better mental health. However, older adults may also be less likely to admit mental health struggles due to historically stronger stigmas surrounding mental health. It is also important to note that the age category of 18-24 has the least amount of data
+
+The relationship between income and mental health changes: individuals with lower income initially report better mental health, but the mental health score peaks in the lower mid-range incomes. Education levels show a relatively stable relationship with mental health, with a slight downward trend as individuals attain higher levels of education, likely due to cumulative stress and life challenges over time.
+
+These findings highlight the need for further investigation into how age and income intersect with mental health.
+
+```{r}
+
+data_q1 <- read_rds("dataset/data_clean.rds") |>
+  mutate(total_mentalhealth = Anxious_Frequency + Worry_Frequency + 
+         Little_Interest_Frequency + Depressed_Frequency)
+
 data_clean <- read_rds("dataset/data_clean.rds") |>
   mutate(total_mentalhealth = Anxious_Frequency + Worry_Frequency + 
          Little_Interest_Frequency + Depressed_Frequency)
 
+# Calculate total mental health 
+data_q1 <- data_q1 |>
+  mutate(age_group = cut(2024 - Birth_Year, 
+                        breaks = c(0, 25, 35, 45, 55, Inf),
+                        labels = c("18-24", "25-34", "35-44", "45-54", "55+")))
+
+# Create the plot
+ggplot(data_q1, aes(x = age_group, y = total_mentalhealth)) +
+  # Add individual points with transparency
+  geom_jitter(alpha = 0.1, width = 0.2) +
+  # Modify stat_summary to only use actual data points
+  stat_summary(aes(color = "Age", group = 1), 
+              fun = mean, geom = "line", size = 1) +
+  stat_summary(aes(x = as.numeric(as.factor(Educational_Attainment)), 
+                  color = "Education", group = 1),
+              fun = mean, geom = "line", size = 1) +
+  stat_summary(aes(x = as.numeric(as.factor(Household_Income)), 
+                  color = "Income", group = 1),
+              fun = mean, geom = "line", size = 1) +
+  # Customize appearance
+  scale_color_manual(values = c("Age" = "red", "Education" = "blue", "Income" = "green")) +
+  # Set y-axis limits to start at 4
+  scale_y_continuous(limits = c(4, 15)) +
+  # Labels
+  labs(x = "Age Groups",
+       y = "Total Mental Health Score",
+       title = "Mental Health Trends Across Demographics",
+       color = "Demographic Factor") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+#### Age Linear Regression Modeling
+
+#### Income Linear Regression Modeling
+
+```{r}
+
 # Create analysis dataset for scatterplots
-scatter_data <- data_clean |>
-  mutate(total_mentalhealth = Anxious_Frequency + Worry_Frequency + 
-         Little_Interest_Frequency + Depressed_Frequency)
+scatter_data <- data_q1
 
 # Calculate averages by income
 avg_mh_by_income <- scatter_data |>
@@ -49,15 +97,6 @@ avg_mh_by_income <- scatter_data |>
     avg_interest = mean(Little_Interest_Frequency),
     avg_down = mean(Depressed_Frequency)
   )
-
-# First plot - Income vs Total Mental Health
-ggplot(scatter_data, aes(x=Household_Income, y = total_mentalhealth)) +
-  geom_point(alpha = 0.01) +
-  geom_smooth(method = "lm", se = FALSE, color = "blue") + 
-  labs(x = "Income", 
-       y = "Total Mental Health Score", 
-       title = "Income vs. Mental Health")
-
 # Second plot - All mental health metrics by income
 ggplot(avg_mh_by_income) +
   geom_point(aes(x=Household_Income, y = avg_mh), alpha = 0.01) +
@@ -76,14 +115,15 @@ ggplot(avg_mh_by_income) +
 
 # Linear regression analysis income and total mental health 
 income_mh <- lm(total_mentalhealth ~ Household_Income, data = scatter_data)
-plot(income_mh)
+plot(income_mh, which=1)
+plot(income_mh, which=2)
 summary(income_mh)
 ```
 In the Household Pulse Survey, families are asked to report the frequency of mental health measures such as anxiety or worry. The overall measure of mental health or the Total Mental Health Score was calculated by totaling the other measures of mental health. When income is plotted against average mental health score, both total and individual measures, there shows a slight decrease in the mental health measures as income increases. This demonstrates a correlation between increased income and improved mental health. This decrease is much clearer when examining the total mental health score rather than individual measures. 
 
 When regressed against income, total mental health score decreases by 0.21 when income increases by one level. The t-statistic is -34.82 and the p-value is less than 2e-16, demonstrating that the coefficient is statistically significant. However, in examining the residuals ____________. 
 
-
+#### Education Attainment Linear Regression Modeling
 ```{r}
 # Linear Regression Education and Total Mental Health
 
@@ -132,7 +172,7 @@ summary(education_mh)
 ```
 Similarly to income, educational attainment has a negative correlation with total mental health score. As level of educational attainment increase, mental wellbeing improves. This is unsurprising as educational attainment is often correlated with income level as well. The linear regression shows that as educational attainment increases by one, total mental health score decreases by 0.21. This is statistically significant as the t-value is -24.56. However, in examining the residual plots _________. 
 
-
+### II. Access to Mental Health Services
 ``` {r}
 
 library(dplyr)
@@ -324,6 +364,7 @@ summary(socwk_lm)
 summary(psychol_lm)
 ```
 
+## Flaws and Limitations
 
 >>>>>>> 50f4f57e7ee05a028e285104bb7d6bc038af2ece
 ## Note on Attribution
@@ -341,6 +382,19 @@ If you are directly quoting from a source, please make that clear. You can show 
 ------------------------------------------------------------------------
 
 ## Rubric: On this page
+
+This comes from the file `analysis.qmd`.
+
+We describe here our detailed data analysis. This page will provide an overview of what questions you addressed, illustrations of relevant aspects of the data with tables and figures, and a statistical model that attempts to answer part of the question. You'll also reflect on next steps and further analysis.
+
+The audience for this page is someone like your class mates, so you can expect that they have some level of statistical and quantitative sophistication and understand ideas like linear and logistic regression, coefficients, confidence intervals, overfitting, etc. 
+
+While the exact number of figures and tables will vary and depend on your analysis, you should target around 5 to 6. An overly long analysis could lead to losing points.
+If you want you can link back to your blog posts or create separate pages with more details.
+
+The style of this paper should aim to be that of an academic paper. 
+I don't expect this to be of publication quality but you should keep that aim in mind.
+Avoid using "we" too frequently, for example "We also found that ...". Describe your methodology and your findings but don't describe your whole process.
 
 You will
 
