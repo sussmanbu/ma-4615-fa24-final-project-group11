@@ -292,6 +292,63 @@ map_data <- left_join(census_data, joint_data, by = "region") |>
 #write_rds(joint_data, "dataset-ignore/joint_data.rds")
 ```
 
+```{r}
+# Read the CSV file
+data <- read.csv("dataset/joint_data.csv")
+
+# Group by state and calculate the average of total_mentalhealth and predictors
+aggregated_data <- data |>
+  group_by(st_abbrev) |>
+  summarise(
+    avg_total_mentalhealth = mean(total_mentalhealth, na.rm = TRUE),
+    psychol_21 = mean(psychol_21, na.rm = TRUE),
+    socwk_21 = mean(socwk_21, na.rm = TRUE),
+    conslrs_21 = mean(conslrs_21, na.rm = TRUE)
+  )
+
+# Filter data to limit the range of values for cleaner plots
+aggregated_data <- aggregated_data |>
+  filter(
+    avg_total_mentalhealth >= 0 & avg_total_mentalhealth <= 20,
+    psychol_21 >= 0 & psychol_21 <= 5000,
+    socwk_21 >= 0 & socwk_21 <= 20000,
+    conslrs_21 >= 0 & conslrs_21 <= 10000
+  )
+
+# Transform the data to long format for faceting
+plot_data_long <- pivot_longer(
+  aggregated_data, 
+  cols = c("psychol_21", "socwk_21", "conslrs_21"), 
+  names_to = "Variable", 
+  values_to = "Value"
+)
+
+# Create faceted scatter plots with trendlines
+ggplot(plot_data_long, aes(x = Value, y = avg_total_mentalhealth)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", color = "red", se = FALSE) +
+  facet_wrap(~ Variable, scales = "free_x") +
+  labs(
+    x = "Value of Predictor (Averaged by State)",
+    y = "Average Total Mental Health",
+    title = "Faceted Scatter Plots with Trendlines (Grouped by State)"
+  ) +
+  theme_minimal() +
+  scale_y_continuous(limits = c(0, 10)) # Adjust y-axis range
+
+print(aggregated_data)
+```
+
+
+```{r}
+psychol_lm <- lm(avg_total_mentalhealth ~ psychol_21, data = aggregated_data)
+socwk_lm <- lm(avg_total_mentalhealth ~ socwk_21, data = aggregated_data)
+conslrs_lm <- lm(avg_total_mentalhealth ~ conslrs_21, data = aggregated_data)
+summary(conslrs_lm)
+summary(socwk_lm)
+summary(psychol_lm)
+```
+
 
 >>>>>>> 50f4f57e7ee05a028e285104bb7d6bc038af2ece
 ## Note on Attribution
