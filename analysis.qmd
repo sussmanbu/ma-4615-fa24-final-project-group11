@@ -7,6 +7,9 @@ draft: false
 
 ![](https://upload.wikimedia.org/wikipedia/commons/7/77/Pebbleswithquarzite.jpg)
 ## Main Questions
+
+This analysis will focus on how mental wellbeing and mental health services are related to factors such as income, education and race. Specifically, we will look at the following questions:
+
 - How does access to mental health services change based on factors such as income, education, and race?
 - How do measures of mental wellbeing (levels of worry, anxiety, etc.) change based on age, income, education, and race?
 - How does veteran/active duty status effect mental health?
@@ -25,17 +28,8 @@ The style of this paper should aim to be that of an academic paper.
 I don't expect this to be of publication quality but you should keep that aim in mind.
 Avoid using "we" too frequently, for example "We also found that ...". Describe your methodology and your findings but don't describe your whole process.
 
-### Example of loading data
-
-The code below shows an example of loading the loan refusal data set (which you should delete at some point).
-
 ```{r}
 library(tidyverse)
-print(getwd())
-data_clean <- read_rds("dataset/data_clean.rds")
-```
-
-```{r}
 data_clean <- read_rds("dataset/data_clean.rds") |>
   mutate(total_mentalhealth = Anxious_Frequency + Worry_Frequency + 
          Little_Interest_Frequency + Depressed_Frequency)
@@ -67,40 +61,80 @@ ggplot(scatter_data, aes(x=Household_Income, y = total_mentalhealth)) +
 # Second plot - All mental health metrics by income
 ggplot(avg_mh_by_income) +
   geom_point(aes(x=Household_Income, y = avg_mh), alpha = 0.01) +
-  geom_smooth(aes(x=Household_Income, y = avg_mh), method = "lm", se = FALSE, color = "blue") + 
+  geom_smooth(aes(x=Household_Income, y = avg_mh, color = "Average Total Mental Health Score"), method = "lm", se = FALSE) + 
   geom_point(aes(x=Household_Income, y = avg_anxiety), alpha = 0.01) +
-  geom_smooth(aes(x=Household_Income, y = avg_anxiety), method = "lm", se = FALSE, color = "red") + 
+  geom_smooth(aes(x=Household_Income, y = avg_anxiety, color = "Average Anxiety"), method = "lm", se = FALSE) + 
   geom_point(aes(x=Household_Income, y = avg_worry), alpha = 0.01) +
-  geom_smooth(aes(x=Household_Income, y = avg_worry), method = "lm", se = FALSE, color = "green") + 
+  geom_smooth(aes(x=Household_Income, y = avg_worry, color = "Average Worry"), method = "lm", se = FALSE) + 
   geom_point(aes(x=Household_Income, y = avg_interest), alpha = 0.01) +
-  geom_smooth(aes(x=Household_Income, y = avg_interest), method = "lm", se = FALSE, color = "purple") + 
+  geom_smooth(aes(x=Household_Income, y = avg_interest, color = "Average Interest"), method = "lm", se = FALSE) + 
   geom_point(aes(x=Household_Income, y = avg_down), alpha = 0.01) +
-  geom_smooth(aes(x=Household_Income, y = avg_down), method = "lm", se = FALSE, color = "pink") + 
+  geom_smooth(aes(x=Household_Income, y = avg_down, color = "Average Down"), method = "lm", se = FALSE) + 
   labs(x = "Income", 
        y = "Average Mental Health Score", 
        title = "Income vs. Mental Health Components")
 
 # Linear regression analysis income and total mental health 
-#income_mh <- lm(total_mentalhealth ~ Household_Income, data = scatter_data)
-#plot(income_mh)
-#summary(income_mh)
+income_mh <- lm(total_mentalhealth ~ Household_Income, data = scatter_data)
+plot(income_mh)
+summary(income_mh)
 ```
+In the Household Pulse Survey, families are asked to report the frequency of mental health measures such as anxiety or worry. The overall measure of mental health or the Total Mental Health Score was calculated by totaling the other measures of mental health. When income is plotted against average mental health score, both total and individual measures, there shows a slight decrease in the mental health measures as income increases. This demonstrates a correlation between increased income and improved mental health. This decrease is much clearer when examining the total mental health score rather than individual measures. 
+
+When regressed against income, total mental health score decreases by 0.21 when income increases by one level. The t-statistic is -34.82 and the p-value is less than 2e-16, demonstrating that the coefficient is statistically significant. However, in examining the residuals ____________. 
+
+
 ```{r}
 # Linear Regression Education and Total Mental Health
+
+# Calculate averages by Education
+avg_mh_by_education <- scatter_data |>
+  group_by(Educational_Attainment) |>
+    summarize(
+    avg_mh = mean(as.numeric(total_mentalhealth)),
+    avg_anxiety = mean(as.numeric(Anxious_Frequency)),
+    avg_worry = mean(as.numeric(Worry_Frequency)),
+    avg_interest = mean(as.numeric(Little_Interest_Frequency)),
+    avg_down = mean(as.numeric(Depressed_Frequency))
+  )
+
+
+# First plot - Education vs Total Mental Health
 ggplot(scatter_data, aes(x=Educational_Attainment, y = total_mentalhealth)) +
   geom_point(alpha = 0.01) +
   geom_smooth(method = "lm", se = FALSE, color = "blue") + 
-  labs(x = "Income", 
+  labs(x = "Educational Attainment", 
        y = "Total Mental Health Score", 
-       title = "Income vs. Mental Health")
+       title = "Educational Attainmnet vs. Mental Health")
 
+#Second Plot - Education vs Average Mental Health Measures
+ggplot(avg_mh_by_education) +
+  geom_point(aes(x=Educational_Attainment, y = avg_mh), alpha = 0.01) +
+  geom_smooth(aes(x=Educational_Attainment, y = avg_mh, color = "Average Total Mental Health Score"), method = "lm", se = FALSE) + 
+  geom_point(aes(x=Educational_Attainment, y = avg_anxiety), alpha = 0.01) +
+  geom_smooth(aes(x=Educational_Attainment, y = avg_anxiety, color = "Average Anxiety"), method = "lm", se = FALSE) + 
+  geom_point(aes(x=Educational_Attainment, y = avg_worry), alpha = 0.01) +
+  geom_smooth(aes(x=Educational_Attainment, y = avg_worry, color = "Average Worry"), method = "lm", se = FALSE) + 
+  geom_point(aes(x=Educational_Attainment, y = avg_interest), alpha = 0.01) +
+  geom_smooth(aes(x=Educational_Attainment, y = avg_interest, color = "Average Interest"), method = "lm", se = FALSE) + 
+  geom_point(aes(x=Educational_Attainment, y = avg_down), alpha = 0.01) +
+  geom_smooth(aes(x=Educational_Attainment, y = avg_down, color = "Average Down"), method = "lm", se = FALSE) + 
+  labs(x = "Educational_Attainment", 
+       y = "Average Mental Health Score", 
+       title = "Educational_Attainment vs. Mental Health Components")
+
+
+#Linear Regression
 education_mh <- lm(total_mentalhealth ~ Educational_Attainment, data = scatter_data)
 plot(education_mh)
 summary(education_mh)
 
 ```
+Similarly to income, educational attainment has a negative correlation with total mental health score. As level of educational attainment increase, mental wellbeing improves. This is unsurprising as educational attainment is often correlated with income level as well. The linear regression shows that as educational attainment increases by one, total mental health score decreases by 0.21. This is statistically significant as the t-value is -24.56. However, in examining the residual plots _________. 
+
 
 ``` {r}
+
 library(dplyr)
 library(ggplot2)
 library(maps)
@@ -161,14 +195,22 @@ state_lookup <- c(
   '56'='wyoming' )
 
 data_by_state <- data_clean |>
-  mutate(region = recode(as.character(State_Living_in), !!!state_lookup))
-
+  mutate(region = recode(as.character(State_Living_in), !!!state_lookup)) |>
+  group_by(region) |>
+  reframe (mean_edu = mean(Educational_Attainment),
+           children_need = sum(Children_Need_for_Mental_Health_Treatment, na.rm = TRUE),
+           children_receive = sum(Children_Receive_Mental_Health_Treatment, na.rm = TRUE),
+           mean_income = mean(Household_Income, na.rm = TRUE),
+           mean_total_mh = mean(total_mentalhealth, na.rm = TRUE))
 
 us_map_data <- us_map |>
   left_join(data_by_state, by = "region")
+```
+
+```{r}
 
 ggplot(us_map_data, aes(x = long, y = lat, group = group)) +
-  geom_polygon(fill = "lightblue", color = "black") +
+  geom_polygon(fill = "blue", color = "black") +
   theme_void() +
   labs(title = "Map of the United States")
 
@@ -191,11 +233,6 @@ ggplot(avg_freqs, aes(x = Race, y = Mean, fill = Variable)) +
   theme(axis.text.x = element_text(angle = 25))
 ```
 
-=======
-
-```{r}
-colnames(data_clean)
-```
 
 
 Merging National Pulse Survey with data from the Health Resources and Services Administration on number of mental health providers in each state.
@@ -203,8 +240,6 @@ Merging National Pulse Survey with data from the Health Resources and Services A
 care_data_sum <- read_rds("dataset/care_data_sum.rds") |>
   group_by(region)
 
-data_by_state |>
-  group_by(region)
 
 joint_data <- left_join(care_data_sum, data_by_state, by = "region")
 
@@ -226,21 +261,25 @@ census_data <- get_decennial(
 census_data <- census_data |>
   mutate(region = tolower(NAME))
 
-map_data <- left_join(census_data, joint_data, by = "region")
+map_data <- left_join(census_data, joint_data, by = "region") |>
+  na.omit()
 
-write_rds(map_data, "dataset-ignore/map_data.rds")
+#write_rds(map_data, "dataset-ignore/map_data.rds")
 
 ```
 ```{r}
 
-#ggplot(map_data) +
- # geom_point(aes(x = Birth_Year, y = total_mentalhealth))
+#ggplot(map_data, aes(x = education_mh, y = psychol_21)) +
+# geom_point(alpha = 0.01)
 
 
 ```
 
 
 ```{r}
+#map_care_data <- map_data |>
+  #group_by(region) |>
+  #summarize(mean_edu = mean(Educational_Attainment), mean_income = mean(Household_Income))
 
 #ggplot(map_data) + 
  # geom_sf(aes(fill = Household_Income), alpha = 0.6, size = 0.1) +
@@ -250,7 +289,7 @@ write_rds(map_data, "dataset-ignore/map_data.rds")
 ```
 
 ```{r}
-write_rds(joint_data, "dataset-ignore/joint_data.rds")
+#write_rds(joint_data, "dataset-ignore/joint_data.rds")
 ```
 
 
