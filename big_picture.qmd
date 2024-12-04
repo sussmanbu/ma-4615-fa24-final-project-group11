@@ -20,12 +20,17 @@ library(tidyverse)
 library(sf)
 library(tidycensus)
 
-care_data_sum <- read_rds("dataset/care_data_sum.rds")
-#data_by_state <- read_rds("")
+#Combining joint data with census data to create maps
 
-#joint_data <- left_join(care_data_sum, data_by_state, by = "region")
+joint_data <- read.csv("dataset/joint_data.csv")
 
-
+joint_data <- joint_data |>
+  group_by(region) |>
+  reframe(mean_edu = mean(Educational_Attainment),
+           children_need = sum(Children_Need_for_Mental_Health_Treatment, na.rm = TRUE),
+           children_receive = sum(Children_Receive_Mental_Health_Treatment, na.rm = TRUE),
+           mean_income = mean(Household_Income, na.rm = TRUE),
+           mean_total_mh = mean(total_mentalhealth, na.rm = TRUE))
 
 v2020 <- load_variables(2020, "pl", cache = TRUE)
 
@@ -41,17 +46,16 @@ census_data <- get_decennial(
 census_data <- census_data |>
   mutate(region = tolower(NAME))
 
-#map_data <- left_join(census_data, joint_data, by = "region")
+map_data <- left_join(census_data, joint_data, by = "region")
 ```
 ``` {r}
 #| echo: FALSE
 
 
-
-#ggplot(map_data, aes(x = mean_edu, y = psychol_21, na.rm = TRUE)) +
-# geom_point(alpha = 0.01)
-
-
+ggplot(map_data) + 
+ geom_sf(aes(fill = mean_income)) +
+ scale_fill_gradient() + 
+ theme_void()
 
 ```
 ---

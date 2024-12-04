@@ -264,32 +264,7 @@ census_data <- census_data |>
 map_data <- left_join(census_data, joint_data, by = "region") |>
   na.omit()
 
-#write_rds(map_data, "dataset-ignore/map_data.rds")
 
-```
-```{r}
-
-#ggplot(map_data, aes(x = education_mh, y = psychol_21)) +
- # geom_point(alpha = 0.01)
-
-
-```
-
-
-```{r}
-#map_care_data <- map_data |>
-  #group_by(region) |>
-  #summarize(mean_edu = mean(Educational_Attainment), mean_income = mean(Household_Income))
-
-#ggplot(map_data) + 
- # geom_sf(aes(fill = Household_Income), alpha = 0.6, size = 0.1) +
- # scale_fill_gradient() + 
- # theme_void()
-
-```
-
-```{r}
-#write_rds(joint_data, "dataset-ignore/joint_data.rds")
 ```
 
 ```{r}
