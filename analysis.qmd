@@ -99,7 +99,6 @@ avg_mh_by_education <- scatter_data |>
   )
 
 
-
 # First plot - Education vs Total Mental Health
 ggplot(scatter_data, aes(x=Educational_Attainment, y = total_mentalhealth)) +
   geom_point(alpha = 0.01) +
@@ -196,15 +195,20 @@ state_lookup <- c(
   '56'='wyoming' )
 
 data_by_state <- data_clean |>
-  mutate(region = recode(as.character(State_Living_in), !!!state_lookup))
+  mutate(region = recode(as.character(State_Living_in), !!!state_lookup)) |>
+  group_by(region) |>
+  reframe (mean_edu = mean(Educational_Attainment),
+           children_need = sum(Children_Need_for_Mental_Health_Treatment, na.rm = TRUE),
+           children_receive = sum(Children_Receive_Mental_Health_Treatment, na.rm = TRUE),
+           mean_income = mean(Household_Income, na.rm = TRUE),
+           mean_total_mh = mean(total_mentalhealth, na.rm = TRUE))
 
 us_map_data <- us_map |>
-  left_join(data_by_state, by = "region") |>
-  group_by(region) |>
-  mutate(mean_income = mean(Household_Income), mean_total_mh = mean(total_mentalhealth))
+  left_join(data_by_state, by = "region")
 ```
 
 ```{r}
+
 ggplot(us_map_data, aes(x = long, y = lat, group = group)) +
   geom_polygon(fill = "blue", color = "black") +
   theme_void() +
