@@ -51,12 +51,20 @@ map_data <- left_join(census_data, joint_data, by = "region")
 ``` {r}
 #| echo: FALSE
 
-
 ggplot(map_data) + 
  geom_sf(aes(fill = mean_income)) +
  scale_fill_gradient() + 
  theme_void()
 
+ggplot(map_data) + 
+ geom_sf(aes(fill = mean_total_mh)) +
+ scale_fill_gradient() + 
+ theme_void()
+
+ggplot(map_data) + 
+ geom_sf(aes(fill = mean_edu)) +
+ scale_fill_gradient() + 
+ theme_void()
 ```
 ---
 
