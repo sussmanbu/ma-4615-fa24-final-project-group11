@@ -240,8 +240,6 @@ Merging National Pulse Survey with data from the Health Resources and Services A
 care_data_sum <- read_rds("dataset/care_data_sum.rds") |>
   group_by(region)
 
-data_by_state |>
-  group_by(region)
 
 joint_data <- left_join(care_data_sum, data_by_state, by = "region")
 
@@ -263,15 +261,16 @@ census_data <- get_decennial(
 census_data <- census_data |>
   mutate(region = tolower(NAME))
 
-map_data <- left_join(census_data, joint_data, by = "region")
+map_data <- left_join(census_data, joint_data, by = "region") |>
+  na.omit()
 
 #write_rds(map_data, "dataset-ignore/map_data.rds")
 
 ```
 ```{r}
 
-#ggplot(map_data) +
- # geom_point(aes(x = Birth_Year, y = total_mentalhealth))
+#ggplot(map_data, aes(x = education_mh, y = psychol_21)) +
+# geom_point(alpha = 0.01)
 
 
 ```
