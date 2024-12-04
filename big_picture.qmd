@@ -62,7 +62,7 @@ ggplot(map_data) +
  theme_void()
 
 ggplot(map_data) + 
- geom_sf(aes(fill = mean_edu)) +
+ geom_sf(aes(fill = mean_total_mh)) +
  scale_fill_gradient() + 
  theme_void()
 ```
