@@ -270,7 +270,7 @@ map_data <- left_join(census_data, joint_data, by = "region") |>
 ```{r}
 
 #ggplot(map_data, aes(x = education_mh, y = psychol_21)) +
-# geom_point(alpha = 0.01)
+ # geom_point(alpha = 0.01)
 
 
 ```
