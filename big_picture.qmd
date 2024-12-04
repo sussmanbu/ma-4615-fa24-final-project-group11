@@ -7,11 +7,8 @@ filters:
   - shinylive
 ---
 
-![](images/The_Big_Picture_2.jpeg)
+There are several different factors that impact both mental wellbeing and access to mental health care. Through analysis of the Household Pulse Survey and Area Health Resource Data, this website examines the relationship between mental wellbeing, access to mental health care, age, income, education, and race. 
 
-This comes from the file `big_picture.Rmd`.
-
-Think of this page as your 538/Upshot style article. This means that you should try to tell a story through the data and your analysis. Read articles from those sites and similar sites to get a feeling for what they are like. Try to write in the style of a news or popular article. Importantly, this page should be geared towards the general public. You shouldn't assume the reader understands how to interpret a linear regression or a complicated plot. Focus on interpretation and visualizations.
 
 ```{r}
 #| echo: FALSE
@@ -31,7 +28,7 @@ joint_data <- joint_data |>
            children_receive = sum(Children_Receive_Mental_Health_Treatment, na.rm = TRUE),
            mean_income = mean(Household_Income, na.rm = TRUE),
            mean_total_mh = mean(total_mentalhealth, na.rm = TRUE),
-          psychol = psychol_21)
+          psychol = mean(psychol_21))
 
 v2020 <- load_variables(2020, "pl", cache = TRUE)
 
@@ -49,22 +46,31 @@ census_data <- census_data |>
 
 map_data <- left_join(census_data, joint_data, by = "region")
 ```
+
+Here are all of the different factors and how they change across different states. The maps show _________
+
+
 ``` {r}
 #| echo: FALSE
 
 ggplot(map_data) + 
  geom_sf(aes(fill = mean_income)) +
- scale_fill_gradient() + 
+ scale_fill_gradient(low = "red",high = "white") + 
  theme_void()
 
 ggplot(map_data) + 
  geom_sf(aes(fill = mean_edu)) +
- scale_fill_gradient() + 
+ scale_fill_gradient(low = "blue", high = "white") + 
  theme_void()
 
 ggplot(map_data) + 
  geom_sf(aes(fill = mean_total_mh)) +
- scale_fill_gradient() + 
+ scale_fill_gradient(low = "green", high = "white") +
+ theme_void()
+
+ggplot(map_data) + 
+ geom_sf(aes(fill = psychol)) +
+ scale_fill_gradient(low = "purple", high = "white") 
  theme_void()
 
 ```
@@ -78,7 +84,9 @@ You will also be required to make an interactive dashboard like [this one](/flex
 Your Big Data page should also include a small interactive dashboard. The dashboard should be created either using Shinylive, as below. This interactive component should in some way support your thesis from your big picture page. Good interactives often provide both high-level understanding of the data while allowing a user to investigate specific scenarios, observations, subgroups, etc.
 
 
+This comes from the file `big_picture.Rmd`.
 
+Think of this page as your 538/Upshot style article. This means that you should try to tell a story through the data and your analysis. Read articles from those sites and similar sites to get a feeling for what they are like. Try to write in the style of a news or popular article. Importantly, this page should be geared towards the general public. You shouldn't assume the reader understands how to interpret a linear regression or a complicated plot. Focus on interpretation and visualizations.
 ---
 
 ## Rubric: On this page
