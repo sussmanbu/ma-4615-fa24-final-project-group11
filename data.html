@@ -155,17 +155,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-data" id="toc-the-data" class="nav-link active" data-scroll-target="#the-data">The Data</a>
+  <li><a href="#overview-of-household-pulse-survey-data" id="toc-overview-of-household-pulse-survey-data" class="nav-link active" data-scroll-target="#overview-of-household-pulse-survey-data">Overview of Household Pulse Survey Data</a></li>
+  <li><a href="#data-files-and-variables" id="toc-data-files-and-variables" class="nav-link" data-scroll-target="#data-files-and-variables">Data Files and Variables</a>
   <ul class="collapse">
-  <li><a href="#potential-issuesbiases" id="toc-potential-issuesbiases" class="nav-link" data-scroll-target="#potential-issuesbiases">Potential Issues/Biases</a></li>
+  <li><a href="#overview-of-area-health-resource-data" id="toc-overview-of-area-health-resource-data" class="nav-link" data-scroll-target="#overview-of-area-health-resource-data">Overview of Area Health Resource Data</a></li>
   </ul></li>
-  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables">Variables</a></li>
   <li><a href="#cleaning-the-data" id="toc-cleaning-the-data" class="nav-link" data-scroll-target="#cleaning-the-data">Cleaning the Data</a></li>
-  <li><a href="#second-data-set" id="toc-second-data-set" class="nav-link" data-scroll-target="#second-data-set">Second Data Set</a></li>
-  <li><a href="#page-info" id="toc-page-info" class="nav-link" data-scroll-target="#page-info">Page Info</a>
-  <ul class="collapse">
-  <li><a href="#load-and-clean-data-script" id="toc-load-and-clean-data-script" class="nav-link" data-scroll-target="#load-and-clean-data-script">Load and clean data script</a></li>
-  </ul></li>
   <li><a href="#rubric-on-this-page" id="toc-rubric-on-this-page" class="nav-link" data-scroll-target="#rubric-on-this-page">Rubric: On this page</a></li>
   </ul>
 </nav>
@@ -197,258 +192,83 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="the-data" class="level2">
-<h2 class="anchored" data-anchor-id="the-data">The Data</h2>
-<p>This data comes from a partnership between the Census Bureau, the NCHS (National Center for Health Statistics) and other federal agencies. It is a 20 minute online survey and is published every 2 weeks beginning on April 23, 2020. The specific data we are looking at from the August 20 - September 16, 2024 survey period and can be found on the <a href="https://www.census.gov/programs-surveys/household-pulse-survey/data/datasets.html">Census Bureau website</a>.</p>
-<p>The survey was designed to complement the ability of the federal statistical system to rapidly respond and provide relevant information about the impact of COVID-19 in the United States. While the data was collected with a variety of federal agencies, collection was lead by the Census Bureau.</p>
-<p>The data for the Household Pulse Survey was collected in response to COVID-19 in order to quickly respond and provide relevant information about the pandemic in the United States. This produces data representing social and economic matters affecting American households, which gets released in near real-time to determine state and federal action. For instance, this survey guiding emergency responses was fundamental, primarily during the pandemic’s peak. There are surveys that track similar data, but the data collection rate is not as frequent and the turnaround time is typically longer. There is existing research on this data. This includes a project evaluating the household pulse survey experiments, and focuses on how the survey can be more effective. Renee Reeves and Kayla Varela, the leads of this research, asked what implementations resulted in higher response rates, particularly contact strategies, e.g., text vs.&nbsp;email, short URL vs.&nbsp;long URL. Reeves and Varela determined that sending texts instead of emails, using shorter URLs containing census.gov over longer URLs, and sending only texts instead of both texts and emails generate more responses. There is a range of other research, including identifying the demographic characteristics of nonrespondents and respondents who select non-definitive response categories, as well as which demographics were more likely to respond to sexual orientation and gender identity (SOGI) questions.</p>
-<section id="potential-issuesbiases" class="level3">
-<h3 class="anchored" data-anchor-id="potential-issuesbiases">Potential Issues/Biases</h3>
-<p>The main issue with this data is that it is voluntary and self reported. This means that individuals may have different interpretations of the scales and numbers especially as it relates to levels of worry, anxiety, and loneliness. This is particularly the case for mental health data as there remains a lot of stigma around mental health, however, it is also harder to collect other more accurate data. Further demonstrating this problem, there are several questions that respondents skipped and did not answer.</p>
-<p>Additionally, while people are randomly selected to participate, they have the option not to participate. Those that opt out of participating may be more distrustful of the government or too busy to take the time to fill out the survey. Both of these factors could be correlated with other variables in the survey. Respondents are also selected using household addresses. This automatically excludes people experiencing homelessness, as they may not have a household address.</p>
-<p>Further, the data questioning has changed throughout the phases of the survey. Before Phase 3.2, the screening questions for mental health concerns asked “Over the last 7 days, how often have you been bothered by … having little interest or pleasure in doing things? Would you say not at all, several days, more than half the days, or nearly every day?” Phase 3.2 altered the question to “Over the last 14 days,” as opposed to the previously stated “7 days.” This could have changed responses given the timeframe is different — having a larger number of days n is more likely to create more varying data since there is more data to report. So, someone might respond “more than half the days” in a 14-day span, but “several days” in a 7-day span.</p>
+<p><img src="images/Data_Census_Bureau.png" class="img-fluid"></p>
+<section id="overview-of-household-pulse-survey-data" class="level2">
+<h2 class="anchored" data-anchor-id="overview-of-household-pulse-survey-data">Overview of Household Pulse Survey Data</h2>
+<p>This data comes from a partnership between the Census Bureau, the National Center for Health Statistics (NCHS), and other federal agencies. The Household Pulse Survey is a 20-minute online survey published every two weeks, starting on April 23, 2020. The analyzed data set comes from the survey period between August 20 and September 16, 2024, and is available on the <a href="https://www.census.gov/programs-surveys/household-pulse-survey/data/datasets.html">Census Bureau website</a>.</p>
+<section id="purpose-and-design-of-the-survey" class="level4">
+<h4 class="anchored" data-anchor-id="purpose-and-design-of-the-survey">Purpose and Design of the Survey</h4>
+<p>The survey was developed to provide timely and relevant data on the impact of COVID-19 in the United States. While multiple federal agencies contributed to the effort, the Census Bureau led the data collection.</p>
+<p>The Household Pulse Survey was specifically designed to collect data representing social and economic issues affecting American households. This data is critical for informing state and federal decisions, particularly during the peak of the pandemic when emergency response efforts were most urgent. Unlike other surveys tracking similar data, the Household Pulse Survey stands out for its frequent data collection and quicker turnaround.</p>
 </section>
-</section>
-<section id="variables" class="level2">
-<h2 class="anchored" data-anchor-id="variables">Variables</h2>
-<p>The data included a wide variety of variables from veteran status to the impacts of natural disasters. However, we decided to make the data more manageable and focused by only examining the following variables that we were particularly interested in. We also took out variable where a large portion of the data was missing, including school type.</p>
-<p>We kept basic descriptive variables of individuals such as Birth Year, State, Race and Ethnicity, Marital Status, Gender and Sexuality. We also wanted to include information about education and employment to see if that factored into mental health data. This includes level of education, school type (public, private, homeschooled) for children in the household, employment status, job loss and reason for not working. We also included if an individual was active duty or a veteran. Finally we examined the specific variables regarding mental health:</p>
+<section id="research-and-insights" class="level4">
+<h4 class="anchored" data-anchor-id="research-and-insights">Research and Insights</h4>
+<p>There have been various research efforts aimed to improve survey effectiveness and understand respondent behavior. For example:</p>
 <ul>
-<li>Anxiousness</li>
-<li>Worry</li>
-<li>Interest</li>
-<li>Feeling Down</li>
-<li>Children’s Mental Health Treatment (Need, if they received treatment, difficulty in finding treatment)</li>
-<li>Social Support and Loneliness</li>
-<li>Private v Public Health Care</li>
+<li><strong>Survey Response Strategies:</strong> Renee Reeves and Kayla Varela conducted research to evaluate the Household Pulse Survey experiments. They analyzed strategies that increased response rates, focusing on contact methods such as text vs.&nbsp;email and URL length. Their findings include:
+<ul>
+<li>Text messages yielded higher response rates compared to emails.<br>
+</li>
+<li>Shorter URLs containing “census.gov” were more effective than longer URLs.<br>
+</li>
+<li>Sending texts exclusively, rather than a combination of texts and emails, generated the best responses.</li>
+</ul></li>
+<li><strong>Demographic Analysis:</strong> Other research has explored demographics of respondents and nonrespondents, particularly those who selected non-definitive response categories. Studies also examined which demographics were more likely to answer questions related to sexual orientation and gender identity (SOGI).</li>
 </ul>
-<p>Our full list of variables is used is as follows:</p>
-<p>Basic Descriptors Variables * Birth Year * Hispanic v Non-Hispanic * Race * Marital Status * Gender at Birth * Gender Identity * Sexuality * State * Household Income</p>
-<p>Education and Employment * Education Level * Job Loss * Employment Status * Kind of Work * Reason not Working</p>
-<p>Active Duty and Veteran Status * Active Duty * Veteran</p>
-<p>Mental Health * Anxious * Worry * Interest * Down * Children need for mental health treatment * Children receiving mental health treatment * Difficulty in obtaining treatment * Satisfaction with treatment * Social Support * Loneliness * Public vs Private Health Care</p>
+</section>
+<section id="potential-issues-and-biases" class="level4">
+<h4 class="anchored" data-anchor-id="potential-issues-and-biases">Potential Issues and Biases</h4>
+<p>The Household Pulse Survey has several limitations that could impact the data’s accuracy and representativeness:</p>
+<ul>
+<li><p><strong>Voluntary and Self-Reported Date:</strong> Responses are voluntary and self-reported, potentially leading to inconsistencies in how respondents interpret scales and questions, particularly on sensitive topics like mental health, where stigmas are present. Additionally, some respondents skip questions, which limits the data’s completeness.</p></li>
+<li><p><strong>Non-Participation Bias:</strong> While participants are randomly selected, those who choose not to participate may differ systematically from respondents. For example, nonparticipants may distrust the government or lack time to fill out the survey, which could correlate with survey variables.</p></li>
+<li><p><strong>Exclusion of Certain Populations:</strong> The survey relies on household addresses, excluding individuals experiencing homelessness, which is an important demographic when considering the impact of COVID-19.</p></li>
+<li><p><strong>Changes in Question Design:</strong> Survey questions have evolved over time, potentially impacting comparability. For instance, mental health questions initially asked about symptoms over a 7-day period but later shifted to a 14-day period in Phase 3.2. This change could lead to different responses, as a longer timeframe may capture more variation in experiences.</p></li>
+</ul>
+</section>
+</section>
+<section id="data-files-and-variables" class="level2">
+<h2 class="anchored" data-anchor-id="data-files-and-variables">Data Files and Variables</h2>
+<p>The Household Pulse Survey dataset includes a broad range of variables, from veteran status to the impacts of natural disasters. To streamline the analysis and focus on specific areas of interest, we narrowed the scope to the following categories and variables. Variables with significant missing data, such as school type, were excluded.</p>
+<ul>
+<li><p><strong>Basic Descriptive Variables</strong>: Birth Year, Hispanic vs.&nbsp;Non-Hispanic, Race, Marital Status, Gender at Birth, Gender Identity, Sexuality, State, Household Income</p></li>
+<li><p><strong>Education and Employment</strong>: Education Level, Employment Status, Job Loss, Kind of Work, Reason Not Working</p></li>
+<li><p><strong>Active Duty and Veteran Status</strong>: Active Duty, Veteran</p></li>
+<li><p><strong>Mental Health</strong>: Anxiousness, Worry, Interest (or lack thereof), Feeling Down, Children’s Mental Health Treatment (Need for treatment, Receiving treatment, Difficulty obtaining treatment, Satisfaction with treatment), Social Support, Loneliness, Public vs.&nbsp;Private Health Care</p></li>
+</ul>
+<section id="overview-of-area-health-resource-data" class="level3">
+<h3 class="anchored" data-anchor-id="overview-of-area-health-resource-data">Overview of Area Health Resource Data</h3>
+<p>We also compared the Household Pulse Survey to the Area Health Resource Data for <a href="https://data.hrsa.gov/data/download?hmpgtitle=hmpg-hrsa-data">2022-2023 at the State and National Level</a> from the Health Resources &amp; Services Administration (HRSA). The Area Health Resources Files (AHRF) dataset has over 6,000 variables with current and historical data at county, state, and national levels, covering health care professions, facilities, population characteristics, economics, and more. It is designed for planners, policymakers, and researchers, and includes geographic codes for linking with other datasets and aggregating data by region.</p>
+<p>There a fewer worries of bias within this data as the numbers are not self reported. Additionally, professionals such as psychologists and social workers must be licensed in their state to practice, meaning the government has access to accurate numbers of professionals in each state. However, the simple numbers of professionals does not provide a full story of access to mental health care in a state. For example, there are questions about how many are private versus work for state institutions, what proportion work in crisis care and how many take different types of insurances. Therefore, these numbers are a good starting point to see access to care across different states, but can not give the full story.</p>
+<p>We looked at the number of psychologists, social workers, counselors per state using this dataset.</p>
+</section>
 </section>
 <section id="cleaning-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="cleaning-the-data">Cleaning the Data</h2>
-<p>First, we load the data.</p>
+<section id="household-pulse-survey" class="level4">
+<h4 class="anchored" data-anchor-id="household-pulse-survey">Household Pulse Survey</h4>
+<p>The Household Pulse Survey was cleaned using this <a href="./scripts/pulse_survey_cleaning.R">cleaning script</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>({</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("patchwork")</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork) </span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>data_unclean <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"dataset/data_unclean.csv"</span>) })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/pulse_survey_cleaning.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Out of 220 variables (columns), we will keep 43 that we find may be useful. Furthermore, many variables contain the values “-88” and “-99”. “-88” indicates “Missing / Did not report”, which we interpret as NA. “-99” indicates “Question seen but category not selected”, which we convert to 0. This makes histograms concise (and makes regression easier, although that is not our focus).</p>
+<p>The script kept 43 out of the 220 relevant variables (columns) and recoded variable values from “-88” and “-99” to NA and 0. “-88” indicates “Missing / Did not report”, which can be interpreted as NA, and “-99” indicates “Question seen but category not selected”, which was converted to 0. This makes histograms concise (and makes regression easier). Then, columns were renamed to be more intuitive. This was saved as <code>data_clean</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressWarnings</span>(<span class="fu">suppressMessages</span>({</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  data_unclean <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"dataset/data_unclean.csv"</span>, <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"-88"</span>))</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>}))</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>columns <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"TBIRTH_YEAR"</span>, <span class="st">"RHISPANIC"</span>, <span class="st">"RRACE"</span>, <span class="st">"EEDUC"</span>, <span class="st">"MS"</span>, <span class="st">"EGENID_BIRTH"</span>, <span class="st">"RGENID_DESCRIBE"</span>, <span class="st">"SEXUAL_ORIENTATION_RV"</span>, <span class="st">"ENRPUBCHK"</span>, <span class="st">"ENRPRVCHK"</span>, <span class="st">"ENRHMSCHK"</span>, <span class="st">"ACTVDUTY1"</span>, <span class="st">"ACTVDUTY2"</span>, <span class="st">"ACTVDUTY3"</span>, <span class="st">"ACTVDUTY4"</span>, <span class="st">"ACTVDUTY5"</span>, <span class="st">"VETERAN1"</span>, <span class="st">"VETERAN2"</span>, <span class="st">"VETERAN3"</span>, <span class="st">"VETERAN4"</span>, <span class="st">"VETERAN5"</span>, <span class="st">"WRKLOSSRV"</span>, <span class="st">"ANYWORK"</span>, <span class="st">"KINDWORK"</span>, <span class="st">"RSNNOWRKRV"</span>, <span class="st">"ANXIOUS"</span>, <span class="st">"WORRY"</span>, <span class="st">"INTEREST"</span>, <span class="st">"DOWN"</span>, <span class="st">"MHLTH_NEED"</span>, <span class="st">"MHLTH_GET"</span>, <span class="st">"MHLTH_SATISFD"</span>, <span class="st">"MHLTH_DIFFCLT"</span>, <span class="st">"SOCIAL1"</span>, <span class="st">"SOCIAL2"</span>, <span class="st">"PRIVHLTH"</span>, <span class="st">"PUBHLTH"</span>, <span class="st">"EST_ST"</span>, <span class="st">"INCOME"</span>, <span class="st">"SUPPORT1"</span>, <span class="st">"SUPPORT2"</span>, <span class="st">"SUPPORT3"</span>, <span class="st">"SUPPORT4_RV"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>data_unclean <span class="ot">=</span> data_unclean[columns]</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>data_unclean[data_unclean <span class="sc">==</span> <span class="sc">-</span><span class="dv">99</span>] <span class="ot">=</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>NA_VALUE <span class="ot">&lt;-</span> <span class="st">"-88"</span>     <span class="co"># value indicating "Missing / Did not report"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ZERO_VALUE <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">99</span>     <span class="co"># value indicating "Question seen but not selected"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressWarnings</span>(<span class="fu">suppressMessages</span>({</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  data_unclean <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"dataset/data_unclean.csv"</span>, <span class="at">na =</span> <span class="fu">c</span>(NA_VALUE))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>}))</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>data_unclean[data_unclean <span class="sc">==</span> ZERO_VALUE] <span class="ot">&lt;-</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Next, we see how many values are NA in each variable.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(data_unclean[columns]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>          TBIRTH_YEAR             RHISPANIC                 RRACE 
-                    0                     0                     0 
-                EEDUC                    MS          EGENID_BIRTH 
-                    0                   120                     0 
-      RGENID_DESCRIBE SEXUAL_ORIENTATION_RV             ENRPUBCHK 
-                  120                   120                 37071 
-            ENRPRVCHK             ENRHMSCHK             ACTVDUTY1 
-                37071                 37071                   120 
-            ACTVDUTY2             ACTVDUTY3             ACTVDUTY4 
-                  120                   120                   120 
-            ACTVDUTY5              VETERAN1              VETERAN2 
-                  120                   912                   912 
-             VETERAN3              VETERAN4              VETERAN5 
-                  912                   912                   912 
-            WRKLOSSRV               ANYWORK              KINDWORK 
-                  120                   120                 22126 
-           RSNNOWRKRV               ANXIOUS                 WORRY 
-                29685                   120                   120 
-             INTEREST                  DOWN            MHLTH_NEED 
-                  120                   120                 37162 
-            MHLTH_GET         MHLTH_SATISFD         MHLTH_DIFFCLT 
-                48718                 49021                 48718 
-              SOCIAL1               SOCIAL2              PRIVHLTH 
-                  726                   726                     0 
-              PUBHLTH                EST_ST                INCOME 
-                    0                     0                  6519 
-             SUPPORT1              SUPPORT2              SUPPORT3 
-                 1362                  1362                  1362 
-          SUPPORT4_RV 
-                 1362 </code></pre>
-</div>
-</div>
-<p>The output indicates many NA (including “-88”) values.</p>
-<p>However, we believe the data is already quite clean, as many questions are only given to some survey participants.For example, MHLTH_DIFFCLT represents a question asking whether the survey participant has difficulty finding mental health treatment for their child(ren). Evidently, only a small fraction of the 51280 participants have answered this question.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(data_unclean<span class="sc">$</span>MHLTH_DIFFCLT))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2562</code></pre>
-</div>
-</div>
-<p>The histogram below plots the responses to MHLTH_DIFFCLT against the birth year of participants.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># https://www.statology.org/r-convert-numeric-to-factor/</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plot <span class="ot">=</span> <span class="fu">ggplot</span>(</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data_unclean[<span class="sc">!</span><span class="fu">is.na</span>(data_unclean<span class="sc">$</span>MHLTH_DIFFCLT),],</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> TBIRTH_YEAR, <span class="at">fill =</span> <span class="fu">as.factor</span>(MHLTH_DIFFCLT))</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span> <span class="fu">geom_histogram</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"MHLTH_DIFFCLT vs birth year"</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                               <span class="at">subtitle=</span><span class="st">"MHLTH_DIFFCLT: A participant's difficulty finding mental health treatment for their child(ren)"</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="data_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Here, 0: Question seen but category not selected 1: Not difficult 2: Somewhat difficult 3: Very difficult 4: Unable to get treatment due to difficulty 5: Did not try to get treatment</p>
-<p>Afterwards, we will rename each of the columns to be more intuitive.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data_unclean <span class="ot">&lt;-</span> data_unclean <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Birth_Year =</span> TBIRTH_YEAR, <span class="at">Hispanic =</span> RHISPANIC, <span class="at">Race =</span> RRACE, <span class="at">Educational_Attainment =</span> EEDUC, <span class="at">Marital_Status =</span> MS, <span class="at">Gender_at_Birth =</span> EGENID_BIRTH, <span class="at">Gender_Identity =</span> RGENID_DESCRIBE, <span class="at">Sexuality =</span> SEXUAL_ORIENTATION_RV, <span class="at">Public_School =</span> ENRPUBCHK, <span class="at">Private_School =</span> ENRPRVCHK, <span class="at">Home_School =</span> ENRHMSCHK, <span class="at">Not_Currently_Serving_in_US_Armed_Forces =</span> ACTVDUTY1, <span class="at">Serving_on_Active_Duty =</span> ACTVDUTY2, <span class="at">Serving_in_Reserve_or_National_Guard =</span> ACTVDUTY3, <span class="at">Spouse_Serving_on_Active_Duty =</span> ACTVDUTY4, <span class="at">Spouse_Serving_in_Reserve_or_National_Guard =</span> ACTVDUTY5, <span class="at">Not_Served_in_US_Armed_Forces =</span> VETERAN1, <span class="at">Served_on_Active_Duty =</span> VETERAN2, <span class="at">Served_in_Reserve_or_National_Guard =</span> VETERAN3, <span class="at">Spouse_Served_on_Active_Duty =</span> VETERAN4, <span class="at">Spouse_Served_in_Reserve_or_National_Guard =</span> VETERAN5, <span class="at">Job_Loss =</span> WRKLOSSRV, <span class="at">Employment_Status =</span> ANYWORK, <span class="at">Kind_of_Work =</span> KINDWORK, <span class="at">Reason_Not_Working =</span> RSNNOWRKRV, <span class="at">Anxious_Frequency =</span> ANXIOUS, <span class="at">Worry_Frequency =</span> WORRY, <span class="at">Little_Interest_Frequency =</span> INTEREST, <span class="at">Depressed_Frequency =</span> DOWN, <span class="at">Children_Need_for_Mental_Health_Treatment =</span> MHLTH_NEED, <span class="at">Children_Receive_Mental_Health_Treatment =</span> MHLTH_GET, <span class="at">Satisfaction_with_Treatment =</span> MHLTH_SATISFD, <span class="at">Difficulty_getting_Treatment =</span> MHLTH_DIFFCLT, <span class="at">Social_and_Emotional_Support =</span> SOCIAL1, <span class="at">Lonely_Frequency =</span> SOCIAL2, <span class="at">Private_Health_Insurance =</span> PRIVHLTH, <span class="at">Public_Health_Insurance =</span> PUBHLTH, <span class="at">State_Living_in =</span> EST_ST, <span class="at">Household_Income =</span> INCOME, <span class="at">Family_Friends_Neighbors_Phonecall_Frequency =</span> SUPPORT1, <span class="at">Friends_Relative_Get_Together_Frequency =</span> SUPPORT2, <span class="at">Church_Religious_Services_Attendance_Frequency =</span> SUPPORT3, <span class="at">Club_Organization_Meetings_Attendance_Frequency =</span> SUPPORT4_RV)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Finally, let’s save <code>data_unclean</code> as an .rds file.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(data_unclean, <span class="st">"dataset/data_clean.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>Another version of the clean data was created by converting the name of each state to a number, which is better for mapping. This version was saved as <code>data_by_state</code>.</p>
 </section>
-<section id="second-data-set" class="level2">
-<h2 class="anchored" data-anchor-id="second-data-set">Second Data Set</h2>
-<p>We also used health service information from the <a href="https://data.hrsa.gov/data/download">Health Resources and Services Administration</a>. This data shows the number of different health care providers across different states. As we are mainly focused on mental health, we decided to only use the columns that discussed the number of psychologists, social workers, and counselors per state.</p>
-<p>There a fewer worries of bias within this data as the numbers are not self reported. Additionally, professionals such as psychologists and social workers must be licensed in their state to practice, meaning the government has access to accurate numbers of professionals in each state. However, the simple numbers of professionals does not provide a full story of access to mental health care in a state. For example, there are questions about how many are private versus work for state institutions, what proportion work in crisis care and how many take different types of insurances. Therefore, these numbers are a good starting point to see access to care across different states, but can not give the full story.</p>
+<section id="area-health-resource-data" class="level4">
+<h4 class="anchored" data-anchor-id="area-health-resource-data">Area Health Resource Data</h4>
+<p>The Area Health Resource Data was cleaned using this <a href="./scripts/care_data_cleaning.R">cleaning script</a>. The script filtered the data down to the 5 variables (columns), <code>st_abbrev</code>, <code>psychol_21</code>, <code>socwk_21</code>, <code>conslrs_21</code>, <code>popn_pums_21</code> and recoded the state abbreviations to the full name of the state in lower case. This data was saved as <code>care_data_sum</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressWarnings</span>(<span class="fu">suppressMessages</span>({</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  care_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"dataset/care_data.csv"</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>}))</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>care_data_sum <span class="ot">&lt;-</span> care_data <span class="sc">|&gt;</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">reframe</span>(st_abbrev, psychol_21, socwk_21, conslrs_21, popn_pums_21)</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>state_names <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">AL =</span> <span class="st">"alabama"</span>,</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">AK =</span> <span class="st">"alaska"</span>,</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">AZ =</span> <span class="st">"arizona"</span>,</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">AR =</span> <span class="st">"arkansas"</span>,</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">CA =</span> <span class="st">"california"</span>,</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">CO =</span> <span class="st">"colorado"</span>,</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">CT =</span> <span class="st">"connecticut"</span>,</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">DE =</span> <span class="st">"delaware"</span>,</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">FL =</span> <span class="st">"florida"</span>,</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">GA =</span> <span class="st">"georgia"</span>,</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">HI =</span> <span class="st">"hawaii"</span>,</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">ID =</span> <span class="st">"idaho"</span>, </span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">IL =</span> <span class="st">"illinois"</span>,</span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">IN =</span> <span class="st">"indiana"</span>,</span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">IA =</span> <span class="st">"iowa"</span>,</span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">KS =</span> <span class="st">"kansas"</span>,</span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">KY =</span> <span class="st">"kentucky"</span>,</span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">LA =</span> <span class="st">"louisiana"</span>,</span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">ME =</span> <span class="st">"maine"</span>,</span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">MD =</span> <span class="st">"maryland"</span>,</span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">MA =</span> <span class="st">"massachusetts"</span>,</span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">MI =</span> <span class="st">"michigan"</span>,</span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">MN =</span> <span class="st">"minnesota"</span>,</span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">MS =</span> <span class="st">"mississippi"</span>,</span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">MO =</span> <span class="st">"missouri"</span>,</span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">MT =</span> <span class="st">"montana"</span>,</span>
-<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">NE =</span> <span class="st">"nebraska"</span>,</span>
-<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">NV =</span> <span class="st">"nevada"</span>,</span>
-<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">NH =</span> <span class="st">"new hampshire"</span>,</span>
-<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">NJ =</span> <span class="st">"new jersey"</span>,</span>
-<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">NM =</span> <span class="st">"new mexico"</span>,</span>
-<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">NY =</span> <span class="st">"new york"</span>,</span>
-<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>  <span class="at">NC =</span> <span class="st">"north carolina"</span>,</span>
-<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>  <span class="at">ND =</span> <span class="st">"north dakota"</span>,</span>
-<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>  <span class="at">OH =</span> <span class="st">"ohio"</span>,</span>
-<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">OK =</span> <span class="st">"oklahoma"</span>,</span>
-<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>  <span class="at">OR =</span> <span class="st">"oregon"</span>,</span>
-<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>  <span class="at">PA =</span> <span class="st">"pennsylvania"</span>,</span>
-<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>  <span class="at">RI =</span> <span class="st">"rhode island"</span>,</span>
-<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>  <span class="at">SC =</span> <span class="st">"south carolina"</span>,</span>
-<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>  <span class="at">SD =</span> <span class="st">"south dakota"</span>,</span>
-<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>  <span class="at">TN =</span> <span class="st">"tennessee"</span>,</span>
-<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>  <span class="at">TX =</span> <span class="st">"texas"</span>,</span>
-<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>  <span class="at">UT =</span> <span class="st">"utah"</span>,</span>
-<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">VT =</span> <span class="st">"vermont"</span>,</span>
-<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">VA =</span> <span class="st">"virginia"</span>,</span>
-<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">WA =</span> <span class="st">"washington"</span>,</span>
-<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a>  <span class="at">WV =</span> <span class="st">"west virginia"</span>,</span>
-<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>  <span class="at">WI =</span> <span class="st">"wisconsin"</span>,</span>
-<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>  <span class="at">WY =</span> <span class="st">"wyoming"</span></span>
-<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a>care_data_sum <span class="ot">&lt;-</span> care_data_sum <span class="sc">|&gt;</span></span>
-<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">region =</span> <span class="fu">recode</span>(st_abbrev, <span class="sc">!!!</span>state_names))</span>
-<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(care_data_sum, <span class="st">"dataset/care_data_sum.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/care_data_cleaning.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="page-info" class="level2">
-<h2 class="anchored" data-anchor-id="page-info">Page Info</h2>
-<p><img src="images/data-import-cheatsheet-thumbs.png" class="img-fluid"></p>
-<p>Your <a href="./scripts/load_and_clean_data.R">load_and_clean_data.R</a> file is how you will load and clean your data. Here is a an example of a very simple one.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"scripts/load_and_clean_data.R"</span>,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">echo =</span> <span class="cn">TRUE</span> <span class="co"># Use echo=FALSE or omit it to avoid code output  </span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-&gt; library(tidyverse)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ lubridate 1.9.3     ✔ tibble    3.2.1
-✔ purrr     1.0.2     ✔ tidyr     1.3.1
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-&gt; loan_data &lt;- read_csv(here::here("dataset", "loan_refusal.csv"))</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 20 Columns: 5
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (1): bank
-dbl (4): min, white, himin, hiwhite
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-&gt; loan_data_clean &lt;- pivot_longer(loan_data, 2:5, names_to = "group", 
-+     values_to = "refusal_rate")
-
-&gt; write_rds(loan_data_clean, file = here::here("dataset", 
-+     "loan_refusal_clean.rds"))</code></pre>
-</div>
-</div>
-<p>You should never use absolute paths (eg. <code>/Users/danielsussman/path/to/project/</code> or <code>C:\MA415\\Final_Project\</code>).</p>
-<p>You might consider using the <code>here</code> function from the <a href="https://here.r-lib.org/articles/here.html"><code>here</code> package</a> to avoid path problems.</p>
-<section id="load-and-clean-data-script" class="level3">
-<h3 class="anchored" data-anchor-id="load-and-clean-data-script">Load and clean data script</h3>
-<p>The idea behind this file is that someone coming to your website could largely replicate your analyses after running this script on the original data sets to clean them. This file might create a derivative data set that you then use for your subsequent analysis. Note that you don’t need to run this script from every post/page. Instead, you can load in the results of this script, which could be plain text files or <code>.RData</code> files. In your data page you’ll describe how these results were created. If you have a very large data set, you might save smaller data sets that you can use for exploration purposes. To link to this file, you can use <code>[cleaning script](/scripts/load_and_clean_data.R)</code> wich appears as <a href="./scripts/load_and_clean_data.R">cleaning script</a>.</p>
-<hr>
 </section>
 </section>
 <section id="rubric-on-this-page" class="level2">

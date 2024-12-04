@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -155,7 +121,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#example-of-loading-data" id="toc-example-of-loading-data" class="nav-link active" data-scroll-target="#example-of-loading-data">Example of loading data</a></li>
+  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link active" data-scroll-target="#data-analysis">Data Analysis</a>
+  <ul class="collapse">
+  <li><a href="#i.-frequency-of-mental-health-symptoms" id="toc-i.-frequency-of-mental-health-symptoms" class="nav-link" data-scroll-target="#i.-frequency-of-mental-health-symptoms">I. Frequency of Mental Health Symptoms</a></li>
+  <li><a href="#ii.-access-to-mental-health-services" id="toc-ii.-access-to-mental-health-services" class="nav-link" data-scroll-target="#ii.-access-to-mental-health-services">II. Access to Mental Health Services</a></li>
+  </ul></li>
+  <li><a href="#flaws-and-limitations" id="toc-flaws-and-limitations" class="nav-link" data-scroll-target="#flaws-and-limitations">Flaws and Limitations</a></li>
   <li><a href="#rubric-on-this-page" id="toc-rubric-on-this-page" class="nav-link" data-scroll-target="#rubric-on-this-page">Rubric: On this page</a></li>
   </ul>
 </nav>
@@ -187,80 +158,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Pebbleswithquarzite.jpg" class="img-fluid"> ## Main Questions</p>
-<p>This analysis will focus on how mental wellbeing and mental health services are related to factors such as income, education and race. Specifically, we will look at the following questions:</p>
-<ul>
-<li>How does access to mental health services change based on factors such as income, education, and race?</li>
-<li>How do measures of mental wellbeing (levels of worry, anxiety, etc.) change based on age, income, education, and race?</li>
-<li>How does veteran/active duty status effect mental health?</li>
-</ul>
-<p>This comes from the file <code>analysis.qmd</code>.</p>
-<p>We describe here our detailed data analysis. This page will provide an overview of what questions you addressed, illustrations of relevant aspects of the data with tables and figures, and a statistical model that attempts to answer part of the question. You’ll also reflect on next steps and further analysis.</p>
-<p>The audience for this page is someone like your class mates, so you can expect that they have some level of statistical and quantitative sophistication and understand ideas like linear and logistic regression, coefficients, confidence intervals, overfitting, etc.</p>
-<p>While the exact number of figures and tables will vary and depend on your analysis, you should target around 5 to 6. An overly long analysis could lead to losing points. If you want you can link back to your blog posts or create separate pages with more details.</p>
-<p>The style of this paper should aim to be that of an academic paper. I don’t expect this to be of publication quality but you should keep that aim in mind. Avoid using “we” too frequently, for example “We also found that …”. Describe your methodology and your findings but don’t describe your whole process.</p>
-<section id="example-of-loading-data" class="level3">
-<h3 class="anchored" data-anchor-id="example-of-loading-data">Example of loading data</h3>
-<p>The code below shows an example of loading the loan refusal data set (which you should delete at some point).</p>
+<section id="data-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="data-analysis">Data Analysis</h2>
+<p>This data analysis on the Household Pulse Survey focuses on understanding the relationships between mental health, mental wellbeing, and various socioeconomic and demographic factors. Data from the Health Resources and Services Administration are incorporated to provide insights into mental health providers across states. The key questions that are being addressed are:</p>
+<ol type="1">
+<li>How do measures of mental well-being (e.g.&nbsp;levels of worry, anxiety and other mental health indicators) change according to age, income, education, race?</li>
+<li>How does access to mental health services vary based on income level, educational attainment and race/ethnicity?</li>
+</ol>
+<section id="findings" class="level4">
+<h4 class="anchored" data-anchor-id="findings">Findings</h4>
+<p>Summarize the findings here</p>
+</section>
+<section id="i.-frequency-of-mental-health-symptoms" class="level3">
+<h3 class="anchored" data-anchor-id="i.-frequency-of-mental-health-symptoms">I. Frequency of Mental Health Symptoms</h3>
+<p>The Household Pulse Survey collects data on how frequently respondents experience various mental health symptoms, including anxiety, worry, disinterest, and depression. For each symptom, respondents choose from four possible values: <code>1</code> (Not at all), <code>2</code> (Several days), <code>3</code> (More than half the days), and <code>4</code> (Nearly every day). These individual responses are then summed to create a mental health score, with a lower score indicating less frequent experience of mental health symptoms.</p>
+<section id="basic-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="basic-analysis">Basic Analysis</h4>
+<p>When examining mental health trends across demographics, younger adults (18-24) report higher levels of mental health challenges compared to older age groups, with mental health scores gradually improving as age increases. This may be due to life transitions, academic or career pressures, and the impact of social media, while older individuals may experience more stability in their personal and professional lives, leading to better mental health. However, older adults may also be less likely to admit mental health struggles due to historically stronger stigmas surrounding mental health. It is also important to note that the age category of 18-24 has the least amount of data</p>
+<p>The relationship between income and mental health changes: individuals with lower income initially report better mental health, but the mental health score peaks in the lower mid-range incomes. Education levels show a relatively stable relationship with mental health, with a slight downward trend as individuals attain higher levels of education, likely due to cumulative stress and life challenges over time.</p>
+<p>These findings highlight the need for further investigation into how age and income intersect with mental health.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">getwd</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "/Users/bridgetgriffith/Downloads/MA 416/ma-4615-fa24-final-project-group11"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data_clean <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"dataset/data_clean.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data_clean <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"dataset/data_clean.rds"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total_mentalhealth =</span> Anxious_Frequency <span class="sc">+</span> Worry_Frequency <span class="sc">+</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>         Little_Interest_Frequency <span class="sc">+</span> Depressed_Frequency)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create analysis dataset for scatterplots</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>scatter_data <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total_mentalhealth =</span> Anxious_Frequency <span class="sc">+</span> Worry_Frequency <span class="sc">+</span> </span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>         Little_Interest_Frequency <span class="sc">+</span> Depressed_Frequency)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate averages by income</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>avg_mh_by_income <span class="ot">&lt;-</span> scatter_data <span class="sc">|&gt;</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Household_Income) <span class="sc">|&gt;</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_mh =</span> <span class="fu">mean</span>(total_mentalhealth),</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_anxiety =</span> <span class="fu">mean</span>(Anxious_Frequency),</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_worry =</span> <span class="fu">mean</span>(Worry_Frequency),</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_interest =</span> <span class="fu">mean</span>(Little_Interest_Frequency),</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_down =</span> <span class="fu">mean</span>(Depressed_Frequency)</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co"># First plot - Income vs Total Mental Health</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(scatter_data, <span class="fu">aes</span>(<span class="at">x=</span>Household_Income, <span class="at">y =</span> total_mentalhealth)) <span class="sc">+</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span> </span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Income"</span>, </span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total Mental Health Score"</span>, </span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Income vs. Mental Health"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 6519 rows containing non-finite outside the scale range
-(`stat_smooth()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 6519 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -268,107 +185,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Second plot - All mental health metrics by income</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(avg_mh_by_income) <span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>Household_Income, <span class="at">y =</span> avg_mh), <span class="at">alpha =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x=</span>Household_Income, <span class="at">y =</span> avg_mh, <span class="at">color =</span> <span class="st">"Average Total Mental Health Score"</span>), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>Household_Income, <span class="at">y =</span> avg_anxiety), <span class="at">alpha =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x=</span>Household_Income, <span class="at">y =</span> avg_anxiety, <span class="at">color =</span> <span class="st">"Average Anxiety"</span>), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>Household_Income, <span class="at">y =</span> avg_worry), <span class="at">alpha =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x=</span>Household_Income, <span class="at">y =</span> avg_worry, <span class="at">color =</span> <span class="st">"Average Worry"</span>), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>Household_Income, <span class="at">y =</span> avg_interest), <span class="at">alpha =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x=</span>Household_Income, <span class="at">y =</span> avg_interest, <span class="at">color =</span> <span class="st">"Average Interest"</span>), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>Household_Income, <span class="at">y =</span> avg_down), <span class="at">alpha =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x=</span>Household_Income, <span class="at">y =</span> avg_down, <span class="at">color =</span> <span class="st">"Average Down"</span>), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Income"</span>, </span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Average Mental Health Score"</span>, </span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Income vs. Mental Health Components"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing non-finite outside the scale range
-(`stat_smooth()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing non-finite outside the scale range
-(`stat_smooth()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing non-finite outside the scale range
-(`stat_smooth()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing non-finite outside the scale range
-(`stat_smooth()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing non-finite outside the scale range
-(`stat_smooth()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 1 row containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 1 row containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 1 row containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 1 row containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
+</section>
+<section id="age-linear-regression-modeling" class="level4">
+<h4 class="anchored" data-anchor-id="age-linear-regression-modeling">Age Linear Regression Modeling</h4>
+</section>
+<section id="income-linear-regression-modeling" class="level4">
+<h4 class="anchored" data-anchor-id="income-linear-regression-modeling">Income Linear Regression Modeling</h4>
+<div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Linear regression analysis income and total mental health </span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>income_mh <span class="ot">&lt;-</span> <span class="fu">lm</span>(total_mentalhealth <span class="sc">~</span> Household_Income, <span class="at">data =</span> scatter_data)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(income_mh)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-2-3.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="analysis_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-2-4.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="analysis_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-2-5.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="analysis_files/figure-html/unnamed-chunk-3-3.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-2-6.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(income_mh)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -393,148 +238,52 @@ F-statistic:  1212 on 1 and 44759 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <p>In the Household Pulse Survey, families are asked to report the frequency of mental health measures such as anxiety or worry. The overall measure of mental health or the Total Mental Health Score was calculated by totaling the other measures of mental health. When income is plotted against average mental health score, both total and individual measures, there shows a slight decrease in the mental health measures as income increases. This demonstrates a correlation between increased income and improved mental health. This decrease is much clearer when examining the total mental health score rather than individual measures.</p>
 <p>When regressed against income, total mental health score decreases by 0.21 when income increases by one level. The t-statistic is -34.82 and the p-value is less than 2e-16, demonstrating that the coefficient is statistically significant. However, in examining the residuals ____________.</p>
+</section>
+<section id="education-attainment-linear-regression-modeling" class="level4">
+<h4 class="anchored" data-anchor-id="education-attainment-linear-regression-modeling">Education Attainment Linear Regression Modeling</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Linear Regression Education and Total Mental Health</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate averages by Education</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>avg_mh_by_education <span class="ot">&lt;-</span> scatter_data <span class="sc">|&gt;</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Educational_Attainment) <span class="sc">|&gt;</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_mh =</span> <span class="fu">mean</span>(<span class="fu">as.numeric</span>(total_mentalhealth)),</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_anxiety =</span> <span class="fu">mean</span>(<span class="fu">as.numeric</span>(Anxious_Frequency)),</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_worry =</span> <span class="fu">mean</span>(<span class="fu">as.numeric</span>(Worry_Frequency)),</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_interest =</span> <span class="fu">mean</span>(<span class="fu">as.numeric</span>(Little_Interest_Frequency)),</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_down =</span> <span class="fu">mean</span>(<span class="fu">as.numeric</span>(Depressed_Frequency))</span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co"># First plot - Education vs Total Mental Health</span></span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(scatter_data, <span class="fu">aes</span>(<span class="at">x=</span>Educational_Attainment, <span class="at">y =</span> total_mentalhealth)) <span class="sc">+</span></span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span> </span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Educational Attainment"</span>, </span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total Mental Health Score"</span>, </span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Educational Attainmnet vs. Mental Health"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 120 rows containing non-finite outside the scale range
-(`stat_smooth()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 120 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Second Plot - Education vs Average Mental Health Measures</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(avg_mh_by_education) <span class="sc">+</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>Educational_Attainment, <span class="at">y =</span> avg_mh), <span class="at">alpha =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x=</span>Educational_Attainment, <span class="at">y =</span> avg_mh, <span class="at">color =</span> <span class="st">"Average Total Mental Health Score"</span>), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>Educational_Attainment, <span class="at">y =</span> avg_anxiety), <span class="at">alpha =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x=</span>Educational_Attainment, <span class="at">y =</span> avg_anxiety, <span class="at">color =</span> <span class="st">"Average Anxiety"</span>), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>Educational_Attainment, <span class="at">y =</span> avg_worry), <span class="at">alpha =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x=</span>Educational_Attainment, <span class="at">y =</span> avg_worry, <span class="at">color =</span> <span class="st">"Average Worry"</span>), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>Educational_Attainment, <span class="at">y =</span> avg_interest), <span class="at">alpha =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x=</span>Educational_Attainment, <span class="at">y =</span> avg_interest, <span class="at">color =</span> <span class="st">"Average Interest"</span>), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>Educational_Attainment, <span class="at">y =</span> avg_down), <span class="at">alpha =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x=</span>Educational_Attainment, <span class="at">y =</span> avg_down, <span class="at">color =</span> <span class="st">"Average Down"</span>), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Educational_Attainment"</span>, </span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Average Mental Health Score"</span>, </span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Educational_Attainment vs. Mental Health Components"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 7 rows containing non-finite outside the scale range
-(`stat_smooth()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 7 rows containing non-finite outside the scale range
-(`stat_smooth()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 7 rows containing non-finite outside the scale range
-(`stat_smooth()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 7 rows containing non-finite outside the scale range
-(`stat_smooth()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 7 rows containing non-finite outside the scale range
-(`stat_smooth()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 7 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 7 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 7 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 7 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 7 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Linear Regression</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>education_mh <span class="ot">&lt;-</span> <span class="fu">lm</span>(total_mentalhealth <span class="sc">~</span> Educational_Attainment, <span class="at">data =</span> scatter_data)</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(education_mh)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-3-3.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-3-4.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="analysis_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-3-5.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="analysis_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-3-6.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="analysis_files/figure-html/unnamed-chunk-4-4.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(education_mh)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-4-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-4-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -558,130 +307,11 @@ F-statistic: 603.1 on 1 and 51158 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p>Similarly to income, educational attainment has a negative correlation with total mental health score. As level of educational attainment increase, mental wellbeing improves. This is unsurprising as educational attainment is often correlated with income level as well. The linear regression shows that as educational attainment increases by one, total mental health score decreases by 0.21. This is statistically significant as the t-value is -24.56. However, in examining the residual plots _________.</p>
+</section>
+</section>
+<section id="ii.-access-to-mental-health-services" class="level3">
+<h3 class="anchored" data-anchor-id="ii.-access-to-mental-health-services">II. Access to Mental Health Services</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(maps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'maps'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:purrr':
-
-    map</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>us_map <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"state"</span>)</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>state_lookup <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">'01'</span><span class="ot">=</span><span class="st">'alabama'</span>,</span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">'02'</span><span class="ot">=</span><span class="st">'alaska'</span>,</span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">'04'</span><span class="ot">=</span><span class="st">'arizona'</span>,</span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">'05'</span><span class="ot">=</span><span class="st">'arkansas'</span>,</span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">'06'</span><span class="ot">=</span><span class="st">'california'</span>,</span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">'08'</span><span class="ot">=</span><span class="st">'colorado'</span>,</span>
-<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">'09'</span><span class="ot">=</span><span class="st">'connecticut'</span>,</span>
-<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">'10'</span><span class="ot">=</span><span class="st">'delaware'</span>,</span>
-<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">'11'</span><span class="ot">=</span><span class="st">'district of columbia'</span>,</span>
-<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">'12'</span><span class="ot">=</span><span class="st">'florida'</span>,</span>
-<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">'13'</span><span class="ot">=</span><span class="st">'georgia'</span>,</span>
-<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">'15'</span><span class="ot">=</span><span class="st">'hawaii'</span>,</span>
-<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">'16'</span><span class="ot">=</span><span class="st">'idaho'</span>,</span>
-<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">'17'</span><span class="ot">=</span><span class="st">'illinois'</span>,</span>
-<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">'18'</span><span class="ot">=</span><span class="st">'indiana'</span>,</span>
-<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">'19'</span><span class="ot">=</span><span class="st">'iowa'</span>,</span>
-<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">'20'</span><span class="ot">=</span><span class="st">'kansas'</span>,</span>
-<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">'21'</span><span class="ot">=</span><span class="st">'kentucky'</span>,</span>
-<span id="cb47-22"><a href="#cb47-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">'22'</span><span class="ot">=</span><span class="st">'louisiana'</span>,</span>
-<span id="cb47-23"><a href="#cb47-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">'23'</span><span class="ot">=</span><span class="st">'maine'</span>,</span>
-<span id="cb47-24"><a href="#cb47-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">'24'</span><span class="ot">=</span><span class="st">'maryland'</span>,</span>
-<span id="cb47-25"><a href="#cb47-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">'25'</span><span class="ot">=</span><span class="st">'massachusetts'</span>,</span>
-<span id="cb47-26"><a href="#cb47-26" aria-hidden="true" tabindex="-1"></a>  <span class="st">'26'</span><span class="ot">=</span><span class="st">'michigan'</span>,</span>
-<span id="cb47-27"><a href="#cb47-27" aria-hidden="true" tabindex="-1"></a>  <span class="st">'27'</span><span class="ot">=</span><span class="st">'minnesota'</span>,</span>
-<span id="cb47-28"><a href="#cb47-28" aria-hidden="true" tabindex="-1"></a>  <span class="st">'28'</span><span class="ot">=</span><span class="st">'mississippi'</span>,</span>
-<span id="cb47-29"><a href="#cb47-29" aria-hidden="true" tabindex="-1"></a>  <span class="st">'29'</span><span class="ot">=</span><span class="st">'missouri'</span>,</span>
-<span id="cb47-30"><a href="#cb47-30" aria-hidden="true" tabindex="-1"></a>  <span class="st">'30'</span><span class="ot">=</span><span class="st">'montana'</span>,</span>
-<span id="cb47-31"><a href="#cb47-31" aria-hidden="true" tabindex="-1"></a>  <span class="st">'31'</span><span class="ot">=</span><span class="st">'nebraska'</span>,</span>
-<span id="cb47-32"><a href="#cb47-32" aria-hidden="true" tabindex="-1"></a>  <span class="st">'32'</span><span class="ot">=</span><span class="st">'nevada'</span>,</span>
-<span id="cb47-33"><a href="#cb47-33" aria-hidden="true" tabindex="-1"></a>  <span class="st">'33'</span><span class="ot">=</span><span class="st">'new hampshire'</span>,</span>
-<span id="cb47-34"><a href="#cb47-34" aria-hidden="true" tabindex="-1"></a>  <span class="st">'34'</span><span class="ot">=</span><span class="st">'new jersey'</span>,</span>
-<span id="cb47-35"><a href="#cb47-35" aria-hidden="true" tabindex="-1"></a>  <span class="st">'35'</span><span class="ot">=</span><span class="st">'new mexico'</span>,</span>
-<span id="cb47-36"><a href="#cb47-36" aria-hidden="true" tabindex="-1"></a>  <span class="st">'36'</span><span class="ot">=</span><span class="st">'new york'</span>,</span>
-<span id="cb47-37"><a href="#cb47-37" aria-hidden="true" tabindex="-1"></a>  <span class="st">'37'</span><span class="ot">=</span><span class="st">'north carolina'</span>,</span>
-<span id="cb47-38"><a href="#cb47-38" aria-hidden="true" tabindex="-1"></a>  <span class="st">'38'</span><span class="ot">=</span><span class="st">'north dakota'</span>,</span>
-<span id="cb47-39"><a href="#cb47-39" aria-hidden="true" tabindex="-1"></a>  <span class="st">'39'</span><span class="ot">=</span><span class="st">'ohio'</span>,</span>
-<span id="cb47-40"><a href="#cb47-40" aria-hidden="true" tabindex="-1"></a>  <span class="st">'40'</span><span class="ot">=</span><span class="st">'oklahoma'</span>,</span>
-<span id="cb47-41"><a href="#cb47-41" aria-hidden="true" tabindex="-1"></a>  <span class="st">'41'</span><span class="ot">=</span><span class="st">'oregon'</span>,</span>
-<span id="cb47-42"><a href="#cb47-42" aria-hidden="true" tabindex="-1"></a>  <span class="st">'42'</span><span class="ot">=</span><span class="st">'pennsylvania'</span>,</span>
-<span id="cb47-43"><a href="#cb47-43" aria-hidden="true" tabindex="-1"></a>  <span class="st">'44'</span><span class="ot">=</span><span class="st">'rhode island'</span>,</span>
-<span id="cb47-44"><a href="#cb47-44" aria-hidden="true" tabindex="-1"></a>  <span class="st">'45'</span><span class="ot">=</span><span class="st">'south carolina'</span>,</span>
-<span id="cb47-45"><a href="#cb47-45" aria-hidden="true" tabindex="-1"></a>  <span class="st">'46'</span><span class="ot">=</span><span class="st">'south dakota'</span>,</span>
-<span id="cb47-46"><a href="#cb47-46" aria-hidden="true" tabindex="-1"></a>  <span class="st">'47'</span><span class="ot">=</span><span class="st">'tennessee'</span>,</span>
-<span id="cb47-47"><a href="#cb47-47" aria-hidden="true" tabindex="-1"></a>  <span class="st">'48'</span><span class="ot">=</span><span class="st">'texas'</span>,</span>
-<span id="cb47-48"><a href="#cb47-48" aria-hidden="true" tabindex="-1"></a>  <span class="st">'49'</span><span class="ot">=</span><span class="st">'utah'</span>,</span>
-<span id="cb47-49"><a href="#cb47-49" aria-hidden="true" tabindex="-1"></a>  <span class="st">'50'</span><span class="ot">=</span><span class="st">'vermont'</span>,</span>
-<span id="cb47-50"><a href="#cb47-50" aria-hidden="true" tabindex="-1"></a>  <span class="st">'51'</span><span class="ot">=</span><span class="st">'virginia'</span>,</span>
-<span id="cb47-51"><a href="#cb47-51" aria-hidden="true" tabindex="-1"></a>  <span class="st">'53'</span><span class="ot">=</span><span class="st">'washington'</span>,</span>
-<span id="cb47-52"><a href="#cb47-52" aria-hidden="true" tabindex="-1"></a>  <span class="st">'54'</span><span class="ot">=</span><span class="st">'west virginia'</span>,</span>
-<span id="cb47-53"><a href="#cb47-53" aria-hidden="true" tabindex="-1"></a>  <span class="st">'55'</span><span class="ot">=</span><span class="st">'wisconsin'</span>,</span>
-<span id="cb47-54"><a href="#cb47-54" aria-hidden="true" tabindex="-1"></a>  <span class="st">'56'</span><span class="ot">=</span><span class="st">'wyoming'</span> )</span>
-<span id="cb47-55"><a href="#cb47-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-56"><a href="#cb47-56" aria-hidden="true" tabindex="-1"></a>data_by_state <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span></span>
-<span id="cb47-57"><a href="#cb47-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">region =</span> <span class="fu">recode</span>(<span class="fu">as.character</span>(State_Living_in), <span class="sc">!!!</span>state_lookup))</span>
-<span id="cb47-58"><a href="#cb47-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-59"><a href="#cb47-59" aria-hidden="true" tabindex="-1"></a>us_map_data <span class="ot">&lt;-</span> us_map <span class="sc">|&gt;</span></span>
-<span id="cb47-60"><a href="#cb47-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(data_by_state, <span class="at">by =</span> <span class="st">"region"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb47-61"><a href="#cb47-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region) <span class="sc">|&gt;</span></span>
-<span id="cb47-62"><a href="#cb47-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mean_income =</span> <span class="fu">mean</span>(Household_Income), <span class="at">mean_total_mh =</span> <span class="fu">mean</span>(total_mentalhealth))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in left_join(us_map, data_by_state, by = "region"): Detected an unexpected many-to-many relationship between `x` and `y`.
-ℹ Row 1 of `x` matches multiple rows in `y`.
-ℹ Row 45 of `y` matches multiple rows in `x`.
-ℹ If a many-to-many relationship is expected, set `relationship =
-  "many-to-many"` to silence this warning.</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(us_map_data, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group)) <span class="sc">+</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Map of the United States"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>race_dep_data <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Race <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Race =</span> <span class="fu">factor</span>(Race, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"White"</span>, <span class="st">"Black"</span>, <span class="st">"Native American"</span>, <span class="st">"Asian Indian"</span>)))</span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>avg_freqs <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span></span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Race) <span class="sc">|&gt;</span></span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">c</span>(Depressed_Frequency, Worry_Frequency, Little_Interest_Frequency, Anxious_Frequency), mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(Depressed_Frequency, Worry_Frequency, Little_Interest_Frequency, Anxious_Frequency), <span class="at">names_to =</span> <span class="st">"Variable"</span>, <span class="at">values_to =</span> <span class="st">"Mean"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: There was 1 warning in `summarise()`.
-ℹ In argument: `across(...)`.
-ℹ In group 1: `Race = 1`.
-Caused by warning:
-! The `...` argument of `across()` is deprecated as of dplyr 1.1.0.
-Supply arguments directly to `.fns` through an anonymous function instead.
-
-  # Previously
-  across(a:b, mean, na.rm = TRUE)
-
-  # Now
-  across(a:b, \(x) mean(x, na.rm = TRUE))</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(avg_freqs, <span class="fu">aes</span>(<span class="at">x =</span> Race, <span class="at">y =</span> Mean, <span class="at">fill =</span> Variable)) <span class="sc">+</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Race"</span>, <span class="at">y =</span> <span class="st">"Mean Value of Mental Health Ratings"</span>, <span class="at">title =</span> <span class="st">"Average Mental Health Concern Frequencies by Race"</span>) <span class="sc">+</span> </span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Variable) <span class="sc">+</span></span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">25</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -690,64 +320,17 @@ Supply arguments directly to `.fns` through an anonymous function instead.
 </div>
 </div>
 </div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 <p>Merging National Pulse Survey with data from the Health Resources and Services Administration on number of mental health providers in each state.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>care_data_sum <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"dataset/care_data_sum.rds"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region)</span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>data_by_state <span class="sc">|&gt;</span></span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 51,280 × 45
-# Groups:   region [51]
-   Birth_Year Hispanic  Race Educational_Attainment Marital_Status
-        &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;                  &lt;dbl&gt;          &lt;dbl&gt;
- 1       1957        1     1                      7              1
- 2       1972        2     1                      7              1
- 3       1968        1     1                      5              5
- 4       1970        1     1                      6              3
- 5       1958        1     2                      3              3
- 6       1984        1     1                      4              5
- 7       1950        1     1                      3              3
- 8       1972        1     1                      7              1
- 9       1955        1     1                      5              1
-10       1958        1     1                      6              2
-# ℹ 51,270 more rows
-# ℹ 40 more variables: Gender_at_Birth &lt;dbl&gt;, Gender_Identity &lt;dbl&gt;,
-#   Sexuality &lt;dbl&gt;, Public_School &lt;dbl&gt;, Private_School &lt;dbl&gt;,
-#   Home_School &lt;dbl&gt;, Not_Currently_Serving_in_US_Armed_Forces &lt;dbl&gt;,
-#   Serving_on_Active_Duty &lt;dbl&gt;, Serving_in_Reserve_or_National_Guard &lt;dbl&gt;,
-#   Spouse_Serving_on_Active_Duty &lt;dbl&gt;,
-#   Spouse_Serving_in_Reserve_or_National_Guard &lt;dbl&gt;, …</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>joint_data <span class="ot">&lt;-</span> <span class="fu">left_join</span>(care_data_sum, data_by_state, <span class="at">by =</span> <span class="st">"region"</span>)</span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Linking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidycensus)</span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>v2020 <span class="ot">&lt;-</span> <span class="fu">load_variables</span>(<span class="dv">2020</span>, <span class="st">"pl"</span>, <span class="at">cache =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>census_data <span class="ot">&lt;-</span> <span class="fu">get_decennial</span>(</span>
-<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">geography =</span> <span class="st">"state"</span>,</span>
-<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">variables =</span> <span class="fu">c</span>(</span>
-<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"pop_total"</span> <span class="ot">=</span> <span class="st">"P1_001N"</span></span>
-<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>    ) ,</span>
-<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="dv">2020</span>,</span>
-<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">geometry =</span> <span class="cn">TRUE</span></span>
-<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Getting data from the 2020 decennial Census</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Downloading feature geometry from the Census website.  To cache shapefiles for use in future sessions, set `options(tigris_use_cache = TRUE)`.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Using the PL 94-171 Redistricting Data Summary File</code></pre>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   |                                                                            
@@ -757,15 +340,21 @@ Supply arguments directly to `.fns` through an anonymous function instead.
   |                                                                            
   |=                                                                     |   2%
   |                                                                            
+  |==                                                                    |   2%
+  |                                                                            
   |==                                                                    |   3%
   |                                                                            
   |===                                                                   |   4%
   |                                                                            
   |===                                                                   |   5%
   |                                                                            
+  |====                                                                  |   5%
+  |                                                                            
   |====                                                                  |   6%
   |                                                                            
   |=====                                                                 |   6%
+  |                                                                            
+  |=====                                                                 |   7%
   |                                                                            
   |=====                                                                 |   8%
   |                                                                            
@@ -781,13 +370,19 @@ Supply arguments directly to `.fns` through an anonymous function instead.
   |                                                                            
   |========                                                              |  12%
   |                                                                            
+  |=========                                                             |  12%
+  |                                                                            
   |=========                                                             |  13%
   |                                                                            
   |==========                                                            |  14%
   |                                                                            
   |==========                                                            |  15%
   |                                                                            
+  |===========                                                           |  15%
+  |                                                                            
   |===========                                                           |  16%
+  |                                                                            
+  |============                                                          |  16%
   |                                                                            
   |============                                                          |  17%
   |                                                                            
@@ -799,7 +394,11 @@ Supply arguments directly to `.fns` through an anonymous function instead.
   |                                                                            
   |==============                                                        |  21%
   |                                                                            
+  |===============                                                       |  21%
+  |                                                                            
   |===============                                                       |  22%
+  |                                                                            
+  |================                                                      |  22%
   |                                                                            
   |================                                                      |  23%
   |                                                                            
@@ -807,9 +406,13 @@ Supply arguments directly to `.fns` through an anonymous function instead.
   |                                                                            
   |=================                                                     |  25%
   |                                                                            
+  |==================                                                    |  25%
+  |                                                                            
   |==================                                                    |  26%
   |                                                                            
   |===================                                                   |  27%
+  |                                                                            
+  |===================                                                   |  28%
   |                                                                            
   |====================                                                  |  28%
   |                                                                            
@@ -823,15 +426,23 @@ Supply arguments directly to `.fns` through an anonymous function instead.
   |                                                                            
   |======================                                                |  32%
   |                                                                            
+  |=======================                                               |  32%
+  |                                                                            
   |=======================                                               |  33%
   |                                                                            
   |=======================                                               |  34%
   |                                                                            
   |========================                                              |  34%
   |                                                                            
+  |========================                                              |  35%
+  |                                                                            
   |=========================                                             |  35%
   |                                                                            
+  |=========================                                             |  36%
+  |                                                                            
   |==========================                                            |  37%
+  |                                                                            
+  |==========================                                            |  38%
   |                                                                            
   |===========================                                           |  38%
   |                                                                            
@@ -841,11 +452,23 @@ Supply arguments directly to `.fns` through an anonymous function instead.
   |                                                                            
   |=============================                                         |  41%
   |                                                                            
+  |=============================                                         |  42%
+  |                                                                            
   |==============================                                        |  42%
   |                                                                            
   |==============================                                        |  43%
   |                                                                            
+  |===============================                                       |  44%
+  |                                                                            
+  |===============================                                       |  45%
+  |                                                                            
+  |================================                                      |  45%
+  |                                                                            
+  |================================                                      |  46%
+  |                                                                            
   |=================================                                     |  47%
+  |                                                                            
+  |=================================                                     |  48%
   |                                                                            
   |==================================                                    |  48%
   |                                                                            
@@ -856,6 +479,10 @@ Supply arguments directly to `.fns` through an anonymous function instead.
   |===================================                                   |  51%
   |                                                                            
   |====================================                                  |  51%
+  |                                                                            
+  |====================================                                  |  52%
+  |                                                                            
+  |=====================================                                 |  52%
   |                                                                            
   |=====================================                                 |  53%
   |                                                                            
@@ -877,19 +504,33 @@ Supply arguments directly to `.fns` through an anonymous function instead.
   |                                                                            
   |==========================================                            |  61%
   |                                                                            
+  |===========================================                           |  61%
+  |                                                                            
   |===========================================                           |  62%
   |                                                                            
   |============================================                          |  63%
+  |                                                                            
+  |=============================================                         |  64%
+  |                                                                            
+  |=============================================                         |  65%
   |                                                                            
   |==============================================                        |  65%
   |                                                                            
   |==============================================                        |  66%
   |                                                                            
+  |===============================================                       |  67%
+  |                                                                            
+  |===============================================                       |  68%
+  |                                                                            
   |================================================                      |  68%
+  |                                                                            
+  |================================================                      |  69%
   |                                                                            
   |=================================================                     |  69%
   |                                                                            
   |=================================================                     |  70%
+  |                                                                            
+  |==================================================                    |  71%
   |                                                                            
   |==================================================                    |  72%
   |                                                                            
@@ -902,6 +543,8 @@ Supply arguments directly to `.fns` through an anonymous function instead.
   |====================================================                  |  74%
   |                                                                            
   |====================================================                  |  75%
+  |                                                                            
+  |=====================================================                 |  75%
   |                                                                            
   |=====================================================                 |  76%
   |                                                                            
@@ -917,11 +560,25 @@ Supply arguments directly to `.fns` through an anonymous function instead.
   |                                                                            
   |=========================================================             |  81%
   |                                                                            
+  |=========================================================             |  82%
+  |                                                                            
+  |==========================================================            |  82%
+  |                                                                            
+  |==========================================================            |  83%
+  |                                                                            
+  |===========================================================           |  84%
+  |                                                                            
   |===========================================================           |  85%
+  |                                                                            
+  |============================================================          |  85%
+  |                                                                            
+  |============================================================          |  86%
   |                                                                            
   |=============================================================         |  86%
   |                                                                            
   |=============================================================         |  87%
+  |                                                                            
+  |=============================================================         |  88%
   |                                                                            
   |==============================================================        |  88%
   |                                                                            
@@ -931,13 +588,19 @@ Supply arguments directly to `.fns` through an anonymous function instead.
   |                                                                            
   |===============================================================       |  91%
   |                                                                            
+  |================================================================      |  91%
+  |                                                                            
   |================================================================      |  92%
   |                                                                            
   |=================================================================     |  92%
   |                                                                            
   |=================================================================     |  93%
   |                                                                            
+  |==================================================================    |  94%
+  |                                                                            
   |==================================================================    |  95%
+  |                                                                            
+  |===================================================================   |  95%
   |                                                                            
   |===================================================================   |  96%
   |                                                                            
@@ -951,37 +614,98 @@ Supply arguments directly to `.fns` through an anonymous function instead.
   |                                                                            
   |======================================================================| 100%</code></pre>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Note: 2020 decennial Census data use differential privacy, a technique that
-introduces errors into data to preserve respondent confidentiality.
-ℹ Small counts should be interpreted with caution.
-ℹ See https://www.census.gov/library/fact-sheets/2021/protecting-the-confidentiality-of-the-2020-census-redistricting-data.html for additional guidance.
-This message is displayed once per session.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>census_data <span class="ot">&lt;-</span> census_data <span class="sc">|&gt;</span></span>
-<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">region =</span> <span class="fu">tolower</span>(NAME))</span>
-<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>map_data <span class="ot">&lt;-</span> <span class="fu">left_join</span>(census_data, joint_data, <span class="at">by =</span> <span class="st">"region"</span>)</span>
-<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="co">#write_rds(map_data, "dataset-ignore/map_data.rds")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot(map_data) +</span></span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a> <span class="co"># geom_point(aes(x = Birth_Year, y = total_mentalhealth))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 30 × 5
+   st_abbrev avg_total_mentalhealth psychol_21 socwk_21 conslrs_21
+   &lt;chr&gt;                      &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;
+ 1 AK                          5.88        633     1109       1572
+ 2 AL                          5.91       1164     6668       4974
+ 3 AR                          6.24        762     3042       2797
+ 4 AZ                          5.85       4619     9778       7404
+ 5 CT                          5.90       4719     7916       4784
+ 6 DE                          5.74        729     1913       1899
+ 7 HI                          5.72       1056     2001       1716
+ 8 IA                          5.86       1189     4265       4400
+ 9 ID                          5.94        916     2288       3023
+10 IN                          6.11       2262    10946       7163
+# ℹ 20 more rows</code></pre>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co">#map_care_data &lt;- map_data |&gt;</span></span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#group_by(region) |&gt;</span></span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#summarize(mean_edu = mean(Educational_Attainment), mean_income = mean(Household_Income))</span></span>
-<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot(map_data) + </span></span>
-<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a> <span class="co"># geom_sf(aes(fill = Household_Income), alpha = 0.6, size = 0.1) +</span></span>
-<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a> <span class="co"># scale_fill_gradient() + </span></span>
-<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a> <span class="co"># theme_void()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = avg_total_mentalhealth ~ conslrs_21, data = aggregated_data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.27430 -0.12650 -0.02514  0.12160  0.31636 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 5.858e+00  6.623e-02  88.453   &lt;2e-16 ***
+conslrs_21  3.592e-05  1.499e-05   2.396   0.0235 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.1689 on 28 degrees of freedom
+Multiple R-squared:  0.1701,    Adjusted R-squared:  0.1404 
+F-statistic: 5.739 on 1 and 28 DF,  p-value: 0.02352</code></pre>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co">#write_rds(joint_data, "dataset-ignore/joint_data.rds")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = avg_total_mentalhealth ~ socwk_21, data = aggregated_data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.24108 -0.14057 -0.02484  0.16780  0.31972 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 5.916e+00  6.079e-02   97.31   &lt;2e-16 ***
+socwk_21    1.791e-05  1.113e-05    1.61    0.119    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.1774 on 28 degrees of freedom
+Multiple R-squared:  0.0847,    Adjusted R-squared:  0.05202 
+F-statistic: 2.591 on 1 and 28 DF,  p-value: 0.1187</code></pre>
 </div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = avg_total_mentalhealth ~ psychol_21, data = aggregated_data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.26030 -0.11920 -0.04315  0.14501  0.34186 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 5.946e+00  5.839e-02 101.823   &lt;2e-16 ***
+psychol_21  3.199e-05  2.917e-05   1.096    0.282    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.1815 on 28 degrees of freedom
+Multiple R-squared:  0.04116,   Adjusted R-squared:  0.006919 
+F-statistic: 1.202 on 1 and 28 DF,  p-value: 0.2823</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="flaws-and-limitations" class="level2">
+<h2 class="anchored" data-anchor-id="flaws-and-limitations">Flaws and Limitations</h2>
 <blockquote class="blockquote">
 <blockquote class="blockquote">
 <blockquote class="blockquote">
@@ -1007,6 +731,11 @@ This message is displayed once per session.</code></pre>
 </section>
 <section id="rubric-on-this-page" class="level2">
 <h2 class="anchored" data-anchor-id="rubric-on-this-page">Rubric: On this page</h2>
+<p>This comes from the file <code>analysis.qmd</code>.</p>
+<p>We describe here our detailed data analysis. This page will provide an overview of what questions you addressed, illustrations of relevant aspects of the data with tables and figures, and a statistical model that attempts to answer part of the question. You’ll also reflect on next steps and further analysis.</p>
+<p>The audience for this page is someone like your class mates, so you can expect that they have some level of statistical and quantitative sophistication and understand ideas like linear and logistic regression, coefficients, confidence intervals, overfitting, etc.</p>
+<p>While the exact number of figures and tables will vary and depend on your analysis, you should target around 5 to 6. An overly long analysis could lead to losing points. If you want you can link back to your blog posts or create separate pages with more details.</p>
+<p>The style of this paper should aim to be that of an academic paper. I don’t expect this to be of publication quality but you should keep that aim in mind. Avoid using “we” too frequently, for example “We also found that …”. Describe your methodology and your findings but don’t describe your whole process.</p>
 <p>You will</p>
 <ul>
 <li>Introduce what motivates your Data Analysis (DA)
