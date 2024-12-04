@@ -1,8 +1,7 @@
 # Load required libraries
-library(readr)      # reading CSV files
-library(ggplot2)    # data visualization
-library(dplyr)      # data manipulation
-library(patchwork)  # combining plots
+suppressWarnings(suppressMessages(library(readr)))   # read csv
+suppressWarnings(suppressMessages(library(ggplot2)))  # data visualization
+suppressWarnings(suppressMessages(library(dplyr)))    # data manipulation
 
 # Define data cleaning parameters
 NA_VALUE <- "-88"     # value indicating "Missing / Did not report"
@@ -43,45 +42,12 @@ columns <- c(
 
 # Read and clean the data
 suppressWarnings(suppressMessages({
-  data_unclean <- read_csv("dataset/data_unclean.csv", na = c(NA_VALUE))
+  data_unclean <- read.csv("dataset/data_unclean.csv", na = c(NA_VALUE))
 }))
 
 # Keep only selected columns and convert -99 to 0
 data_unclean <- data_unclean[columns]
 data_unclean[data_unclean == ZERO_VALUE] <- 0
-
-# Display NA counts for each variable
-print("Number of NA values per column:")
-print(colSums(is.na(data_unclean[columns])))
-
-# Example analysis for MHLTH_DIFFCLT
-print("Number of responses for MHLTH_DIFFCLT:")
-print(sum(!is.na(data_unclean$MHLTH_DIFFCLT)))
-
-# Create visualization for MHLTH_DIFFCLT responses by birth year
-plot <- ggplot(
-  data = data_unclean[!is.na(data_unclean$MHLTH_DIFFCLT),],
-  mapping = aes(x = TBIRTH_YEAR, fill = as.factor(MHLTH_DIFFCLT))
-) + 
-  geom_histogram() + 
-  ggtitle(
-    "MHLTH_DIFFCLT vs birth year",
-    subtitle = "MHLTH_DIFFCLT: A participant's difficulty finding mental health treatment for their child(ren)"
-  ) +
-  labs(
-    caption = paste(
-      "Legend values:",
-      "0: Question seen but category not selected",
-      "1: Not difficult",
-      "2: Somewhat difficult",
-      "3: Very difficult",
-      "4: Unable to get treatment due to difficulty",
-      "5: Did not try to get treatment",
-      sep = "\n"
-    )
-  )
-
-print(plot)
 
 # Rename columns to be more intuitive
 data_unclean <- data_unclean |>
@@ -142,5 +108,62 @@ data_unclean <- data_unclean |>
     Club_Organization_Meetings_Attendance_Frequency = SUPPORT4_RV
   )
 
-# Save the cleaned dataset
+state_lookup <- c(
+  '01'='alabama',
+  '02'='alaska',
+  '04'='arizona',
+  '05'='arkansas',
+  '06'='california',
+  '08'='colorado',
+  '09'='connecticut',
+  '10'='delaware',
+  '11'='district of columbia',
+  '12'='florida',
+  '13'='georgia',
+  '15'='hawaii',
+  '16'='idaho',
+  '17'='illinois',
+  '18'='indiana',
+  '19'='iowa',
+  '20'='kansas',
+  '21'='kentucky',
+  '22'='louisiana',
+  '23'='maine',
+  '24'='maryland',
+  '25'='massachusetts',
+  '26'='michigan',
+  '27'='minnesota',
+  '28'='mississippi',
+  '29'='missouri',
+  '30'='montana',
+  '31'='nebraska',
+  '32'='nevada',
+  '33'='new hampshire',
+  '34'='new jersey',
+  '35'='new mexico',
+  '36'='new york',
+  '37'='north carolina',
+  '38'='north dakota',
+  '39'='ohio',
+  '40'='oklahoma',
+  '41'='oregon',
+  '42'='pennsylvania',
+  '44'='rhode island',
+  '45'='south carolina',
+  '46'='south dakota',
+  '47'='tennessee',
+  '48'='texas',
+  '49'='utah',
+  '50'='vermont',
+  '51'='virginia',
+  '53'='washington',
+  '54'='west virginia',
+  '55'='wisconsin',
+  '56'='wyoming')
+
+data_by_state <- data_unclean |>
+  mutate(region = recode(as.character(State_Living_in), !!!state_lookup))
+
+# Save the cleaned dataset to rds file
 write_rds(data_unclean, "dataset/data_clean.rds")
+write_rds(data_unclean, "dataset/data_by_state.rds")
