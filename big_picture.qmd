@@ -74,8 +74,27 @@ ggplot(map_data) +
  theme_void()
 
 ```
----
+Here are the relationships between age, income, education level and mental well being. Mental wellbeing is measured through the Household Pulse Survey where families reported the frequency of certain mental health symptoms such as loneliness, anxiety and feeling down. These were then totaled to find an overall measure of mental wellbeing. Age, income and education level also come from the Household Pulse Survey. 
 
+
+```{r}
+#| echo: FALSE
+
+data_clean <- read_rds("dataset/data_clean.rds") |>
+  mutate(total_mentalhealth = Anxious_Frequency + Worry_Frequency + 
+         Little_Interest_Frequency + Depressed_Frequency)
+
+income_sorted <- data_clean |>
+  group_by(Household_Income) |>
+  mutate(mean_total_mh = mean(total_mentalhealth))
+
+ggplot(income_sorted) +
+  geom_point(aes(x=Household_Income, y = mean_total_mh), alpha = 0.01) +
+  geom_smooth(aes(x=Household_Income, y = mean_total_mh), method = "lm", se = FALSE) +
+  theme (legend.position = "none")
+
+
+```
 
 ### Interactive
 
