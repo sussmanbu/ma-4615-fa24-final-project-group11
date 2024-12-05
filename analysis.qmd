@@ -23,13 +23,15 @@ library(patchwork)
 library(ggplot2)
 library(dplyr)
 library(tidyr)
-
-data <- read_rds("dataset/data_clean.rds") # load in cleaned data
-data_by_state <- read_rds("dataset/data_by_state.rds") # load in data by state
+library(maps)
+library(sf)
+library(tidycensus)
 ```
 
 #### Findings
-Summarize the findings here
+The analysis reveals that mental health varies significantly across demographic and socioeconomic factors. Younger adults report higher levels of mental health challenges, with scores improving as age increases. Income has a non-linear relationship, with mental health peaking at mid-range income levels, while higher education correlates weakly with mental health concerns.
+
+There are also significant geographic disparities in mental health provider availability, with Northeastern states having higher concentrations of providers than Southern states. However, increased provider availability primarily benefits higher-income populations, which emphasizes the need for policies addressing accessibility and affordability to improve mental health outcomes across all income levels.
 
 ## I. Frequency of Mental Health Symptoms
 The Household Pulse Survey collects data on how frequently respondents experience various mental health symptoms, including anxiety, worry, disinterest, and depression. For each symptom, respondents choose from four possible values: `1` (Not at all), `2` (Several days), `3` (More than half the days), and `4` (Nearly every day). These individual responses are then summed to create a mental health score, with a lower score indicating less frequent experience of mental health symptoms.
@@ -42,7 +44,7 @@ The relationship between income and mental health changes: individuals with lowe
 These findings highlight the need for further investigation into how age and income intersect with mental health.
 
 ```{r}
-data_q1 <- read_rds("dataset/data_clean.rds") |>
+mh_frequency <- read_rds("dataset/pulse_data.rds") |>
   mutate(total_mentalhealth = Anxious_Frequency + Worry_Frequency + 
          Little_Interest_Frequency + Depressed_Frequency) |>
   filter(!is.na(Anxious_Frequency), Anxious_Frequency != 0,
@@ -51,13 +53,13 @@ data_q1 <- read_rds("dataset/data_clean.rds") |>
          !is.na(Depressed_Frequency), Depressed_Frequency != 0)
 
 # Calculate total mental health 
-data_q1 <- data_q1 |>
+mh_frequency <- mh_frequency |>
   mutate(age_group = cut(2024 - Birth_Year, 
                         breaks = c(0, 25, 35, 45, 55, Inf),
                         labels = c("18-24", "25-34", "35-44", "45-54", "55+")))
 
 # Create the plot
-ggplot(data_q1, aes(x = age_group, y = total_mentalhealth)) +
+ggplot(mh_frequency, aes(x = age_group, y = total_mentalhealth)) +
   # Add individual points with transparency
   geom_jitter(alpha = 0.1, width = 0.2) +
   # Modify stat_summary to only use actual data points
@@ -96,7 +98,7 @@ analyze_mental_health_faceted <- function(data) {
   plots$line_plot / plots$qq_plot
 }
 
-analyze_mental_health_faceted(data_q1)
+analyze_mental_health_faceted(mh_frequency)
 ```
 ### Linear Regression Analysis
 Based on these plots, the demographic variables have the following relationship with the mental health indicators:
@@ -112,11 +114,245 @@ Looking at the Q-Q plots, the residuals for all three demographic variables show
 The summary statistics for the linear regressions show that older age, higher income, and greater education are all significantly associated with better mental health. However, there is a lot of variance. Age has the strongest effect, with mental health scores decreasing by 0.0117 points per year (p < 0.001), followed by income (-0.0564 per category, p < 2.99e-316), and education (-0.0547 per level, p < 5.76e-148). This aligns with the initial findings in the basic analysis.
 
 ## II. Access to Mental Health Services
+### Basic Analysis
+The Area Health Resource Data gives insights into access to mental health services across the United States. The map of providers per 100k by state reveals significant geographic disparities in mental health provider distribution across the United States, with notably higher provider concentrations in northeastern states and lower concentrations in southern states.
+
+Economic and educational differences between regions may play a role in these findings - Northeastern states tend to have higher average incomes, more prestigious universities and teaching hospitals, which helps attract and retain mental health professionals. These states often offer better salaries and career opportunities for providers compared to southern states.
+
+In addition, culture and policy differences surrounding mental health may affect variation in the number of mental health providers. Northeastern states historically have had more progressive policies around mental healthcare access and less stigma around seeking mental health treatment. For example, Vermont was one of the first states to require insurance companies to cover mental health treatment the same as physical health. In contrast, some southern states have traditionally had more conservative approaches to mental health funding and services.
+
+```{r}
+care_data <- read_rds("dataset/care_data.rds")
+
+# First prepare state-level mental health data
+mh_state_summary <- mh_frequency |>
+  group_by(region) |>
+  summarize(
+    avg_mental_health = mean((total_mentalhealth/4), na.rm = TRUE),  # Divide by 4 here
+    n_respondents = n()
+  )
+
+# Join with care provider data
+merged_data <- mh_state_summary |>
+  left_join(care_data, by = "region") |>
+  mutate(
+    providers_per_100k = (psychol_21 + socwk_21 + conslrs_21) / (popn_pums_21/100000),
+    psychol_per_100k = psychol_21 / (popn_pums_21/100000),
+    socwk_per_100k = socwk_21 / (popn_pums_21/100000),
+    conslrs_per_100k = conslrs_21 / (popn_pums_21/100000)
+  )
+
+# Get state geometries and create provider distribution map
+states_sf <- st_as_sf(maps::map("state", plot = FALSE, fill = TRUE))
+states_sf$region <- states_sf$ID
+merged_map_data <- states_sf |>
+  left_join(merged_data, by = "region")
+
+# Provider distribution map
+ggplot(data = merged_map_data) +
+  geom_sf(aes(fill = providers_per_100k)) +
+  scale_fill_viridis_c(name = "Providers\nper 100k") +
+  labs(title = "Mental Health Provider Distribution Across States") +
+  theme_minimal() +
+  theme(
+    axis.text = element_blank(),
+    axis.title = element_blank(),
+    panel.grid = element_blank()
+  )
+```
+### Linear Regression Analysis
+Linear regression was performed on the number of psychologists, social workers and counselors in total in the United States, and shows that there is a weak negative correlation between provider availability and mental health scores across all three provider types, suggesting that areas with more providers tend to have slightly better mental health outcomes (lower scores).
+
+Psychologists have the strongest relationship with mental health outcomes, with a statistically significant effect (p < 0.02). However, social workers and counselors do not have a statistically significant relationship with mental health outcomes. The Q-Q plots show that the data has a lot of outliers and is heavy-tailed.
+
+The map of healthcare providers across states combined with the findings of the linear regression model suggest that while provider availability affects mental health outcomes, other socioeconomic and demographic factors have more substantial impacts. In addition, increasing provider numbers may not be sufficient to dramatically improve population mental health outcomes without addressing other contributing factors.
+
+```{r}
+# Prepare data for regression analysis
+provider_data <- merged_data |>
+  select(avg_mental_health, psychol_per_100k, socwk_per_100k, conslrs_per_100k) |>
+  pivot_longer(
+    cols = ends_with("per_100k"),
+    names_to = "provider_type",
+    values_to = "providers"
+  ) |>
+  mutate(provider_type = case_when(
+    provider_type == "psychol_per_100k" ~ "Psychologists",
+    provider_type == "socwk_per_100k" ~ "Social Workers",
+    provider_type == "conslrs_per_100k" ~ "Counselors"
+  ))
+
+# Create line plot
+line_plot <- ggplot(provider_data, aes(x = providers, y = avg_mental_health, color = provider_type)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", se = FALSE, size = 0.7) +
+  facet_wrap(~provider_type, scales = "free_x") +
+  scale_color_manual(values = c(
+    "Psychologists" = "#F8766D",
+    "Social Workers" = "#00BA38",
+    "Counselors" = "#619CFF"
+  )) +
+  labs(x = "Providers per 100k Population", 
+       y = "Average Mental Health Score",
+       title = "Mental Health Scores vs Provider Availability") +
+  theme_minimal() +
+  theme(
+    legend.position = "none"
+  )
+
+# Create QQ plots
+qq_data <- bind_rows(
+  data.frame(
+    theoretical = qqnorm(resid(lm(avg_mental_health ~ psychol_per_100k, merged_data)), plot.it = FALSE)$x,
+    sample = qqnorm(resid(lm(avg_mental_health ~ psychol_per_100k, merged_data)), plot.it = FALSE)$y,
+    provider_type = "Psychologists"),
+  data.frame(
+    theoretical = qqnorm(resid(lm(avg_mental_health ~ socwk_per_100k, merged_data)), plot.it = FALSE)$x,
+    sample = qqnorm(resid(lm(avg_mental_health ~ socwk_per_100k, merged_data)), plot.it = FALSE)$y,
+    provider_type = "Social Workers"),
+  data.frame(
+    theoretical = qqnorm(resid(lm(avg_mental_health ~ conslrs_per_100k, merged_data)), plot.it = FALSE)$x,
+    sample = qqnorm(resid(lm(avg_mental_health ~ conslrs_per_100k, merged_data)), plot.it = FALSE)$y,
+    provider_type = "Counselors")
+)
+
+# Create QQ plot
+qq_plot <- ggplot(qq_data, aes(x = theoretical, y = sample)) +
+  geom_point(alpha = 0.5) +
+  geom_abline(color = "red", linetype = "dashed") +
+  facet_wrap(~provider_type) +
+  labs(title = "Q-Q Plots by Provider Type") +
+  theme_minimal()
+
+# Function to print key metrics
+print_key_metrics <- function(model, variable_name) {
+    summary_stats <- summary(model)
+    coef_table <- summary_stats$coefficients
+    
+    cat(sprintf("\n%s Analysis:", variable_name))
+    cat(sprintf("\nEffect: %.4f (p < %.3e)", 
+                coef_table[2, 1],  # coefficient
+                coef_table[2, 4])) # p-value
+    cat(sprintf("\nR-squared: %.3f%%\n", 
+                summary_stats$r.squared * 100))
+}
+
+# Combine plots using patchwork
+line_plot / qq_plot
+
+# Create and print metrics for each provider type
+# psychol_model <- lm(avg_mental_health ~ psychol_per_100k, merged_data)
+# socwk_model <- lm(avg_mental_health ~ socwk_per_100k, merged_data)
+# conslrs_model <- lm(avg_mental_health ~ conslrs_per_100k, merged_data)
+
+# print_key_metrics(psychol_model, "Psychologists")
+# print_key_metrics(socwk_model, "Social Workers")
+# print_key_metrics(conslrs_model, "Counselors")
+```
+### Investigating Income and Psychologist Availability
+The previous section revealed that while provider availability, more specifically psychologists, can affect mental health outcomes, there may be other socioeconomic factors that have more substantial impact. The investigation into the relationship between income and psychologists suggests:
+
+ 1. **High Income**: This population has the only statistically relationship (p < 0.03) with psychologist availability, suggesting that higher income individuals benefit the most from psychologist availability.
+
+ 2. **Middle/Low Income**: Neither low-income (p ≈ 0.94) nor middle-income (p ≈ 0.58) groups show statistically significant relationships between psychologist availability and mental health outcomes. The middle-income population has a slope of -0.000116 and the low-income has a slope -0.000022, which is the flattest slope of the group.
+
+The data suggests that merely increasing the number of psychologists in an area will only significantly benefit the high-income populations. This population tends to have fewer barriers to accessing care (flexible work schedules, transportation, etc.). This analysis highlights the need for more comprehensive approaches to mental healthcare that address not just provider availability, but also affordability, accessibility, and other socioeconomic barriers that may prevent lower-income populations from benefiting from increased mental health resources.
+
+```{r}
+# Prepare the data and run statistical tests
+income_psych_analysis <- mh_frequency |>
+  left_join(care_data, by = "region") |>
+  mutate(
+    psychologists_per_100k = psychol_21 / (popn_pums_21/100000),
+    avg_mental_health = total_mentalhealth / 4,  # Add this line to calculate average
+    income_level = factor(case_when(
+      Household_Income <= 3 ~ "Low Income",
+      Household_Income <= 6 ~ "Middle Income",
+      TRUE ~ "High Income"
+    ), levels = c("Low Income", "Middle Income", "High Income"))
+  ) |>
+  filter(!is.na(income_level), !is.na(psychologists_per_100k))
+
+# Run t-tests with avg_mental_health instead of total_mentalhealth
+low_vs_mid <- t.test(
+  avg_mental_health ~ income_level,  # Changed from total_mentalhealth
+  data = filter(income_psych_analysis, 
+                income_level %in% c("Low Income", "Middle Income"))
+)
+
+low_vs_high <- t.test(
+  avg_mental_health ~ income_level,  # Changed from total_mentalhealth
+  data = filter(income_psych_analysis, 
+                income_level %in% c("Low Income", "High Income"))
+)
+
+# Update the plot to use avg_mental_health
+ggplot(income_psych_analysis, 
+       aes(x = psychologists_per_100k, y = avg_mental_health, color = income_level)) +  # Changed from total_mentalhealth
+  geom_smooth(method = "lm", se = FALSE) +
+  annotate("text", x = max(income_psych_analysis$psychologists_per_100k), 
+           y = 2,  # Adjusted y position for the new scale
+           label = sprintf("Low vs Middle Income: p < %.1e\nLow vs High Income: p < %.1e",
+                         low_vs_mid$p.value, low_vs_high$p.value),
+           hjust = 1, size = 3) +
+  scale_color_manual(values = c(
+    "Low Income" = "#E41A1C",
+    "Middle Income" = "#4DAF4A",
+    "High Income" = "#377EB8"
+  )) +
+  scale_y_continuous(limits = c(1, 2), breaks = seq(1, 2, 0.2)) +
+  labs(
+    x = "Psychologists per 100k Population",
+    y = "Average Mental Health Score",  # Updated label
+    color = "Income Level",
+    title = "Mental Health Disparities Across Income Levels"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(hjust = 0.5, size = 11),
+    plot.subtitle = element_text(hjust = 0.5, size = 9),
+    panel.grid.minor = element_blank()
+  )
+
+# Create separate linear models for each income level
+low_income_model <- lm(avg_mental_health ~ psychologists_per_100k, 
+                      data = filter(income_psych_analysis, income_level == "Low Income"))
+
+middle_income_model <- lm(avg_mental_health ~ psychologists_per_100k, 
+                         data = filter(income_psych_analysis, income_level == "Middle Income"))
+
+high_income_model <- lm(avg_mental_health ~ psychologists_per_100k, 
+                       data = filter(income_psych_analysis, income_level == "High Income"))
+
+# Function to extract slope info
+get_slope_info <- function(model, group_name) {
+  coef <- summary(model)$coefficients
+  slope <- coef[2, 1]  # The slope coefficient
+  p_value <- coef[2, 4]  # The p-value for the slope
+  
+  cat(sprintf("\n%s Income:", group_name))
+  cat(sprintf("\nSlope: %.6f", slope))
+  cat(sprintf("\np-value: %.3e", p_value))
+  cat(sprintf("\nStatistically significant negative slope: %s\n", 
+              ifelse(slope < 0 && p_value < 0.05, "YES", "NO")))
+}
+
+# Print results for each income group
+# get_slope_info(low_income_model, "Low")
+# get_slope_info(middle_income_model, "Middle")
+# get_slope_info(high_income_model, "High")
+```
 
 
 ## Flaws and Limitations
 
->>>>>>> 50f4f57e7ee05a028e285104bb7d6bc038af2ece
+This analysis has several important limitations that should be considered when interpreting the results and planning future research.
+
+The Household Pulse Survey relies on self-reported mental health symptoms, which may be subject to reporting bias, especially given cultural differences in willingness to discuss mental health. Survey responses might also be affected by temporary circumstances rather than accurately reflecting long-term mental health status. In addition, the Area Health Resource Data does not provide any information about the number of providers for each type mental health provider that accept insurance, and only has information for the provider counts up to 2021.
+
+The geographic analysis at the state level is helpful to look at the bigger picture across the United States. However, this analysis fails to capture the difference between urban and rural disparities within states, and local variation in provider availability. When considering household income, the study does not fully account for the cost of living differences between regions and other determinants of health like housing stability and food security.
+
 ## Note on Attribution
 
 In general, you should try to provide links to relevant resources, especially those that helped you. You don't have to link to every StackOverflow post you used but if there are explainers on aspects of the data or specific models that you found helpful, try to link to those. Also, try to link to other sources that might support (or refute) your analysis. These can just be regular hyperlinks. You don't need a formal citation.

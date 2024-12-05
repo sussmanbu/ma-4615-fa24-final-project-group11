@@ -63,18 +63,22 @@ We looked at the number of psychologists, social workers, counselors per state u
 #### Household Pulse Survey
 The Household Pulse Survey was cleaned using this [cleaning script](/scripts/pulse_survey_cleaning.R).
 ```{r}
-source("scripts/pulse_survey_cleaning.R")
+source("scripts/pulse_data_cleaning.R")
 ```
 
-The script kept 43 out of the 220 relevant variables (columns) and recoded variable values from “-88” and “-99” to NA and 0. “-88” indicates “Missing / Did not report”, which can be interpreted as NA, and “-99” indicates “Question seen but category not selected”, which was converted to 0. This makes histograms concise (and makes regression easier). Then, columns were renamed to be more intuitive. This was saved as `data_clean`.
-```{r}
+The script kept 43 out of the 220 relevant variables (columns) and recoded variable values from “-88” and “-99” to NA and 0. “-88” indicates “Missing / Did not report”, which can be interpreted as NA, and “-99” indicates “Question seen but category not selected”, which was converted to 0. This makes histograms concise (and makes regression easier). Then, columns were renamed to be more intuitive. This was saved as `pulse_data`. An additional column called `region` was added, which converted the numerical state value to the full state name.
+
+```{r eval=FALSE}
 NA_VALUE <- "-88"     # value indicating "Missing / Did not report"
 ZERO_VALUE <- -99     # value indicating "Question seen but not selected"
 
 suppressWarnings(suppressMessages({
-  data_unclean <- read.csv("dataset/data_unclean.csv", na = c(NA_VALUE))
+  pulse_data <- read.csv("dataset/data_unclean.csv", na = c(NA_VALUE))
 }))
-data_unclean[data_unclean == ZERO_VALUE] <- 0
+pulse_data[pulse_data == ZERO_VALUE] <- 0
+
+pulse_data <- pulse_data |>
+  mutate(region = recode(as.character(State_Living_in), !!!state_lookup))
 ```
 
 Another version of the clean data was created by converting the name of each state to a number, which is better for mapping. This version was saved as `data_by_state`.
