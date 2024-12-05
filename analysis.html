@@ -121,11 +121,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link active" data-scroll-target="#data-analysis">Data Analysis</a>
+  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link active" data-scroll-target="#data-analysis">Data Analysis</a></li>
+  <li><a href="#i.-frequency-of-mental-health-symptoms" id="toc-i.-frequency-of-mental-health-symptoms" class="nav-link" data-scroll-target="#i.-frequency-of-mental-health-symptoms">I. Frequency of Mental Health Symptoms</a>
   <ul class="collapse">
-  <li><a href="#i.-frequency-of-mental-health-symptoms" id="toc-i.-frequency-of-mental-health-symptoms" class="nav-link" data-scroll-target="#i.-frequency-of-mental-health-symptoms">I. Frequency of Mental Health Symptoms</a></li>
-  <li><a href="#ii.-access-to-mental-health-services" id="toc-ii.-access-to-mental-health-services" class="nav-link" data-scroll-target="#ii.-access-to-mental-health-services">II. Access to Mental Health Services</a></li>
+  <li><a href="#basic-analysis" id="toc-basic-analysis" class="nav-link" data-scroll-target="#basic-analysis">Basic Analysis</a></li>
+  <li><a href="#linear-regression-model" id="toc-linear-regression-model" class="nav-link" data-scroll-target="#linear-regression-model">Linear Regression Model</a></li>
+  <li><a href="#linear-regression-analysis" id="toc-linear-regression-analysis" class="nav-link" data-scroll-target="#linear-regression-analysis">Linear Regression Analysis</a></li>
   </ul></li>
+  <li><a href="#ii.-access-to-mental-health-services" id="toc-ii.-access-to-mental-health-services" class="nav-link" data-scroll-target="#ii.-access-to-mental-health-services">II. Access to Mental Health Services</a></li>
   <li><a href="#flaws-and-limitations" id="toc-flaws-and-limitations" class="nav-link" data-scroll-target="#flaws-and-limitations">Flaws and Limitations</a></li>
   <li><a href="#rubric-on-this-page" id="toc-rubric-on-this-page" class="nav-link" data-scroll-target="#rubric-on-this-page">Rubric: On this page</a></li>
   </ul>
@@ -158,9 +161,10 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p><img src="images/analysis_header.png" class="img-fluid"></p>
 <section id="data-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="data-analysis">Data Analysis</h2>
-<p>This data analysis on the Household Pulse Survey focuses on understanding the relationships between mental health, mental wellbeing, and various socioeconomic and demographic factors. Data from the Health Resources and Services Administration are incorporated to provide insights into mental health providers across states. The key questions that are being addressed are:</p>
+<p>This data analysis on the Household Pulse Survey focuses on understanding the relationships between mental health, mental well being, and various socioeconomic and demographic factors. Data from the Health Resources and Services Administration are incorporated to provide insights into mental health providers across states. The key questions that are being addressed are:</p>
 <ol type="1">
 <li>How do measures of mental well-being (e.g.&nbsp;levels of worry, anxiety and other mental health indicators) change according to age, income, education, race?</li>
 <li>How does access to mental health services vary based on income level, educational attainment and race/ethnicity?</li>
@@ -169,11 +173,12 @@ ul.task-list li input[type="checkbox"] {
 <h4 class="anchored" data-anchor-id="findings">Findings</h4>
 <p>Summarize the findings here</p>
 </section>
-<section id="i.-frequency-of-mental-health-symptoms" class="level3">
-<h3 class="anchored" data-anchor-id="i.-frequency-of-mental-health-symptoms">I. Frequency of Mental Health Symptoms</h3>
+</section>
+<section id="i.-frequency-of-mental-health-symptoms" class="level2">
+<h2 class="anchored" data-anchor-id="i.-frequency-of-mental-health-symptoms">I. Frequency of Mental Health Symptoms</h2>
 <p>The Household Pulse Survey collects data on how frequently respondents experience various mental health symptoms, including anxiety, worry, disinterest, and depression. For each symptom, respondents choose from four possible values: <code>1</code> (Not at all), <code>2</code> (Several days), <code>3</code> (More than half the days), and <code>4</code> (Nearly every day). These individual responses are then summed to create a mental health score, with a lower score indicating less frequent experience of mental health symptoms.</p>
-<section id="basic-analysis" class="level4">
-<h4 class="anchored" data-anchor-id="basic-analysis">Basic Analysis</h4>
+<section id="basic-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="basic-analysis">Basic Analysis</h3>
 <p>When examining mental health trends across demographics, younger adults (18-24) report higher levels of mental health challenges compared to older age groups, with mental health scores gradually improving as age increases. This may be due to life transitions, academic or career pressures, and the impact of social media, while older individuals may experience more stability in their personal and professional lives, leading to better mental health. However, older adults may also be less likely to admit mental health struggles due to historically stronger stigmas surrounding mental health. It is also important to note that the age category of 18-24 has the least amount of data</p>
 <p>The relationship between income and mental health changes: individuals with lower income initially report better mental health, but the mental health score peaks in the lower mid-range incomes. Education levels show a relatively stable relationship with mental health, with a slight downward trend as individuals attain higher levels of education, likely due to cumulative stress and life challenges over time.</p>
 <p>These findings highlight the need for further investigation into how age and income intersect with mental health.</p>
@@ -187,11 +192,10 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="age-linear-regression-modeling" class="level4">
-<h4 class="anchored" data-anchor-id="age-linear-regression-modeling">Age Linear Regression Modeling</h4>
-</section>
-<section id="income-linear-regression-modeling" class="level4">
-<h4 class="anchored" data-anchor-id="income-linear-regression-modeling">Income Linear Regression Modeling</h4>
+<section id="linear-regression-model" class="level3">
+<h3 class="anchored" data-anchor-id="linear-regression-model">Linear Regression Model</h3>
+<p>Before performing linear regression, the data is prepared via the <a href="./scripts/analysis_prepare_data.R">prepare_data function</a>. This function processes mental health survey data by calculating the average frequencies of anxiety, worry, loss of interest, and depression across age, income, and education level. Then it restructures the data into a long format, where each row represents a specific mental health metric for a particular demographic value.</p>
+<p>After the data is prepared for linear regression, the plots are created using the <a href="./scripts/analysis_create_plot.R">create_plot function</a>. This creates a line plot showing the relationships between mental health metrics and demographic variables (age, income, and education), and Q-Q plots for each relationship.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -200,509 +204,23 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 </div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-3-3.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = total_mentalhealth ~ Household_Income, data = scatter_data)
-
-Residuals:
-   Min     1Q Median     3Q    Max 
--6.898 -1.872 -1.257  1.307 10.743 
-
-Coefficients:
-                  Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)       6.898307   0.029902  230.69   &lt;2e-16 ***
-Household_Income -0.205184   0.005893  -34.82   &lt;2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 2.835 on 44759 degrees of freedom
-  (6519 observations deleted due to missingness)
-Multiple R-squared:  0.02637,   Adjusted R-squared:  0.02635 
-F-statistic:  1212 on 1 and 44759 DF,  p-value: &lt; 2.2e-16</code></pre>
-</div>
-</div>
-<p>In the Household Pulse Survey, families are asked to report the frequency of mental health measures such as anxiety or worry. The overall measure of mental health or the Total Mental Health Score was calculated by totaling the other measures of mental health. When income is plotted against average mental health score, both total and individual measures, there shows a slight decrease in the mental health measures as income increases. This demonstrates a correlation between increased income and improved mental health. This decrease is much clearer when examining the total mental health score rather than individual measures.</p>
-<p>When regressed against income, total mental health score decreases by 0.21 when income increases by one level. The t-statistic is -34.82 and the p-value is less than 2e-16, demonstrating that the coefficient is statistically significant. However, in examining the residuals ____________.</p>
-</section>
-<section id="education-attainment-linear-regression-modeling" class="level4">
-<h4 class="anchored" data-anchor-id="education-attainment-linear-regression-modeling">Education Attainment Linear Regression Modeling</h4>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-4-4.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-4-5.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-4-6.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = total_mentalhealth ~ Educational_Attainment, data = scatter_data)
-
-Residuals:
-   Min     1Q Median     3Q    Max 
--6.826 -1.788 -1.411  1.212 10.420 
-
-Coefficients:
-                        Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)             7.033365   0.045572  154.33   &lt;2e-16 ***
-Educational_Attainment -0.207576   0.008453  -24.56   &lt;2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 2.877 on 51158 degrees of freedom
-  (120 observations deleted due to missingness)
-Multiple R-squared:  0.01165,   Adjusted R-squared:  0.01163 
-F-statistic: 603.1 on 1 and 51158 DF,  p-value: &lt; 2.2e-16</code></pre>
-</div>
-</div>
-<p>Similarly to income, educational attainment has a negative correlation with total mental health score. As level of educational attainment increase, mental wellbeing improves. This is unsurprising as educational attainment is often correlated with income level as well. The linear regression shows that as educational attainment increases by one, total mental health score decreases by 0.21. This is statistically significant as the t-value is -24.56. However, in examining the residual plots _________.</p>
-</section>
-</section>
-<section id="ii.-access-to-mental-health-services" class="level3">
-<h3 class="anchored" data-anchor-id="ii.-access-to-mental-health-services">II. Access to Mental Health Services</h3>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Merging National Pulse Survey with data from the Health Resources and Services Administration on number of mental health providers in each state.</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-  |                                                                            
-  |                                                                      |   0%
-  |                                                                            
-  |=                                                                     |   1%
-  |                                                                            
-  |=                                                                     |   2%
-  |                                                                            
-  |==                                                                    |   2%
-  |                                                                            
-  |==                                                                    |   3%
-  |                                                                            
-  |===                                                                   |   4%
-  |                                                                            
-  |===                                                                   |   5%
-  |                                                                            
-  |====                                                                  |   5%
-  |                                                                            
-  |====                                                                  |   6%
-  |                                                                            
-  |=====                                                                 |   6%
-  |                                                                            
-  |=====                                                                 |   7%
-  |                                                                            
-  |=====                                                                 |   8%
-  |                                                                            
-  |======                                                                |   8%
-  |                                                                            
-  |======                                                                |   9%
-  |                                                                            
-  |=======                                                               |  10%
-  |                                                                            
-  |=======                                                               |  11%
-  |                                                                            
-  |========                                                              |  11%
-  |                                                                            
-  |========                                                              |  12%
-  |                                                                            
-  |=========                                                             |  12%
-  |                                                                            
-  |=========                                                             |  13%
-  |                                                                            
-  |==========                                                            |  14%
-  |                                                                            
-  |==========                                                            |  15%
-  |                                                                            
-  |===========                                                           |  15%
-  |                                                                            
-  |===========                                                           |  16%
-  |                                                                            
-  |============                                                          |  16%
-  |                                                                            
-  |============                                                          |  17%
-  |                                                                            
-  |=============                                                         |  18%
-  |                                                                            
-  |=============                                                         |  19%
-  |                                                                            
-  |==============                                                        |  20%
-  |                                                                            
-  |==============                                                        |  21%
-  |                                                                            
-  |===============                                                       |  21%
-  |                                                                            
-  |===============                                                       |  22%
-  |                                                                            
-  |================                                                      |  22%
-  |                                                                            
-  |================                                                      |  23%
-  |                                                                            
-  |=================                                                     |  24%
-  |                                                                            
-  |=================                                                     |  25%
-  |                                                                            
-  |==================                                                    |  25%
-  |                                                                            
-  |==================                                                    |  26%
-  |                                                                            
-  |===================                                                   |  27%
-  |                                                                            
-  |===================                                                   |  28%
-  |                                                                            
-  |====================                                                  |  28%
-  |                                                                            
-  |====================                                                  |  29%
-  |                                                                            
-  |=====================                                                 |  29%
-  |                                                                            
-  |=====================                                                 |  30%
-  |                                                                            
-  |======================                                                |  31%
-  |                                                                            
-  |======================                                                |  32%
-  |                                                                            
-  |=======================                                               |  32%
-  |                                                                            
-  |=======================                                               |  33%
-  |                                                                            
-  |=======================                                               |  34%
-  |                                                                            
-  |========================                                              |  34%
-  |                                                                            
-  |========================                                              |  35%
-  |                                                                            
-  |=========================                                             |  35%
-  |                                                                            
-  |=========================                                             |  36%
-  |                                                                            
-  |==========================                                            |  37%
-  |                                                                            
-  |==========================                                            |  38%
-  |                                                                            
-  |===========================                                           |  38%
-  |                                                                            
-  |===========================                                           |  39%
-  |                                                                            
-  |============================                                          |  40%
-  |                                                                            
-  |=============================                                         |  41%
-  |                                                                            
-  |=============================                                         |  42%
-  |                                                                            
-  |==============================                                        |  42%
-  |                                                                            
-  |==============================                                        |  43%
-  |                                                                            
-  |===============================                                       |  44%
-  |                                                                            
-  |===============================                                       |  45%
-  |                                                                            
-  |================================                                      |  45%
-  |                                                                            
-  |================================                                      |  46%
-  |                                                                            
-  |=================================                                     |  47%
-  |                                                                            
-  |=================================                                     |  48%
-  |                                                                            
-  |==================================                                    |  48%
-  |                                                                            
-  |==================================                                    |  49%
-  |                                                                            
-  |===================================                                   |  50%
-  |                                                                            
-  |===================================                                   |  51%
-  |                                                                            
-  |====================================                                  |  51%
-  |                                                                            
-  |====================================                                  |  52%
-  |                                                                            
-  |=====================================                                 |  52%
-  |                                                                            
-  |=====================================                                 |  53%
-  |                                                                            
-  |======================================                                |  54%
-  |                                                                            
-  |======================================                                |  55%
-  |                                                                            
-  |=======================================                               |  55%
-  |                                                                            
-  |=======================================                               |  56%
-  |                                                                            
-  |========================================                              |  57%
-  |                                                                            
-  |=========================================                             |  58%
-  |                                                                            
-  |=========================================                             |  59%
-  |                                                                            
-  |==========================================                            |  60%
-  |                                                                            
-  |==========================================                            |  61%
-  |                                                                            
-  |===========================================                           |  61%
-  |                                                                            
-  |===========================================                           |  62%
-  |                                                                            
-  |============================================                          |  63%
-  |                                                                            
-  |=============================================                         |  64%
-  |                                                                            
-  |=============================================                         |  65%
-  |                                                                            
-  |==============================================                        |  65%
-  |                                                                            
-  |==============================================                        |  66%
-  |                                                                            
-  |===============================================                       |  67%
-  |                                                                            
-  |===============================================                       |  68%
-  |                                                                            
-  |================================================                      |  68%
-  |                                                                            
-  |================================================                      |  69%
-  |                                                                            
-  |=================================================                     |  69%
-  |                                                                            
-  |=================================================                     |  70%
-  |                                                                            
-  |==================================================                    |  71%
-  |                                                                            
-  |==================================================                    |  72%
-  |                                                                            
-  |===================================================                   |  72%
-  |                                                                            
-  |===================================================                   |  73%
-  |                                                                            
-  |===================================================                   |  74%
-  |                                                                            
-  |====================================================                  |  74%
-  |                                                                            
-  |====================================================                  |  75%
-  |                                                                            
-  |=====================================================                 |  75%
-  |                                                                            
-  |=====================================================                 |  76%
-  |                                                                            
-  |======================================================                |  77%
-  |                                                                            
-  |======================================================                |  78%
-  |                                                                            
-  |=======================================================               |  78%
-  |                                                                            
-  |=======================================================               |  79%
-  |                                                                            
-  |========================================================              |  80%
-  |                                                                            
-  |=========================================================             |  81%
-  |                                                                            
-  |=========================================================             |  82%
-  |                                                                            
-  |==========================================================            |  82%
-  |                                                                            
-  |==========================================================            |  83%
-  |                                                                            
-  |===========================================================           |  84%
-  |                                                                            
-  |===========================================================           |  85%
-  |                                                                            
-  |============================================================          |  85%
-  |                                                                            
-  |============================================================          |  86%
-  |                                                                            
-  |=============================================================         |  86%
-  |                                                                            
-  |=============================================================         |  87%
-  |                                                                            
-  |=============================================================         |  88%
-  |                                                                            
-  |==============================================================        |  88%
-  |                                                                            
-  |==============================================================        |  89%
-  |                                                                            
-  |===============================================================       |  90%
-  |                                                                            
-  |===============================================================       |  91%
-  |                                                                            
-  |================================================================      |  91%
-  |                                                                            
-  |================================================================      |  92%
-  |                                                                            
-  |=================================================================     |  92%
-  |                                                                            
-  |=================================================================     |  93%
-  |                                                                            
-  |==================================================================    |  94%
-  |                                                                            
-  |==================================================================    |  95%
-  |                                                                            
-  |===================================================================   |  95%
-  |                                                                            
-  |===================================================================   |  96%
-  |                                                                            
-  |====================================================================  |  97%
-  |                                                                            
-  |===================================================================== |  98%
-  |                                                                            
-  |===================================================================== |  99%
-  |                                                                            
-  |======================================================================|  99%
-  |                                                                            
-  |======================================================================| 100%</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 30 × 5
-   st_abbrev avg_total_mentalhealth psychol_21 socwk_21 conslrs_21
-   &lt;chr&gt;                      &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;
- 1 AK                          5.88        633     1109       1572
- 2 AL                          5.91       1164     6668       4974
- 3 AR                          6.24        762     3042       2797
- 4 AZ                          5.85       4619     9778       7404
- 5 CT                          5.90       4719     7916       4784
- 6 DE                          5.74        729     1913       1899
- 7 HI                          5.72       1056     2001       1716
- 8 IA                          5.86       1189     4265       4400
- 9 ID                          5.94        916     2288       3023
-10 IN                          6.11       2262    10946       7163
-# ℹ 20 more rows</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = avg_total_mentalhealth ~ conslrs_21, data = aggregated_data)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--0.27430 -0.12650 -0.02514  0.12160  0.31636 
-
-Coefficients:
-             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) 5.858e+00  6.623e-02  88.453   &lt;2e-16 ***
-conslrs_21  3.592e-05  1.499e-05   2.396   0.0235 *  
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.1689 on 28 degrees of freedom
-Multiple R-squared:  0.1701,    Adjusted R-squared:  0.1404 
-F-statistic: 5.739 on 1 and 28 DF,  p-value: 0.02352</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = avg_total_mentalhealth ~ socwk_21, data = aggregated_data)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--0.24108 -0.14057 -0.02484  0.16780  0.31972 
-
-Coefficients:
-             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) 5.916e+00  6.079e-02   97.31   &lt;2e-16 ***
-socwk_21    1.791e-05  1.113e-05    1.61    0.119    
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.1774 on 28 degrees of freedom
-Multiple R-squared:  0.0847,    Adjusted R-squared:  0.05202 
-F-statistic: 2.591 on 1 and 28 DF,  p-value: 0.1187</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = avg_total_mentalhealth ~ psychol_21, data = aggregated_data)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--0.26030 -0.11920 -0.04315  0.14501  0.34186 
-
-Coefficients:
-             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) 5.946e+00  5.839e-02 101.823   &lt;2e-16 ***
-psychol_21  3.199e-05  2.917e-05   1.096    0.282    
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.1815 on 28 degrees of freedom
-Multiple R-squared:  0.04116,   Adjusted R-squared:  0.006919 
-F-statistic: 1.202 on 1 and 28 DF,  p-value: 0.2823</code></pre>
-</div>
 </div>
 </section>
+<section id="linear-regression-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="linear-regression-analysis">Linear Regression Analysis</h3>
+<p>Based on these plots, the demographic variables have the following relationship with the mental health indicators:</p>
+<ul>
+<li><strong>Age</strong>: This demographic variable has the strongest relationship among the mental health indicators. Young adults (around age 20) report the highest levels of mental health concerns, with scores around 1.75-2.0, while older adults (80+) report much lower levels, around 1.25.</li>
+<li><strong>Education</strong>: There is a moderate negative relationship with mental health issues. As educational attainment increases, reported mental health concerns decrease gradually. However, the slope is less steep than with age, suggesting a weaker effect.</li>
+<li><strong>Income</strong>: Higher incomes are associated with slightly lower mental health concerns.</li>
+</ul>
+<p>Across all three plots, anxiety constantly demonstrates the highest reported frequency across age, education, and income levels.</p>
+<p>Looking at the Q-Q plots, the residuals for all three demographic variables show reasonable normality in the middle ranges, but have some deviations at the tails. Out of the three demographics, age has the most consistent normality across the distribution, suggesting that age is the most reliable predictor of mental health outcomes in this dataset.</p>
+<p>The summary statistics for the linear regressions show that older age, higher income, and greater education are all significantly associated with better mental health. However, there is a lot of variance. Age has the strongest effect, with mental health scores decreasing by 0.0117 points per year (p &lt; 0.001), followed by income (-0.0564 per category, p &lt; 2.99e-316), and education (-0.0547 per level, p &lt; 5.76e-148). This aligns with the initial findings in the basic analysis.</p>
+</section>
+</section>
+<section id="ii.-access-to-mental-health-services" class="level2">
+<h2 class="anchored" data-anchor-id="ii.-access-to-mental-health-services">II. Access to Mental Health Services</h2>
 </section>
 <section id="flaws-and-limitations" class="level2">
 <h2 class="anchored" data-anchor-id="flaws-and-limitations">Flaws and Limitations</h2>
