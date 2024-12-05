@@ -110,12 +110,14 @@ edu_sorted <- data_clean |>
 
 #change to bar graph
 ggplot(edu_sorted) +
-  geom_point(aes(x= Educational_Attainment, y = mean_total_mh), alpha = 0.01) +
+  geom_col(aes(x=Educational_Attainment, y = mean_total_mh), alpha = 0.01) +
   geom_smooth(aes(x=Educational_Attainment, y = mean_total_mh), method = "lm", se = FALSE) +
   theme (legend.position = "none")
 ```
 
 Here are the relationships between access to mental health (represented by the number of psychologists in a state) and income and education level of each step. There appears to be a slight positive correlation between both income and education level and access to mental health. This means higher income and education levels in a state correspond with higher numbers of psychologists. However, this correlation is very small. 
+
+This data is also limited as it only looks on the state level not a small scale such as by city or county which may have more variation in number of psychologists, income, and education level. 
 
 ```{r}
 
