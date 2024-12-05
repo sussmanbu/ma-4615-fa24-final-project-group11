@@ -249,17 +249,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="household-pulse-survey">Household Pulse Survey</h4>
 <p>The Household Pulse Survey was cleaned using this <a href="./scripts/pulse_survey_cleaning.R">cleaning script</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/pulse_survey_cleaning.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/pulse_data_cleaning.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The script kept 43 out of the 220 relevant variables (columns) and recoded variable values from “-88” and “-99” to NA and 0. “-88” indicates “Missing / Did not report”, which can be interpreted as NA, and “-99” indicates “Question seen but category not selected”, which was converted to 0. This makes histograms concise (and makes regression easier). Then, columns were renamed to be more intuitive. This was saved as <code>data_clean</code>.</p>
+<p>The script kept 43 out of the 220 relevant variables (columns) and recoded variable values from “-88” and “-99” to NA and 0. “-88” indicates “Missing / Did not report”, which can be interpreted as NA, and “-99” indicates “Question seen but category not selected”, which was converted to 0. This makes histograms concise (and makes regression easier). Then, columns were renamed to be more intuitive. This was saved as <code>pulse_data</code>. An additional column called <code>region</code> was added, which converted the numerical state value to the full state name.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>NA_VALUE <span class="ot">&lt;-</span> <span class="st">"-88"</span>     <span class="co"># value indicating "Missing / Did not report"</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ZERO_VALUE <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">99</span>     <span class="co"># value indicating "Question seen but not selected"</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressWarnings</span>(<span class="fu">suppressMessages</span>({</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  data_unclean <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"dataset/data_unclean.csv"</span>, <span class="at">na =</span> <span class="fu">c</span>(NA_VALUE))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  pulse_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"dataset/data_unclean.csv"</span>, <span class="at">na =</span> <span class="fu">c</span>(NA_VALUE))</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>}))</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>data_unclean[data_unclean <span class="sc">==</span> ZERO_VALUE] <span class="ot">&lt;-</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>pulse_data[pulse_data <span class="sc">==</span> ZERO_VALUE] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>pulse_data <span class="ot">&lt;-</span> pulse_data <span class="sc">|&gt;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">region =</span> <span class="fu">recode</span>(<span class="fu">as.character</span>(State_Living_in), <span class="sc">!!!</span>state_lookup))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Another version of the clean data was created by converting the name of each state to a number, which is better for mapping. This version was saved as <code>data_by_state</code>.</p>
 </section>

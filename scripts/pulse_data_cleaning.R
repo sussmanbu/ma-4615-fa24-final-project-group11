@@ -112,13 +112,13 @@ pulse_data <- pulse_data |>
   )
 
 state_lookup <- c(
-  '01'='alabama',
-  '02'='alaska',
-  '04'='arizona',
-  '05'='arkansas',
-  '06'='california',
-  '08'='colorado',
-  '09'='connecticut',
+  '1'='alabama',
+  '2'='alaska',
+  '4'='arizona',
+  '5'='arkansas',
+  '6'='california',
+  '8'='colorado',
+  '9'='connecticut',
   '10'='delaware',
   '11'='district of columbia',
   '12'='florida',
