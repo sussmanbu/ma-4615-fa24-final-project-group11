@@ -7,15 +7,17 @@ filters:
   - shinylive
 ---
 
-There are several different factors that impact both mental wellbeing and access to mental health care. Through analysis of the Household Pulse Survey and Area Health Resource Data, this website examines the relationship between mental wellbeing, access to mental health care, age, income, education, and race. 
+There are several different factors that impact both mental wellbeing and access to mental health care. Through analysis of the Household Pulse Survey and Area Health Resource Data, this website examines the relationship between mental well being, access to mental health care, age, income, education, and race. 
+
+Mental well being is measured through the Household Pulse Survey where families reported the frequency of certain mental health symptoms such as loneliness, anxiety and feeling down. These were then totaled to find an overall measure of mental well being. Age, income and education level also come from the Household Pulse Survey. Access to mental health care is measured through the number of psychologists per 100k people. 
 
 
 ```{r}
 #| echo: FALSE
 
-library(tidyverse)
-library(sf)
-library(tidycensus)
+suppressMessages(suppressWarnings(library(tidyverse)))
+suppressMessages(suppressWarnings(library(sf)))
+suppressMessages(suppressWarnings(library(tidycensus)))
 
 #Combining joint data with census data to create maps
 
@@ -28,7 +30,7 @@ joint_data <- joint_data |>
            children_receive = sum(Children_Receive_Mental_Health_Treatment, na.rm = TRUE),
            mean_income = mean(Household_Income, na.rm = TRUE),
            mean_total_mh = mean(total_mentalhealth, na.rm = TRUE),
-          psychol = mean(psychol_21))
+          psychol = mean(psychol_21 / (popn_pums_21/100000)))
 
 v2020 <- load_variables(2020, "pl", cache = TRUE)
 
@@ -47,35 +49,38 @@ census_data <- census_data |>
 map_data <- left_join(census_data, joint_data, by = "region")
 ```
 
-Here are all of the different factors and how they change across different states. The maps show _________
+Here are all of the different factors and how they change across different states. The maps show the income and education appear to be correlated on the state level as many states with higher average incomes also have higher average levels of education. Additionally, areas with higher average incomes and levels of education appear to also have improved access to care. However, from the maps, there is no clear correlation with mental wellbeing. We will see if this correlations continue throughout our analysis. 
 
-
+The coord_sf element was found using [Stack Overflow](https://stackoverflow.com/questions/76121455/select-adequate-x-axis-limits-to-center-an-sf-object-plotted-with-ggplot-and-geo )
 ``` {r}
 #| echo: FALSE
 
 ggplot(map_data) + 
  geom_sf(aes(fill = mean_income)) +
+ coord_sf(xlim=c(-60, -170)) + 
  scale_fill_gradient(low = "red",high = "white") + 
  theme_void()
 
 ggplot(map_data) + 
  geom_sf(aes(fill = mean_edu)) +
+ coord_sf(xlim=c(-60, -170)) + 
  scale_fill_gradient(low = "blue", high = "white") + 
  theme_void()
 
 ggplot(map_data) + 
  geom_sf(aes(fill = mean_total_mh)) +
+ coord_sf(xlim=c(-60, -170)) + 
  scale_fill_gradient(low = "green", high = "white") +
  theme_void()
 
 ggplot(map_data) + 
  geom_sf(aes(fill = psychol)) +
+ coord_sf(xlim=c(-60, -170)) + 
  scale_fill_gradient(low = "purple", high = "white") 
  theme_void()
 
 ```
-Here are the relationships between age, income, education level and mental well being. Mental wellbeing is measured through the Household Pulse Survey where families reported the frequency of certain mental health symptoms such as loneliness, anxiety and feeling down. These were then totaled to find an overall measure of mental wellbeing. Age, income and education level also come from the Household Pulse Survey. 
-
+In order to get a more accurate relationships between income, education level and mental well being, we can now plot mental well being against each of these factors. 
 
 ```{r}
 #| echo: FALSE
@@ -84,16 +89,6 @@ data_clean <- read_rds("dataset/data_clean.rds") |>
   mutate(total_mentalhealth = Anxious_Frequency + Worry_Frequency + 
          Little_Interest_Frequency + Depressed_Frequency)
 
-age_sorted <- data_clean |>
-  mutate(age = 2024 - Birth_Year)|>
-  group_by(age) |>
-  summarize(mean_total_mh = mean(total_mentalhealth))
-
-ggplot(age_sorted) +
-  geom_point(aes(x=age, y = mean_total_mh), alpha = 0.01) +
-  geom_smooth(aes(x=age, y = mean_total_mh), method = "lm", se = FALSE) +
-  theme (legend.position = "none")
-
 income_sorted <- data_clean |>
   group_by(Household_Income) |>
   summarize(mean_total_mh = mean(total_mentalhealth))
@@ -101,53 +96,71 @@ income_sorted <- data_clean |>
 ggplot(income_sorted) +
   geom_point(aes(x=Household_Income, y = mean_total_mh), alpha = 0.01) +
   geom_smooth(aes(x=Household_Income, y = mean_total_mh), method = "lm", se = FALSE) +
-  theme (legend.position = "none")
-
+  theme (legend.position = "none") +
+  labs(
+    x = "Household Income",
+    y = "Average Mental Wellbeing",
+    title = "Relationship Between Income and Mental Health"
+  )
 
 edu_sorted <- data_clean |>
   group_by(Educational_Attainment) |>
   summarize(mean_total_mh = mean(total_mentalhealth))
 
-#change to bar graph
 ggplot(edu_sorted) +
-  geom_col(aes(x=Educational_Attainment, y = mean_total_mh), alpha = 0.01) +
+  geom_point(aes(x=Educational_Attainment, y = mean_total_mh), alpha = 0.01) +
   geom_smooth(aes(x=Educational_Attainment, y = mean_total_mh), method = "lm", se = FALSE) +
-  theme (legend.position = "none")
+  theme (legend.position = "none") +
+  labs(
+    x = "Level of Education",
+    y = "Average Mental Wellbeing",
+    title = "Relationship Between Income and Mental Health"
+  )
 ```
 
-Here are the relationships between access to mental health (represented by the number of psychologists in a state) and income and education level of each step. There appears to be a slight positive correlation between both income and education level and access to mental health. This means higher income and education levels in a state correspond with higher numbers of psychologists. However, this correlation is very small. 
+Here are the relationships between access to mental health  and income and education level of each step. Following our analysis from the maps, there appears to be a  positive correlation between both income and education level and access to mental health. This means higher income and education levels in a state correspond with higher numbers of psychologists. 
 
-This data is also limited as it only looks on the state level not a small scale such as by city or county which may have more variation in number of psychologists, income, and education level. 
+However, this data is also limited as it only looks on the state level not a small scale such as by city or county which may have more variation in number of psychologists, income, and education level. 
 
 ```{r}
 
 ggplot(joint_data) +
   geom_point(aes(x=mean_income, y = psychol), alpha = 0.01) +
   geom_smooth(aes(x=mean_income, y = psychol), method = "lm", se = FALSE) +
-  theme (legend.position = "none")
+  theme (legend.position = "none") +
+  labs(
+    x = "Household Income",
+    y = "Psychologists Per 100K",
+    title = "Relationship Between Income and Access to Mental Health Care"
+  )
 
 ggplot(joint_data) +
   geom_point(aes(x=mean_edu, y = psychol), alpha = 0.01) +
   geom_smooth(aes(x=mean_edu, y = psychol), method = "lm", se = FALSE) +
-  theme (legend.position = "none")
+  theme (legend.position = "none") +
+  labs(
+    x = "Education Level",
+    y = "Psychologists Per 100K",
+    title = "Relationship Between Income and Access to Mental Health Care"
+  )
 
 ```
 
-Finally, here is the relationship between average mental health in a state and number of psychologists in the state. 
+Finally, here is the relationship between average mental health in a state and number of psychologists in the state. There appears to be a negative relationship. This means that an increase in average mental wellbeing of a state correlates with a decrease in access to mental health care. 
 
 ```{r}
 
 ggplot(joint_data) +
   geom_point(aes(x=mean_total_mh, y = psychol), alpha = 0.01) +
   geom_smooth(aes(x=mean_total_mh, y = psychol), method = "lm", se = FALSE) +
-  theme (legend.position = "none")
+  theme (legend.position = "none") +
+  labs(
+    x = "Mental Wellbeing",
+    y = "Psychologists Per 100K",
+    title = "Relationship Between Mental Wellbeing and Access to Mental Health Care"
+  )
 
 ```
-### Interactive
-
-You will also be required to make an interactive dashboard like [this one](/flex/flex.html).
-
-Your Big Data page should also include a small interactive dashboard. The dashboard should be created either using Shinylive, as below. This interactive component should in some way support your thesis from your big picture page. Good interactives often provide both high-level understanding of the data while allowing a user to investigate specific scenarios, observations, subgroups, etc.
 
 
 This comes from the file `big_picture.Rmd`.
