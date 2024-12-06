@@ -155,8 +155,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#interactive" id="toc-interactive" class="nav-link active" data-scroll-target="#interactive">Interactive</a></li>
-  <li><a href="#rubric-on-this-page" id="toc-rubric-on-this-page" class="nav-link" data-scroll-target="#rubric-on-this-page">Rubric: On this page</a></li>
+  <li><a href="#rubric-on-this-page" id="toc-rubric-on-this-page" class="nav-link active" data-scroll-target="#rubric-on-this-page">Rubric: On this page</a></li>
   <li><a href="#rubric-other-components" id="toc-rubric-other-components" class="nav-link" data-scroll-target="#rubric-other-components">Rubric: Other components</a>
   <ul class="collapse">
   <li><a href="#video-recording" id="toc-video-recording" class="nav-link" data-scroll-target="#video-recording">Video Recording</a></li>
@@ -192,34 +191,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>There are several different factors that impact both mental wellbeing and access to mental health care. Through analysis of the Household Pulse Survey and Area Health Resource Data, this website examines the relationship between mental wellbeing, access to mental health care, age, income, education, and race.</p>
+<p>There are several different factors that impact both mental wellbeing and access to mental health care. Through analysis of the Household Pulse Survey and Area Health Resource Data, this website examines the relationship between mental well being, access to mental health care, age, income, education, and race.</p>
+<p>Mental well being is measured through the Household Pulse Survey where families reported the frequency of certain mental health symptoms such as loneliness, anxiety and feeling down. These were then totaled to find an overall measure of mental well being. Age, income and education level also come from the Household Pulse Survey. Access to mental health care is measured through the number of psychologists per 100k people.</p>
 <div class="cell">
 <div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors
-Linking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE
-
-Getting data from the 2020 decennial Census</code></pre>
+<pre><code>Getting data from the 2020 decennial Census</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: • You have not set a Census API key. Users without a key are limited to 500
-queries per day and may experience performance limitations.
-ℹ For best results, get a Census API key at
-http://api.census.gov/data/key_signup.html and then supply the key to the
-`census_api_key()` function to use it throughout your tidycensus session.
-This warning is displayed once per session.</code></pre>
+<pre><code>Downloading feature geometry from the Census website.  To cache shapefiles for use in future sessions, set `options(tigris_use_cache = TRUE)`.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Downloading feature geometry from the Census website.  To cache shapefiles for use in future sessions, set `options(tigris_use_cache = TRUE)`.
-Using the PL 94-171 Redistricting Data Summary File</code></pre>
+<pre><code>Using the PL 94-171 Redistricting Data Summary File</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -238,19 +220,9 @@ Using the PL 94-171 Redistricting Data Summary File</code></pre>
   |                                                                            
   |===                                                                   |   5%
   |                                                                            
-  |====                                                                  |   5%
-  |                                                                            
   |====                                                                  |   6%
   |                                                                            
-  |=====                                                                 |   6%
-  |                                                                            
   |=====                                                                 |   7%
-  |                                                                            
-  |=====                                                                 |   8%
-  |                                                                            
-  |======                                                                |   8%
-  |                                                                            
-  |======                                                                |   9%
   |                                                                            
   |=======                                                               |  10%
   |                                                                            
@@ -258,139 +230,49 @@ Using the PL 94-171 Redistricting Data Summary File</code></pre>
   |                                                                            
   |========                                                              |  11%
   |                                                                            
-  |========                                                              |  12%
-  |                                                                            
-  |=========                                                             |  12%
-  |                                                                            
   |=========                                                             |  13%
-  |                                                                            
-  |==========                                                            |  14%
-  |                                                                            
-  |==========                                                            |  15%
   |                                                                            
   |===========                                                           |  15%
   |                                                                            
   |===========                                                           |  16%
   |                                                                            
-  |============                                                          |  16%
-  |                                                                            
-  |============                                                          |  17%
-  |                                                                            
-  |=============                                                         |  18%
-  |                                                                            
   |=============                                                         |  19%
   |                                                                            
   |==============                                                        |  20%
   |                                                                            
-  |==============                                                        |  21%
-  |                                                                            
-  |===============                                                       |  21%
-  |                                                                            
   |===============                                                       |  22%
-  |                                                                            
-  |================                                                      |  22%
   |                                                                            
   |================                                                      |  23%
   |                                                                            
-  |=================                                                     |  24%
-  |                                                                            
-  |=================                                                     |  25%
-  |                                                                            
-  |==================                                                    |  25%
-  |                                                                            
-  |==================                                                    |  26%
-  |                                                                            
   |===================                                                   |  27%
-  |                                                                            
-  |===================                                                   |  28%
   |                                                                            
   |====================                                                  |  28%
   |                                                                            
-  |====================                                                  |  29%
-  |                                                                            
-  |=====================                                                 |  30%
-  |                                                                            
   |======================                                                |  31%
-  |                                                                            
-  |======================                                                |  32%
-  |                                                                            
-  |=======================                                               |  32%
-  |                                                                            
-  |=======================                                               |  33%
   |                                                                            
   |=======================                                               |  34%
   |                                                                            
   |========================                                              |  34%
   |                                                                            
-  |========================                                              |  35%
-  |                                                                            
   |=========================                                             |  35%
-  |                                                                            
-  |=========================                                             |  36%
   |                                                                            
   |==========================                                            |  37%
   |                                                                            
-  |==========================                                            |  38%
-  |                                                                            
-  |===========================                                           |  38%
-  |                                                                            
   |===========================                                           |  39%
-  |                                                                            
-  |============================                                          |  40%
-  |                                                                            
-  |=============================                                         |  41%
-  |                                                                            
-  |=============================                                         |  42%
-  |                                                                            
-  |==============================                                        |  42%
-  |                                                                            
-  |==============================                                        |  43%
-  |                                                                            
-  |===============================                                       |  44%
-  |                                                                            
-  |===============================                                       |  45%
-  |                                                                            
-  |================================                                      |  45%
   |                                                                            
   |================================                                      |  46%
   |                                                                            
-  |=================================                                     |  47%
-  |                                                                            
   |=================================                                     |  48%
-  |                                                                            
-  |==================================                                    |  48%
-  |                                                                            
-  |==================================                                    |  49%
-  |                                                                            
-  |===================================                                   |  50%
-  |                                                                            
-  |===================================                                   |  51%
   |                                                                            
   |====================================                                  |  51%
   |                                                                            
   |====================================                                  |  52%
   |                                                                            
-  |=====================================                                 |  52%
-  |                                                                            
-  |=====================================                                 |  53%
-  |                                                                            
-  |======================================                                |  54%
-  |                                                                            
-  |======================================                                |  55%
-  |                                                                            
-  |=======================================                               |  55%
-  |                                                                            
-  |=======================================                               |  56%
-  |                                                                            
   |========================================                              |  57%
-  |                                                                            
-  |=========================================                             |  58%
   |                                                                            
   |=========================================                             |  59%
   |                                                                            
   |==========================================                            |  60%
-  |                                                                            
-  |==========================================                            |  61%
   |                                                                            
   |===========================================                           |  61%
   |                                                                            
@@ -400,43 +282,19 @@ Using the PL 94-171 Redistricting Data Summary File</code></pre>
   |                                                                            
   |=============================================                         |  64%
   |                                                                            
-  |=============================================                         |  65%
-  |                                                                            
   |==============================================                        |  65%
   |                                                                            
-  |==============================================                        |  66%
-  |                                                                            
   |===============================================                       |  67%
-  |                                                                            
-  |===============================================                       |  68%
   |                                                                            
   |================================================                      |  68%
   |                                                                            
   |================================================                      |  69%
   |                                                                            
-  |=================================================                     |  69%
-  |                                                                            
   |=================================================                     |  70%
-  |                                                                            
-  |==================================================                    |  71%
-  |                                                                            
-  |==================================================                    |  72%
-  |                                                                            
-  |===================================================                   |  72%
-  |                                                                            
-  |===================================================                   |  73%
   |                                                                            
   |====================================================                  |  74%
   |                                                                            
-  |====================================================                  |  75%
-  |                                                                            
-  |=====================================================                 |  75%
-  |                                                                            
-  |=====================================================                 |  76%
-  |                                                                            
   |======================================================                |  77%
-  |                                                                            
-  |======================================================                |  78%
   |                                                                            
   |=======================================================               |  78%
   |                                                                            
@@ -446,57 +304,21 @@ Using the PL 94-171 Redistricting Data Summary File</code></pre>
   |                                                                            
   |=========================================================             |  81%
   |                                                                            
-  |=========================================================             |  82%
-  |                                                                            
   |==========================================================            |  82%
-  |                                                                            
-  |==========================================================            |  83%
-  |                                                                            
-  |===========================================================           |  84%
   |                                                                            
   |===========================================================           |  85%
   |                                                                            
-  |============================================================          |  85%
-  |                                                                            
-  |============================================================          |  86%
-  |                                                                            
-  |=============================================================         |  86%
-  |                                                                            
-  |=============================================================         |  87%
-  |                                                                            
   |=============================================================         |  88%
-  |                                                                            
-  |==============================================================        |  88%
   |                                                                            
   |==============================================================        |  89%
   |                                                                            
-  |===============================================================       |  90%
-  |                                                                            
   |===============================================================       |  91%
-  |                                                                            
-  |================================================================      |  91%
-  |                                                                            
-  |================================================================      |  92%
-  |                                                                            
-  |=================================================================     |  92%
-  |                                                                            
-  |=================================================================     |  93%
   |                                                                            
   |==================================================================    |  94%
   |                                                                            
-  |==================================================================    |  95%
-  |                                                                            
   |===================================================================   |  95%
   |                                                                            
-  |===================================================================   |  96%
-  |                                                                            
   |====================================================================  |  97%
-  |                                                                            
-  |===================================================================== |  98%
-  |                                                                            
-  |===================================================================== |  99%
-  |                                                                            
-  |======================================================================|  99%
   |                                                                            
   |======================================================================| 100%</code></pre>
 </div>
@@ -508,7 +330,8 @@ introduces errors into data to preserve respondent confidentiality.
 This message is displayed once per session.</code></pre>
 </div>
 </div>
-<p>Here are all of the different factors and how they change across different states. The maps show _________</p>
+<p>Here are all of the different factors and how they change across different states. The maps show the income and education appear to be correlated on the state level as many states with higher average incomes also have higher average levels of education. Additionally, areas with higher average incomes and levels of education appear to also have improved access to care. However, from the maps, there is no clear correlation with mental wellbeing. We will see if this correlations continue throughout our analysis.</p>
+<p>The coord_sf element was found using <a href="https://stackoverflow.com/questions/76121455/select-adequate-x-axis-limits-to-center-an-sf-object-plotted-with-ggplot-and-geo">Stack Overflow</a></p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -690,7 +513,7 @@ This message is displayed once per session.</code></pre>
  - attr(*, "validate")= logi TRUE</code></pre>
 </div>
 </div>
-<p>Here are the relationships between age, income, education level and mental well being. Mental wellbeing is measured through the Household Pulse Survey where families reported the frequency of certain mental health symptoms such as loneliness, anxiety and feeling down. These were then totaled to find an overall measure of mental wellbeing. Age, income and education level also come from the Household Pulse Survey.</p>
+<p>In order to get a more accurate relationships between income, education level and mental well being, we can now plot mental well being against each of these factors.</p>
 <div class="cell">
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
@@ -714,21 +537,6 @@ This message is displayed once per session.</code></pre>
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing non-finite outside the scale range (`stat_smooth()`).
-Removed 1 row containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="big_picture_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 7 rows containing non-finite outside the scale range
 (`stat_smooth()`).</code></pre>
 </div>
@@ -739,17 +547,23 @@ Removed 1 row containing missing values or values outside the scale range
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="big_picture_files/figure-html/unnamed-chunk-3-3.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="big_picture_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Here are the relationships between access to mental health (represented by the number of psychologists in a state) and income and education level of each step. There appears to be a slight positive correlation between both income and education level and access to mental health. This means higher income and education levels in a state correspond with higher numbers of psychologists. However, this correlation is very small.</p>
+<p>Here are the relationships between access to mental health and income and education level of each step. Following our analysis from the maps, there appears to be a positive correlation between both income and education level and access to mental health. This means higher income and education levels in a state correspond with higher numbers of psychologists.</p>
+<p>However, this data is also limited as it only looks on the state level not a small scale such as by city or county which may have more variation in number of psychologists, income, and education level.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(joint_data) <span class="sc">+</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>mean_income, <span class="at">y =</span> psychol), <span class="at">alpha =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x=</span>mean_income, <span class="at">y =</span> psychol), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span> (<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(joint_data) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>mean_income, <span class="at">y =</span> psychol), <span class="at">alpha =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x=</span>mean_income, <span class="at">y =</span> psychol), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span> (<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Household Income"</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Psychologists Per 100K"</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Relationship Between Income and Access to Mental Health Care"</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
@@ -768,10 +582,15 @@ Removed 1 row containing missing values or values outside the scale range
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(joint_data) <span class="sc">+</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>mean_edu, <span class="at">y =</span> psychol), <span class="at">alpha =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x=</span>mean_edu, <span class="at">y =</span> psychol), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span> (<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(joint_data) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>mean_edu, <span class="at">y =</span> psychol), <span class="at">alpha =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x=</span>mean_edu, <span class="at">y =</span> psychol), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span> (<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Education Level"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Psychologists Per 100K"</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Relationship Between Income and Access to Mental Health Care"</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
@@ -788,12 +607,17 @@ Removed 4 rows containing missing values or values outside the scale range
 </div>
 </div>
 </div>
-<p>Finally, here is the relationship between average mental health in a state and number of psychologists in the state.</p>
+<p>Finally, here is the relationship between average mental health in a state and number of psychologists in the state. There appears to be a negative relationship. This means that an increase in average mental wellbeing of a state correlates with a decrease in access to mental health care.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(joint_data) <span class="sc">+</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>mean_total_mh, <span class="at">y =</span> psychol), <span class="at">alpha =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x=</span>mean_total_mh, <span class="at">y =</span> psychol), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span> (<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(joint_data) <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>mean_total_mh, <span class="at">y =</span> psychol), <span class="at">alpha =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x=</span>mean_total_mh, <span class="at">y =</span> psychol), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span> (<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Mental Wellbeing"</span>,</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Psychologists Per 100K"</span>,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Relationship Between Mental Wellbeing and Access to Mental Health Care"</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
@@ -813,14 +637,9 @@ Removed 4 rows containing missing values or values outside the scale range
 </div>
 </div>
 </div>
-<section id="interactive" class="level3">
-<h3 class="anchored" data-anchor-id="interactive">Interactive</h3>
-<p>You will also be required to make an interactive dashboard like <a href="./flex/flex.html">this one</a>.</p>
-<p>Your Big Data page should also include a small interactive dashboard. The dashboard should be created either using Shinylive, as below. This interactive component should in some way support your thesis from your big picture page. Good interactives often provide both high-level understanding of the data while allowing a user to investigate specific scenarios, observations, subgroups, etc.</p>
 <p>This comes from the file <code>big_picture.Rmd</code>.</p>
 <p>Think of this page as your 538/Upshot style article. This means that you should try to tell a story through the data and your analysis. Read articles from those sites and similar sites to get a feeling for what they are like. Try to write in the style of a news or popular article. Importantly, this page should be geared towards the general public. You shouldn’t assume the reader understands how to interpret a linear regression or a complicated plot. Focus on interpretation and visualizations.</p>
 <hr>
-</section>
 <section id="rubric-on-this-page" class="level2">
 <h2 class="anchored" data-anchor-id="rubric-on-this-page">Rubric: On this page</h2>
 <p>You will</p>

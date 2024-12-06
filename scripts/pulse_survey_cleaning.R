@@ -1,6 +1,3 @@
-# Clean Household Pulse Survey Data
-# OUTPUT: data, data_by_state
-
 # Load required libraries
 suppressWarnings(suppressMessages(library(readr)))   # read csv
 suppressWarnings(suppressMessages(library(ggplot2)))  # data visualization
@@ -45,15 +42,15 @@ columns <- c(
 
 # Read and clean the data
 suppressWarnings(suppressMessages({
-  pulse_data <- read.csv("dataset/data_unclean.csv", na = c(NA_VALUE))
+  data_unclean <- read.csv("dataset/data_unclean.csv", na = c(NA_VALUE))
 }))
 
 # Keep only selected columns and convert -99 to 0
-pulse_data <- pulse_data[columns]
-pulse_data[pulse_data == ZERO_VALUE] <- 0
+data_unclean <- data_unclean[columns]
+data_unclean[data_unclean == ZERO_VALUE] <- 0
 
 # Rename columns to be more intuitive
-pulse_data <- pulse_data |>
+data_unclean <- data_unclean |>
   rename(
     # Demographic renames
     Birth_Year = TBIRTH_YEAR,
@@ -164,8 +161,9 @@ state_lookup <- c(
   '55'='wisconsin',
   '56'='wyoming')
 
-pulse_data <- pulse_data |>
+data_by_state <- data_unclean |>
   mutate(region = recode(as.character(State_Living_in), !!!state_lookup))
 
 # Save the cleaned dataset to rds file
-write_rds(pulse_data, "dataset/pulse_data.rds")
+write_rds(data_unclean, "dataset/data_clean.rds")
+write_rds(data_unclean, "dataset/data_by_state.rds")
