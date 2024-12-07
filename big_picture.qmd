@@ -48,7 +48,6 @@ census_data <- census_data |>
 
 map_data <- left_join(census_data, joint_data, by = "region")
 ```
-
 Here are all of the different factors and how they change across different states. The maps show the income and education appear to be correlated on the state level as many states with higher average incomes also have higher average levels of education. Additionally, areas with higher average incomes and levels of education appear to also have improved access to care. However, from the maps, there is no clear correlation with mental wellbeing. We will see if this correlations continue throughout our analysis. 
 
 The coord_sf element was found using [Stack Overflow](https://stackoverflow.com/questions/76121455/select-adequate-x-axis-limits-to-center-an-sf-object-plotted-with-ggplot-and-geo )
