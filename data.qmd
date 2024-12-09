@@ -55,112 +55,40 @@ The Household Pulse Survey dataset includes a broad range of variables, from vet
 ### Overview of Area Health Resource Data
 We also compared the Household Pulse Survey to the Area Health Resource Data for [2022-2023 at the State and National Level](https://data.hrsa.gov/data/download?hmpgtitle=hmpg-hrsa-data) from the Health Resources & Services Administration (HRSA). The Area Health Resources Files (AHRF) dataset has over 6,000 variables with current and historical data at county, state, and national levels, covering health care professions, facilities, population characteristics, economics, and more. It is designed for planners, policymakers, and researchers, and includes geographic codes for linking with other datasets and aggregating data by region.
 
+There a fewer worries of bias within this data as the numbers are not self reported. Additionally, professionals such as psychologists and social workers must be licensed in their state to practice, meaning the government has access to accurate numbers of professionals in each state. However, the simple numbers of professionals does not provide a full story of access to mental health care in a state. For example, there are questions about how many are private versus work for state institutions, what proportion work in crisis care and how many take different types of insurances. Therefore, these numbers are a good starting point to see access to care across different states, but can not give the full story.
+
 We looked at the number of psychologists, social workers, counselors per state using this dataset.
 
 ## Cleaning the Data
-** WORK IN PROGRESS - BRIANNA **
-
-
-
-## Second Data Set 
-We also used health service information from the [Health Resources and Services Administration](https://data.hrsa.gov/data/download). This data shows the number of different health care providers across different states. As we are mainly focused on mental health, we decided to only use the columns that discussed the number of psychologists, social workers, and counselors per state. 
-
-There a fewer worries of bias within this data as the numbers are not self reported. Additionally, professionals such as psychologists and social workers must be licensed in their state to practice, meaning the government has access to accurate numbers of professionals in each state. However, the simple numbers of professionals does not provide a full story of access to mental health care in a state. For example, there are questions about how many are private versus work for state institutions, what proportion work in crisis care and how many take different types of insurances. Therefore, these numbers are a good starting point to see access to care across different states, but can not give the full story. 
-
+#### Household Pulse Survey
+The Household Pulse Survey was cleaned using this [cleaning script](/scripts/pulse_survey_cleaning.R).
 ```{r}
-library(tidyverse)
+source("scripts/pulse_data_cleaning.R")
+```
+
+The script kept 43 out of the 220 relevant variables (columns) and recoded variable values from “-88” and “-99” to NA and 0. “-88” indicates “Missing / Did not report”, which can be interpreted as NA, and “-99” indicates “Question seen but category not selected”, which was converted to 0. This makes histograms concise (and makes regression easier). Then, columns were renamed to be more intuitive. This was saved as `pulse_data`. An additional column called `region` was added, which converted the numerical state value to the full state name.
+
+```{r eval=FALSE}
+NA_VALUE <- "-88"     # value indicating "Missing / Did not report"
+ZERO_VALUE <- -99     # value indicating "Question seen but not selected"
+
 suppressWarnings(suppressMessages({
-  care_data <- read_csv("dataset/care_data.csv")
+  pulse_data <- read.csv("dataset/data_unclean.csv", na = c(NA_VALUE))
 }))
+pulse_data[pulse_data == ZERO_VALUE] <- 0
 
-care_data_sum <- care_data |>
-  reframe(st_abbrev, psychol_21, socwk_21, conslrs_21, popn_pums_21)
-
-state_names <- c(
-  AL = "alabama",
-  AK = "alaska",
-  AZ = "arizona",
-  AR = "arkansas",
-  CA = "california",
-  CO = "colorado",
-  CT = "connecticut",
-  DE = "delaware",
-  FL = "florida",
-  GA = "georgia",
-  HI = "hawaii",
-  ID = "idaho", 
-  IL = "illinois",
-  IN = "indiana",
-  IA = "iowa",
-  KS = "kansas",
-  KY = "kentucky",
-  LA = "louisiana",
-  ME = "maine",
-  MD = "maryland",
-  MA = "massachusetts",
-  MI = "michigan",
-  MN = "minnesota",
-  MS = "mississippi",
-  MO = "missouri",
-  MT = "montana",
-  NE = "nebraska",
-  NV = "nevada",
-  NH = "new hampshire",
-  NJ = "new jersey",
-  NM = "new mexico",
-  NY = "new york",
-  NC = "north carolina",
-  ND = "north dakota",
-  OH = "ohio",
-  OK = "oklahoma",
-  OR = "oregon",
-  PA = "pennsylvania",
-  RI = "rhode island",
-  SC = "south carolina",
-  SD = "south dakota",
-  TN = "tennessee",
-  TX = "texas",
-  UT = "utah",
-  VT = "vermont",
-  VA = "virginia",
-  WA = "washington",
-  WV = "west virginia",
-  WI = "wisconsin",
-  WY = "wyoming"
-)
-
-care_data_sum <- care_data_sum |>
-  mutate(region = recode(st_abbrev, !!!state_names))
-
-write_rds(care_data_sum, "dataset/care_data_sum.rds")
-
+pulse_data <- pulse_data |>
+  mutate(region = recode(as.character(State_Living_in), !!!state_lookup))
 ```
-## Page Info 
 
-![](images/data-import-cheatsheet-thumbs.png)
+Another version of the clean data was created by converting the name of each state to a number, which is better for mapping. This version was saved as `data_by_state`.
 
-
-Your [load_and_clean_data.R](/scripts/load_and_clean_data.R) file is how you will load and clean your data. Here is a an example of a very simple one.
+#### Area Health Resource Data
+The Area Health Resource Data was cleaned using this [cleaning script](/scripts/care_data_cleaning.R). The script filtered the data down to the 5 variables (columns), `st_abbrev`, `psychol_21`, `socwk_21`, `conslrs_21`, `popn_pums_21` and recoded the state abbreviations to the full name of the state in lower case. This data was saved as `care_data_sum`.
 
 ```{r}
-source(
-  "scripts/load_and_clean_data.R",
-  echo = TRUE # Use echo=FALSE or omit it to avoid code output  
-)
+source("scripts/care_data_cleaning.R")
 ```
-You should never use absolute paths (eg. `/Users/danielsussman/path/to/project/` or `C:\MA415\\Final_Project\`).
-
-You might consider using the `here` function from the [`here` package](https://here.r-lib.org/articles/here.html) to avoid path problems.
-
-### Load and clean data script
-
-The idea behind this file is that someone coming to your website could largely replicate your analyses after running this script on the original data sets to clean them.
-This file might create a derivative data set that you then use for your subsequent analysis.
-Note that you don't need to run this script from every post/page.
-Instead, you can load in the results of this script, which could be plain text files or `.RData` files. In your data page you'll describe how these results were created. If you have a very large data set, you might save smaller data sets that you can use for exploration purposes.
-To link to this file, you can use `[cleaning script](/scripts/load_and_clean_data.R)` wich appears as [cleaning script](/scripts/load_and_clean_data.R). 
-
-----
 
 ## Rubric: On this page
 
