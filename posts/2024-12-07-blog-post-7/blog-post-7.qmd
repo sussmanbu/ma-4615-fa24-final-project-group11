@@ -1,0 +1,125 @@
+---
+title: "Blog Post 7"
+subtitle: "Advancement in Analysis and Visuals"
+author: "All"
+date: "2024-12-07"
+date-modified: "2024-12-07"
+draft: FALSE
+---
+Since our last blog post, we have fully incorporated our second dataset about specialist counts into our analysis, and have begun to use it to aid our narratives surrounding the thesis. Although not finalized, our thesis states that several factors impact mental well-being, including access to mental health care, age, income, education, and race. To prove our thesis, we have created several visuals and models that help visualize our points. Many of these visuals are on our analysis page, but here are a few that highlight our work thus far:
+  
+  
+```{r}
+#| echo: false
+#| include: false
+#| warning: false
+library(tidyverse)
+library(patchwork)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(maps)
+library(sf)
+library(tidycensus)
+```
+
+```{r}
+#| echo: false
+#| warning: false
+source("scripts/analysis_prepare_data.R")
+source("scripts/analysis_create_plots.R")
+
+mh_frequency <- read_rds("dataset/pulse_data.rds") |>
+  mutate(total_mentalhealth = Anxious_Frequency + Worry_Frequency + 
+         Little_Interest_Frequency + Depressed_Frequency) |>
+  filter(!is.na(Anxious_Frequency), Anxious_Frequency != 0,
+         !is.na(Worry_Frequency), Worry_Frequency != 0,
+         !is.na(Little_Interest_Frequency), Little_Interest_Frequency != 0,
+         !is.na(Depressed_Frequency), Depressed_Frequency != 0)
+
+# Calculate total mental health 
+mh_frequency <- mh_frequency |>
+  mutate(age_group = cut(2024 - Birth_Year, 
+                        breaks = c(0, 25, 35, 45, 55, Inf),
+                        labels = c("18-24", "25-34", "35-44", "45-54", "55+")))
+
+
+analyze_mental_health_faceted <- function(data) {
+  prepared_data <- prepare_data(data)
+  plots <- create_plots(data, prepared_data)
+  plots$line_plot / plots$qq_plot
+}
+
+analyze_mental_health_faceted(mh_frequency)
+```
+```{r}
+#| include: FALSE
+#| echo: FALSE
+
+joint_data <- read.csv("dataset/joint_data.csv")
+
+joint_data <- joint_data |>
+  group_by(region) |>
+  reframe(mean_edu = mean(Educational_Attainment),
+           children_need = sum(Children_Need_for_Mental_Health_Treatment, na.rm = TRUE),
+           children_receive = sum(Children_Receive_Mental_Health_Treatment, na.rm = TRUE),
+           mean_income = mean(Household_Income, na.rm = TRUE),
+           mean_total_mh = mean(total_mentalhealth, na.rm = TRUE),
+          psychol = mean(psychol_21 / (popn_pums_21/100000)))
+
+v2020 <- load_variables(2020, "pl", cache = TRUE)
+
+census_data <- get_decennial(
+  geography = "state",
+  variables = c(
+      "pop_total" = "P1_001N"
+    ) ,
+  year = 2020,
+  geometry = TRUE
+) 
+
+census_data <- census_data |>
+  mutate(region = tolower(NAME))
+
+map_data <- left_join(census_data, joint_data, by = "region")
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| results: 'hide'
+
+ggplot(map_data) + 
+ geom_sf(aes(fill = mean_income)) +
+ coord_sf(xlim=c(-60, -170)) + 
+ scale_fill_gradient(low = "red",high = "white") + 
+ theme_void()
+
+ggplot(map_data) + 
+ geom_sf(aes(fill = mean_edu)) +
+ coord_sf(xlim=c(-60, -170)) + 
+ scale_fill_gradient(low = "blue", high = "white") + 
+ theme_void()
+
+ggplot(map_data) + 
+ geom_sf(aes(fill = mean_total_mh)) +
+ coord_sf(xlim=c(-60, -170)) + 
+ scale_fill_gradient(low = "green", high = "white") +
+ theme_void()
+
+ggplot(map_data) + 
+ geom_sf(aes(fill = psychol)) +
+ coord_sf(xlim=c(-60, -170)) + 
+ scale_fill_gradient(low = "purple", high = "white") +
+ theme_void()
+```
+
+As we can see with the line plots, the average mental health score decreases as our values of age, education, and income increase - indicating that there is a negative relationship between the average mental health score and those factors. Since a higher mental health score indicates a higher frequency of feeling anxiety, depression, interest, or worry, based on the plots, it is suggested that people with higher ages, education levels, and household incomes tend to have higher mental well-being than others.
+
+Another form of visuals that we have created is maps. These maps can help us understand relationships between the factors that we are comparing to mental health. The maps show the values of certain variables that we wanted to explore, including mean_income of the state, mean_edu (mean education level of the state), mean_total_mh the mean mental health values of the state, and psychol, the number of psychologists in the state. Each of these maps is beneficial because they summarize our data in a much easier way to interpret than bar graphs or pie charts. We plan to continue advancing our maps to contain more information like titles, labels, etc.
+
+By comparing the maps, we can see similarities within the data and can begin to draw conclusions - it seems that the south and midwest regions of the USA have lower values in each of the categories, including mean_total_mh, suggesting that all these variables could be correlated to each other.
+
+These two forms of visuals are strong examples of visuals that we plan to use for our project. They are both easy to understand and highlight important findings from the data that aid our thesis.
+
