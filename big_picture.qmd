@@ -109,7 +109,7 @@ data_clean <- read_rds("dataset/data_clean.rds") |>
 
 income_sorted <- data_clean |>
   group_by(Household_Income) |>
-  summarize(mean_total_mh = mean(total_mentalhealth))
+  summarize(mean_total_mh = mean(total_mentalhealth, na.rm = TRUE))
 
 ggplot(income_sorted) +
   geom_point(aes(x=Household_Income, y = mean_total_mh), alpha = 0.01) +
