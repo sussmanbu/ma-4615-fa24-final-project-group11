@@ -13,7 +13,10 @@ Mental well being is measured through the Household Pulse Survey where families 
 
 
 ```{r}
-#| echo: FALSE
+#| echo: false
+#| message: false
+#| warning: false
+#| results: 'hide'
 
 suppressMessages(suppressWarnings(library(tidyverse)))
 suppressMessages(suppressWarnings(library(sf)))
@@ -49,6 +52,7 @@ census_data <- census_data |>
 map_data <- left_join(census_data, joint_data, by = "region")
 ```
 ``` {r}
+#| echo: FALSE
 #attempting shiny interactive map https://rpubs.com/screws/MapCensus
 
 #library(shiny)
@@ -71,7 +75,10 @@ Here are all of the different factors and how they change across different state
 
 The coord_sf element was found using [Stack Overflow](https://stackoverflow.com/questions/76121455/select-adequate-x-axis-limits-to-center-an-sf-object-plotted-with-ggplot-and-geo )
 ``` {r}
-#| echo: FALSE
+#| echo: false
+#| message: false
+#| warning: false
+#| results: 'hide'
 
 ggplot(map_data) + 
  geom_sf(aes(fill = mean_income)) +
@@ -94,14 +101,17 @@ ggplot(map_data) +
 ggplot(map_data) + 
  geom_sf(aes(fill = psychol)) +
  coord_sf(xlim=c(-60, -170)) + 
- scale_fill_gradient(low = "purple", high = "white") 
+ scale_fill_gradient(low = "purple", high = "white") +
  theme_void()
 
 ```
 In order to get a more accurate relationships between income, education level and mental well being, we can now plot mental well being against each of these factors. 
 
 ```{r}
-#| echo: FALSE
+#| echo: false
+#| message: false
+#| warning: false
+#| results: 'hide'
 
 data_clean <- read_rds("dataset/data_clean.rds") |>
   mutate(total_mentalhealth = Anxious_Frequency + Worry_Frequency + 
@@ -141,7 +151,10 @@ Here are the relationships between access to mental health  and income and educa
 However, this data is also limited as it only looks on the state level not a small scale such as by city or county which may have more variation in number of psychologists, income, and education level. 
 
 ```{r}
-
+#| echo: false
+#| message: false
+#| warning: false
+#| results: 'hide'
 ggplot(joint_data) +
   geom_point(aes(x=mean_income, y = psychol), alpha = 0.01) +
   geom_smooth(aes(x=mean_income, y = psychol), method = "lm", se = FALSE) +
@@ -167,7 +180,10 @@ ggplot(joint_data) +
 Finally, here is the relationship between average mental health in a state and number of psychologists in the state. There appears to be a negative relationship. This means that an increase in average mental wellbeing of a state correlates with a decrease in access to mental health care. 
 
 ```{r}
-
+#| echo: false
+#| message: false
+#| warning: false
+#| results: 'hide'
 ggplot(joint_data) +
   geom_point(aes(x=mean_total_mh, y = psychol), alpha = 0.01) +
   geom_smooth(aes(x=mean_total_mh, y = psychol), method = "lm", se = FALSE) +
