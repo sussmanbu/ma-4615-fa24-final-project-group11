@@ -51,25 +51,6 @@ census_data <- census_data |>
 
 map_data <- left_join(census_data, joint_data, by = "region")
 ```
-``` {r}
-#| echo: FALSE
-#attempting shiny interactive map https://rpubs.com/screws/MapCensus
-
-#library(shiny)
-
-#ui <- fluidPage(
-#  titlePanel("Map Data"),
-#  sidebarLayout(
-#    sidebarPanel(
-#      selectInput(inputId = "y", label = "Y-axis", choices = c("Total Mental Health" = "mean_total_mh", #"State" = "region", "Income" = "mean_income", selected = "region"),
-#      selectInput(inputId = "x",
-#                label = "X-axis",
-#                choices = c("Total Mental Health" = "mean_total_mh", "State" = "region", "Income" = #"mean_income", selected = "region"),            
-#                  )
-#    )
-#  )
-#)
-```
 
 Here are all of the different factors and how they change across different states. The maps show the income and education appear to be correlated on the state level as many states with higher average incomes also have higher average levels of education. Additionally, areas with higher average incomes and levels of education appear to also have improved access to care. However, from the maps, there is no clear correlation with mental wellbeing. We will see if this correlations continue throughout our analysis. 
 
@@ -120,38 +101,61 @@ data_clean <- read_rds("dataset/data_clean.rds") |>
 
 income_sorted <- data_clean |>
   group_by(Household_Income) |>
-  summarize(mean_total_mh = mean(total_mentalhealth, na.rm = TRUE))
+  summarize(mean_total_mh = mean(total_mentalhealth, na.rm = TRUE)) |>
+  na.omit(Household_Income) |>
+  filter(Household_Income > 0)
 
 ggplot(income_sorted) +
-  geom_col(aes(x=Household_Income, y = mean_total_mh)) +
+  geom_col(aes(x= factor(Household_Income), y = mean_total_mh, fill = "red")) +
   scale_x_discrete(
     labels=c("Less than $25,000", "$25,000 - $34,999", "$35,000 - $49,999",
              "$50,000 - $74,999","$75,000 - $99,999", "$100,000 - $149,999", "$150,000 - $199,999", "$200,000 and above" )
-  )
-
-ggplot(income_sorted) +
-  geom_point(aes(x=Household_Income, y = mean_total_mh), alpha = 0.01) +
-  geom_smooth(aes(x=Household_Income, y = mean_total_mh), method = "lm", se = FALSE) +
-  theme (legend.position = "none") +
+  ) + 
+  coord_flip () +
   labs(
-    x = "Household Income",
+    x = "Income Level",
     y = "Average Mental Wellbeing",
-    title = "Relationship Between Income and Mental Health"
-  )
+    title = "Relationship Between Income Level and Mental Health"
+  ) +
+    theme (legend.position = "none")
+
+#ggplot(income_sorted) +
+#  geom_point(aes(x=Household_Income, y = mean_total_mh), alpha = 0.01) +
+#  geom_smooth(aes(x=Household_Income, y = mean_total_mh), method = "lm", se = FALSE) +
+#  theme (legend.position = "none") +
+#  labs(
+#    x = "Household Income",
+#    y = "Average Mental Wellbeing",
+#    title = "Relationship Between Income and Mental Health"
+#  )
 
 edu_sorted <- data_clean |>
   group_by(Educational_Attainment) |>
   summarize(mean_total_mh = mean(total_mentalhealth, na.rm = TRUE))
 
 ggplot(edu_sorted) +
-  geom_point(aes(x=Educational_Attainment, y = mean_total_mh), alpha = 0.01) +
-  geom_smooth(aes(x=Educational_Attainment, y = mean_total_mh), method = "lm", se = FALSE) +
-  theme (legend.position = "none") +
+  geom_col(aes(x= factor(Educational_Attainment), y = mean_total_mh), fill = "blue") +
+  scale_x_discrete(
+    labels=c("Less than High School", "Some High School", "High School Degree",
+             "Some College","Associate's Degree", "Bachelor's Degree", "Graduate Degree")
+  ) + 
+  coord_flip () +
   labs(
-    x = "Level of Education",
+    x = "Educational Level",
     y = "Average Mental Wellbeing",
-    title = "Relationship Between Income and Mental Health"
-  )
+    title = "Relationship Between Education Level and Mental Health"
+  ) +
+    theme (legend.position = "none")
+
+#ggplot(edu_sorted) +
+#  geom_point(aes(x=Educational_Attainment, y = mean_total_mh), alpha = 0.01) +
+#  geom_smooth(aes(x=Educational_Attainment, y = mean_total_mh), method = "lm", se = FALSE) +
+#  theme (legend.position = "none") +
+#  labs(
+#    x = "Level of Education",
+#    y = "Average Mental Wellbeing",
+#    title = "Relationship Between Education Level and Mental Health"
+#  )
 ```
 
 Here are the relationships between access to mental health  and income and education level of each step. Following our analysis from the maps, there appears to be a  positive correlation between both income and education level and access to mental health. This means higher income and education levels in a state correspond with higher numbers of psychologists. 
