@@ -17,6 +17,8 @@ Mental well being is measured through the Household Pulse Survey where families 
 #| message: false
 #| warning: false
 #| results: 'hide'
+#| column: screen
+#| out-width: 100%
 
 suppressMessages(suppressWarnings(library(tidyverse)))
 suppressMessages(suppressWarnings(library(sf)))
@@ -33,7 +35,14 @@ joint_data <- joint_data |>
            children_receive = sum(Children_Receive_Mental_Health_Treatment, na.rm = TRUE),
            mean_income = mean(Household_Income, na.rm = TRUE),
            mean_total_mh = mean(total_mentalhealth, na.rm = TRUE),
-          psychol = mean(psychol_21 / (popn_pums_21/100000)))
+          psychol = mean(psychol_21 / (popn_pums_21/100000)),
+          high_income = sum(Household_Income >= 8, na.rm = TRUE),
+          total_inc = sum(Household_Income == Household_Income, na.rm = TRUE), 
+          prop_high_income = high_income/total_inc, 
+          high_edu = sum(Educational_Attainment >= 6, na.rm = TRUE),
+          total_edu = sum(Educational_Attainment == Educational_Attainment, na.rm = TRUE),
+          prop_high_edu = high_edu/total_edu
+          )
 
 v2020 <- load_variables(2020, "pl", cache = TRUE)
 
@@ -62,13 +71,13 @@ The coord_sf element was found using [Stack Overflow](https://stackoverflow.com/
 #| results: 'hide'
 
 ggplot(map_data) + 
- geom_sf(aes(fill = mean_income)) +
+ geom_sf(aes(fill = prop_high_income)) +
  coord_sf(xlim=c(-60, -170)) + 
  scale_fill_gradient(low = "red",high = "white") + 
  theme_void()
 
 ggplot(map_data) + 
- geom_sf(aes(fill = mean_edu)) +
+ geom_sf(aes(fill = prop_high_edu)) +
  coord_sf(xlim=c(-60, -170)) + 
  scale_fill_gradient(low = "blue", high = "white") + 
  theme_void()
@@ -88,6 +97,8 @@ ggplot(map_data) +
 
 ```
 In order to get a more accurate relationships between income, education level and mental well being, we can now plot mental well being against each of these factors. 
+
+Used [Stack Overflow] (https://stackoverflow.com/questions/1330989/rotating-and-spacing-axis-labels-in-ggplot2) to edit the lables.
 
 ```{r}
 #| echo: false
@@ -167,22 +178,25 @@ However, this data is also limited as it only looks on the state level not a sma
 #| message: false
 #| warning: false
 #| results: 'hide'
+
+
 ggplot(joint_data) +
-  geom_point(aes(x=mean_income, y = psychol), alpha = 0.01) +
-  geom_smooth(aes(x=mean_income, y = psychol), method = "lm", se = FALSE) +
+  geom_point(aes(x=prop_high_income, y = psychol), alpha = 0.01) +
+  geom_smooth(aes(x=prop_high_income, y = psychol), method = "lm", se = FALSE) +
   theme (legend.position = "none") +
   labs(
-    x = "Household Income",
+    x = "Proportion of Families with Income over $200,000",
     y = "Psychologists Per 100K",
     title = "Relationship Between Income and Access to Mental Health Care"
   )
 
+
 ggplot(joint_data) +
-  geom_point(aes(x=mean_edu, y = psychol), alpha = 0.01) +
-  geom_smooth(aes(x=mean_edu, y = psychol), method = "lm", se = FALSE) +
+  geom_point(aes(x=prop_high_edu, y = psychol), alpha = 0.01) +
+  geom_smooth(aes(x=prop_high_edu, y = psychol), method = "lm", se = FALSE) +
   theme (legend.position = "none") +
   labs(
-    x = "Education Level",
+    x = "Proportion of Individuals with a College Degree",
     y = "Psychologists Per 100K",
     title = "Relationship Between Income and Access to Mental Health Care"
   )
