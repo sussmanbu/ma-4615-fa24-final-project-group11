@@ -1,0 +1,17 @@
+{
+  "hash": "7a6f326d4732014645b60b9fa57991a2",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Blog Post 7\"\nsubtitle: \"Advancement in Analysis and Visuals\"\nauthor: \"All\"\ndate: \"2024-12-07\"\ndate-modified: \"2024-12-07\"\ndraft: FALSE\n---\n\n\n\n\nSince our last blog post, we have fully incorporated our second dataset about specialist counts into our analysis, and have begun to use it to aid our narratives surrounding the thesis. Although not finalized, our thesis states that several factors impact mental well-being, including access to mental health care, age, income, education, and race. To prove our thesis, we have created several visuals and models that help visualize our points. Many of these visuals are on our analysis page, but here are a few that highlight our work thus far:\n  \n  \n\n\n\n\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](blog-post-7_files/figure-html/unnamed-chunk-2-1.png){width=672}\n:::\n:::\n\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](blog-post-7_files/figure-html/unnamed-chunk-4-1.png){width=672}\n:::\n\n::: {.cell-output-display}\n![](blog-post-7_files/figure-html/unnamed-chunk-4-2.png){width=672}\n:::\n\n::: {.cell-output-display}\n![](blog-post-7_files/figure-html/unnamed-chunk-4-3.png){width=672}\n:::\n\n::: {.cell-output-display}\n![](blog-post-7_files/figure-html/unnamed-chunk-4-4.png){width=672}\n:::\n:::\n\n\n\n\n\nAs we can see with the line plots, the average mental health score decreases as our values of age, education, and income increase - indicating that there is a negative relationship between the average mental health score and those factors. Since a higher mental health score indicates a higher frequency of feeling anxiety, depression, interest, or worry, based on the plots, it is suggested that people with higher ages, education levels, and household incomes tend to have higher mental well-being than others.\n\nAnother form of visuals that we have created is maps. These maps can help us understand relationships between the factors that we are comparing to mental health. The maps show the values of certain variables that we wanted to explore, including mean_income of the state, mean_edu (mean education level of the state), mean_total_mh the mean mental health values of the state, and psychol, the number of psychologists in the state. Each of these maps is beneficial because they summarize our data in a much easier way to interpret than bar graphs or pie charts. We plan to continue advancing our maps to contain more information like titles, labels, etc.\n\nBy comparing the maps, we can see similarities within the data and can begin to draw conclusions - it seems that the south and midwest regions of the USA have lower values in each of the categories, including mean_total_mh, suggesting that all these variables could be correlated to each other.\n\nThese two forms of visuals are strong examples of visuals that we plan to use for our project. They are both easy to understand and highlight important findings from the data that aid our thesis.\n\n",
+    "supporting": [
+      "blog-post-7_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
