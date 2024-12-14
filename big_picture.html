@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Impact of Income and Education on Mental Wellbeing and Access to Mental Health Care">
+<meta name="description" content="Mental Wellbeing, Access to Care and Factors Impacting the US Mental Health Crisis">
 
 <title>Big Picture – MA [46]15 Group 11 Final Project</title>
 <style>
@@ -116,22 +116,11 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#rubric-on-this-page" id="toc-rubric-on-this-page" class="nav-link active" data-scroll-target="#rubric-on-this-page">Rubric: On this page</a></li>
-  <li><a href="#rubric-other-components" id="toc-rubric-other-components" class="nav-link" data-scroll-target="#rubric-other-components">Rubric: Other components</a>
-  <ul class="collapse">
-  <li><a href="#video-recording" id="toc-video-recording" class="nav-link" data-scroll-target="#video-recording">Video Recording</a></li>
-  <li><a href="#rest-of-the-site" id="toc-rest-of-the-site" class="nav-link" data-scroll-target="#rest-of-the-site">Rest of the Site</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -140,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    Impact of Income and Education on Mental Wellbeing and Access to Mental Health Care
+    Mental Wellbeing, Access to Care and Factors Impacting the US Mental Health Crisis
   </div>
 </div>
 
@@ -157,188 +146,13 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><img src="images/big_pic_header.png" class="img-fluid"></p>
 <p>In 2019, according to the <a href="https://www.who.int/news-room/fact-sheets/detail/mental-disorders#:~:text=In%202019%2C%201%20in%20every,of%20the%20COVID%2D19%20pandemic.">World Health Organization (WHO)</a>, one in eight people, or 970 million people around the world, were living with a mental disorder. When looking exclusively at the United States, the proportion of adults living with a mental illness increases to more than one in five, or 59.3 million people (23.1% of the US adult population), according to the <a href="https://www.nimh.nih.gov/health/statistics/mental-illness">National Institute of Mental Health (NIHM)</a>. There are numerous contributing factors to this issue, including but not limited to physical mobility, physical activity, life experiences, substance use, and biological factors. While these variables impact well-being, most remain out of people’s control. It is also important to recognize that factors impacting healthcare access play a significant role. Countless elements impact mental health, but we look strictly at three factors.</p>
 <p>Through analysis of the Household Pulse Survey and Area Health Resource Data, we examine the relationship between mental well-being, access to mental health care, age, income, education, and race.</p>
 <p>Mental well-being is measured through the Household Pulse Survey, where families reported the frequency of certain mental health symptoms, such as loneliness, anxiety, and feeling down. These were then totaled to find an overall measure of mental well-being. Age, income, and education level also come from the Household Pulse Survey. Access to mental health care is measured through the number of psychologists per 100,000 people.</p>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Getting data from the 2020 decennial Census</code></pre>
+<div class="cell column-screen">
+
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: • You have not set a Census API key. Users without a key are limited to 500
-queries per day and may experience performance limitations.
-ℹ For best results, get a Census API key at
-http://api.census.gov/data/key_signup.html and then supply the key to the
-`census_api_key()` function to use it throughout your tidycensus session.
-This warning is displayed once per session.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Downloading feature geometry from the Census website.  To cache shapefiles for use in future sessions, set `options(tigris_use_cache = TRUE)`.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Using the PL 94-171 Redistricting Data Summary File</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-  |                                                                            
-  |                                                                      |   0%
-  |                                                                            
-  |=                                                                     |   1%
-  |                                                                            
-  |=                                                                     |   2%
-  |                                                                            
-  |==                                                                    |   2%
-  |                                                                            
-  |==                                                                    |   3%
-  |                                                                            
-  |===                                                                   |   4%
-  |                                                                            
-  |====                                                                  |   5%
-  |                                                                            
-  |====                                                                  |   6%
-  |                                                                            
-  |=====                                                                 |   7%
-  |                                                                            
-  |=====                                                                 |   8%
-  |                                                                            
-  |======                                                                |   8%
-  |                                                                            
-  |======                                                                |   9%
-  |                                                                            
-  |=======                                                               |  10%
-  |                                                                            
-  |=======                                                               |  11%
-  |                                                                            
-  |========                                                              |  11%
-  |                                                                            
-  |========                                                              |  12%
-  |                                                                            
-  |=========                                                             |  13%
-  |                                                                            
-  |==========                                                            |  14%
-  |                                                                            
-  |==========                                                            |  15%
-  |                                                                            
-  |===========                                                           |  16%
-  |                                                                            
-  |============                                                          |  17%
-  |                                                                            
-  |=============                                                         |  18%
-  |                                                                            
-  |=============                                                         |  19%
-  |                                                                            
-  |==============                                                        |  20%
-  |                                                                            
-  |=================                                                     |  24%
-  |                                                                            
-  |==================                                                    |  26%
-  |                                                                            
-  |===================                                                   |  27%
-  |                                                                            
-  |===================                                                   |  28%
-  |                                                                            
-  |====================                                                  |  28%
-  |                                                                            
-  |=====================                                                 |  29%
-  |                                                                            
-  |=====================                                                 |  30%
-  |                                                                            
-  |======================                                                |  31%
-  |                                                                            
-  |=======================                                               |  32%
-  |                                                                            
-  |=======================                                               |  33%
-  |                                                                            
-  |========================                                              |  34%
-  |                                                                            
-  |===========================                                           |  38%
-  |                                                                            
-  |============================                                          |  40%
-  |                                                                            
-  |=============================                                         |  41%
-  |                                                                            
-  |=============================                                         |  42%
-  |                                                                            
-  |==============================                                        |  42%
-  |                                                                            
-  |==============================                                        |  43%
-  |                                                                            
-  |===============================                                       |  44%
-  |                                                                            
-  |==================================                                    |  49%
-  |                                                                            
-  |===================================                                   |  50%
-  |                                                                            
-  |=====================================                                 |  53%
-  |                                                                            
-  |======================================                                |  54%
-  |                                                                            
-  |======================================                                |  55%
-  |                                                                            
-  |=======================================                               |  56%
-  |                                                                            
-  |=========================================                             |  59%
-  |                                                                            
-  |=================================================                     |  70%
-  |                                                                            
-  |==================================================                    |  72%
-  |                                                                            
-  |===================================================                   |  74%
-  |                                                                            
-  |====================================================                  |  75%
-  |                                                                            
-  |=====================================================                 |  75%
-  |                                                                            
-  |=====================================================                 |  76%
-  |                                                                            
-  |======================================================                |  77%
-  |                                                                            
-  |=======================================================               |  79%
-  |                                                                            
-  |========================================================              |  80%
-  |                                                                            
-  |=========================================================             |  81%
-  |                                                                            
-  |===========================================================           |  85%
-  |                                                                            
-  |=============================================================         |  86%
-  |                                                                            
-  |=============================================================         |  87%
-  |                                                                            
-  |==============================================================        |  88%
-  |                                                                            
-  |================================================================      |  92%
-  |                                                                            
-  |=================================================================     |  93%
-  |                                                                            
-  |==================================================================    |  94%
-  |                                                                            
-  |==================================================================    |  95%
-  |                                                                            
-  |===================================================================   |  95%
-  |                                                                            
-  |===================================================================   |  96%
-  |                                                                            
-  |====================================================================  |  97%
-  |                                                                            
-  |===================================================================== |  98%
-  |                                                                            
-  |===================================================================== |  99%
-  |                                                                            
-  |======================================================================|  99%
-  |                                                                            
-  |======================================================================| 100%</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Note: 2020 decennial Census data use differential privacy, a technique that
-introduces errors into data to preserve respondent confidentiality.
-ℹ Small counts should be interpreted with caution.
-ℹ See https://www.census.gov/library/fact-sheets/2021/protecting-the-confidentiality-of-the-2020-census-redistricting-data.html for additional guidance.
-This message is displayed once per session.</code></pre>
-</div>
-</div>
-<p>To start, let’s look at the big picture of the three factors and how they change across states. The maps below show that income and education appear to be correlated at the state level, as many states with higher average incomes also have higher average levels of education. Additionally, areas with higher average incomes and levels of education appear to also have improved access to care. However, the maps show no clear correlation with mental well-being.</p>
+<p>The maps below show that income and education appear to be correlated at the state level, as many states with higher average incomes also have higher average levels of education. Additionally, areas with higher average incomes and levels of education appear to also have improved access to care. However, the maps show no clear correlation with mental well-being.</p>
 <p>For instance, New York has a high mean income, educational attainment, and psychology count, reaffirming two of our beliefs: states with higher average incomes tend to have higher average levels of educational attainment (1), and states with high averages of income and educations levels tend to have better access to psychologists (2). New York’s frequency level of mental health concern is also on the lower end of the scale. With this said, there is no definitive correlation between those three factors and mental well-being. Let us look at Utah, for example. Utah has relatively high averages in income, educational attainment, and psychologist count compared to other states. However, they have a high frequency of mental health concerns compared to other states. In a similar manner, South Carolina has low averages in income, educational attainment, and psychologist count, yet has a low frequency of mental health concerns when compared to other states with low means in income, educational levels, and psychologist count. Given these three state examples, it is evident there are correlations between average income, educational attainment, and psychologist count, but no trends with mental well-being can be certainly established.</p>
 <p>We will look at each individual factor more closely and see if these correlations continue throughout our analysis.</p>
 <p>The coord_sf element was found using <a href="https://stackoverflow.com/questions/76121455/select-adequate-x-axis-limits-to-center-an-sf-object-plotted-with-ggplot-and-geo">Stack Overflow</a></p>
@@ -372,39 +186,15 @@ This message is displayed once per session.</code></pre>
 </div>
 </div>
 </div>
-<p>Educational attainment affects the knowledge and skills surrounding how to navigate mental health concerns, with higher education levels being more informed on resources. While educational attainment teaches individuals about the existing tools to manage their well-being, income secures those resources. Someone could have great educational attainment, but without a good income, access to necessary resources is a lot more challenging.</p>
-<p>In order to get a more accurate relationship between income, education level, and mental well-being, we can now plot the frequency of mental health concerns against each of these factors.</p>
-<p>In the first plot, we can assess the impact that educational attainment has on mental well-being. More specifically, there is a negative correlation between these two variables, i.e., as the level of educational attainment increases, the frequency of mental health concerns goes down. With this, we can argue that a correlation exists, and families with higher educational attainment are more likely to have better mental well-being, given that the average frequency of mental health concerns decreases.</p>
-<p>Similarly, from the second plot, we can analyze the effect that household income has on mental well-being. Again, there is a negative correlation, so as the average household income increases, the frequency of mental health concerns decreases. In short, we can determine that families with higher household incomes are more likely to have better mental well-being.</p>
+<p>In order to get a more accurate relationships between income, education level and mental well being, we can now plot mental well being against each of these factors.</p>
+<p>Used [Stack Overflow] (https://stackoverflow.com/questions/1330989/rotating-and-spacing-axis-labels-in-ggplot2) to edit the lables.</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 7 rows containing non-finite outside the scale range
-(`stat_smooth()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 7 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
 <p><img src="big_picture_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing non-finite outside the scale range
-(`stat_smooth()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
@@ -418,31 +208,12 @@ This message is displayed once per session.</code></pre>
 <p>Below are the plots illustrating the relationships between access to mental health professionals against education level and income. Following our analysis of the maps, there appears to be a positive correlation between both education level and income and access to mental health. In other words, states with higher educational attainment are more likely to have better access to mental health providers; and states with higher household incomes are more likely to have better access to mental health providers.</p>
 <p>However, this data is also limited as it only looks at the state level, and not a more micro-scale, such as by city or county. These other factors could have more variation in the number of psychologists, income, and education level.</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 4 rows containing non-finite outside the scale range
-(`stat_smooth()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 4 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
 <p><img src="big_picture_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 4 rows containing non-finite outside the scale range (`stat_smooth()`).
-Removed 4 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
@@ -453,19 +224,8 @@ Removed 4 rows containing missing values or values outside the scale range
 </div>
 </div>
 <p>We know that from a state level, educational attainment, income, and the number of psychologists per 100,000 are all correlated, and educational attainment and income affect mental well-being. As mentioned in the example of New Hampshire, access to care also has a role in mental well-being. Given this, in the plot below, we evaluated the relationship between average frequency of mental health concerns in a state against the number of psychologists in the state per 100,000.</p>
-<p>We can see a negative correlation, where as the number of psychologists per 100,000 increases, the frequency of mental health concerns decreases. Based on this, we know there is a correlation between the two variables, and states with a higher count of psychologists per 100,000 are more likely to have better well-beings since the frequency in experiencing mental health concerns decreases. Thus, similar to educational attainment and household income, it is evident that access to mental health professions influences mental well-being.</p>
+<p>There is a negative correlation, where as the number of psychologists per 100,000 increases, the frequency of mental health concerns decreases. Based on this, we know there is a correlation between the two variables, and states with a higher count of psychologists per 100,000 are more likely to have better well-beings since the frequency in experiencing mental health concerns decreases. Thus, similar to educational attainment and household income, it is evident that access to mental health professions influences mental well-being.</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 4 rows containing non-finite outside the scale range
-(`stat_smooth()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 4 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -475,50 +235,10 @@ Removed 4 rows containing missing values or values outside the scale range
 </div>
 </div>
 <p>After doing in-depth analyses of the variables educational attainment, household income, and mental healthcare accessibility to assess their impact on people’s well-beings, we reaffirmed our thesis stating those variables can predict individuals’ mental health and well-being.</p>
-<p>We started with the four initial maps depicting the averages. of household income, educational attainment, and frequency of mental health concerns, as well as the psychologist count per 100K by state. From these, we found that the psychologist count per 100K and means of income and educational attainment are positively correlated. We could not, however, state conclusive findings about the mean frequency of mental health concerns. We looked at line charts comparing the average frequency of mental health concerns against the average household income, and found a negative correlation. In other words, as the average household income of a state increases, their frequency in experiencing mental health concerns decreases, showing they have better well-beings. The same findings are seen in the line graph showing the relationship between level of educational attainment and frequency of mental health concerns. There is a negative correlation, so the higher the level of educational attainment, the lower the frequency of mental health concerns. We also established that household income and level of educational attainment are positively correlated with the number of psychologists per 100K. This means that as household income and education level of a state go up, the accessibility to mental health care providers also increases, which aligns with our findings from the previous plots. Lastly, we look at the psychologist count per 100K and its effects on the frequency of mental health concerns. It is clear that as the availability and accessibility to these providers increases, the frequency of mental health concerns decreases, meaning better mental well-beings. In short, we concluded that household income, educational attainment, and the number of psychologists per 100K affect people’s mental health and well-beings.</p>
-<p>Knowing this, there are certain strides that can be taken to reduce the frequency of experiencing mental health concerns, which could cause improvements in well-being. Implementing policies covering education, income, and healthcare accessibility can support this goal. Schools could mandate learning about healthcare, allowing people to recognize their resources at a younger age. The federal and state governments could raise minimum wage to a living wage, which could better allow people to access tools to improve their mental health. Finally, incentivizing people, like through loan forgiveness, to become mental health professionals in underserved areas could increase mental health access and therefore increase people’s well-being.</p>
-<p>This comes from the file <code>big_picture.Rmd</code>.</p>
-<p>Think of this page as your 538/Upshot style article. This means that you should try to tell a story through the data and your analysis. Read articles from those sites and similar sites to get a feeling for what they are like. Try to write in the style of a news or popular article. Importantly, this page should be geared towards the general public. You shouldn’t assume the reader understands how to interpret a linear regression or a complicated plot. Focus on interpretation and visualizations.</p>
-<hr>
-<section id="rubric-on-this-page" class="level2">
-<h2 class="anchored" data-anchor-id="rubric-on-this-page">Rubric: On this page</h2>
-<p>You will</p>
-<ul>
-<li>Title
-<ul>
-<li>Your big picture page should have a creative/click-bait-y title/headline that provides a hint about your thesis.</li>
-</ul></li>
-<li>Clarity of Explanation
-<ul>
-<li>You should have a clear thesis/goal for this page. What are you trying to show? Make sure that you explain your analysis in detail but don’t go into top much mathematics or statistics. The audience for this page is the general public (to the extent possible). Your thesis should be a statement, not a question.</li>
-<li>Each figure should be very polished and also not too complicated. There should be a clear interpretation of the figure so the figure has a clear purpose. Even something like a histogram can be difficult to interpret for non-experts.</li>
-</ul></li>
-<li>Creativity
-<ul>
-<li>Do your best to make things interesting. Think of a story. Think of how each part of your analysis supports the previous part or provides a different perspective.</li>
-</ul></li>
-<li>Interactive component
-<ul>
-<li>Quality and ease of use of the interactive components. Is it clear what can be explored using your interactive components? Does it enhance and reinforce your conclusions?</li>
-</ul></li>
-<li>This page should be self-contained.</li>
-</ul>
-<p><strong>Note</strong>: This page should have no code visible, i.e.&nbsp;use <code>#| echo: FALSE</code>.</p>
-</section>
-<section id="rubric-other-components" class="level2">
-<h2 class="anchored" data-anchor-id="rubric-other-components">Rubric: Other components</h2>
-<section id="video-recording" class="level3">
-<h3 class="anchored" data-anchor-id="video-recording">Video Recording</h3>
-<p>Make a video recording (probably using Zoom) demonstrating your interactive components. You should provide a quick explanation of your data and demonstrate some of the conclusions from your EDA. This video should be no longer than 4 minutes. Include a link to your video (and password if needed) in your README.md file on your Github repository. You are not required to provide a link on the website. This can be presented by any subset of the team members.</p>
-</section>
-<section id="rest-of-the-site" class="level3">
-<h3 class="anchored" data-anchor-id="rest-of-the-site">Rest of the Site</h3>
-<p>Finally, here are important things to keep in mind for the rest of the site.</p>
-<p>The main title of your page is informative. Each post has an author/description/informative title. All lab required posts are present. Each page (including the home page) has a nice featured image associated with it. Your about page is up to date and clean. You have removed the generic posts from the initial site template.</p>
+<p>We created four maps which showed the psychologist count per 100,000 and means of income and educational attainment are positively correlated. We could not, however, state conclusive findings about the mean frequency of mental health concerns. The line charts comparing the average frequency of mental health concerns against the average educational attainment displayed a negative correlation. In other words, as the average education level of a state increases, their frequency in experiencing mental health concerns decreases, showing they have better well-beings. The same findings are seen in the line graph showing the relationship between household income and frequency of mental health concerns. There is a negative correlation, so the higher the household income, the lower the frequency of mental health concerns. We also established that the level of educational attainment and household income are positively correlated with the number of psychologists per 100,000. This means that as education level and household income of a state go up, the accessibility to mental health care providers also increases, which aligns with our findings from the previous plots. Lastly, we found that as the availability and accessibility to these providers increases, the frequency of mental health concerns decreases, leading to better mental well-beings. In short, we concluded that educational attainment, household income, and the number of psychologists per 100,000 affect people’s mental health and well-beings.</p>
+<p>Knowing this, there are certain strides that can be taken to reduce the frequency of experiencing mental health concerns, which could cause improvements in well-being. It would be good to better understand the impacts that education, income, and healthcare accessibility have on mental well-being. With this, legislatures might experiment with certain policies covering those areas to improve well-beings. Schools could mandate learning about healthcare, allowing people to recognize their resources at a younger age. The federal and state governments could raise minimum wage to a living wage, which could better allow people to access tools to improve their mental health. Finally, incentivizing people, like through loan forgiveness, to become mental health professionals in underserved areas could increase mental health access and therefore increase people’s well-being.</p>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
