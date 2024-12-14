@@ -3,6 +3,10 @@ title: "Big Picture"
 description: "Mental Wellbeing, Access to Care and Factors Impacting the US Mental Health Crisis"
 toc: true
 draft: FALSE
+execute:
+  echo: false
+  warning: false
+  message: false
 filters:
   - shinylive
 ---
@@ -29,7 +33,7 @@ suppressMessages(suppressWarnings(library(tidycensus)))
 #Combining joint data with census data to create maps
 
 joint_data <- read.csv("dataset/joint_data.csv") |>
-  mutate(total_mentalhealth = Anxious_Frequency + Worry_Frequency + 
+    mutate(total_mentalhealth = Anxious_Frequency + Worry_Frequency + 
          Little_Interest_Frequency + Depressed_Frequency)
 
 joint_data <- joint_data |>
@@ -115,7 +119,7 @@ Used [Stack Overflow] (https://stackoverflow.com/questions/1330989/rotating-and-
 #| warning: false
 #| results: 'hide'
 
-data_clean <- read_rds("dataset/pulse_data.rds") |>
+data_clean <- read_rds("dataset/data_clean.rds") |>
   mutate(total_mentalhealth = Anxious_Frequency + Worry_Frequency + 
          Little_Interest_Frequency + Depressed_Frequency)
 
@@ -243,4 +247,60 @@ We created four maps which showed the psychologist count per 100,000 and means o
 
 Knowing this, there are certain strides that can be taken to reduce the frequency of experiencing mental health concerns, which could cause improvements in well-being. It would be good to better understand the impacts that education, income, and healthcare accessibility have on mental well-being. With this, legislatures might experiment with certain policies covering those areas to improve well-beings. Schools could mandate learning about healthcare, allowing people to recognize their resources at a younger age. The federal and state governments could raise minimum wage to a living wage, which could better allow people to access tools to improve their mental health. Finally, incentivizing people, like through loan forgiveness, to become mental health professionals in underserved areas could increase mental health access and therefore increase people’s well-being. 
 
+```{r}
+# ### Interactive
 
+# You will also be required to make an interactive dashboard like [this one](/flex/flex.html).
+
+# Your Big Data page should also include a small interactive dashboard. The dashboard should be created either using Shinylive, as below. This interactive component should in some way support your thesis from your big picture page. Good interactives often provide both high-level understanding of the data while allowing a user to investigate specific scenarios, observations, subgroups, etc.
+
+
+# This comes from the file `big_picture.Rmd`.
+
+# Think of this page as your 538/Upshot style article. This means that you should try to tell a story through the data and your analysis. Read articles from those sites and similar sites to get a feeling for what they are like. Try to write in the style of a news or popular article. Importantly, this page should be geared towards the general public. You shouldn't assume the reader understands how to interpret a linear regression or a complicated plot. Focus on interpretation and visualizations.
+# ---
+
+# ## Rubric: On this page
+
+# You will
+
+# * Title
+#   * Your big picture page should have a creative/click-bait-y title/headline that provides a hint about your thesis.
+# * Clarity of Explanation
+#   * You should have a clear thesis/goal for this page. What are you trying to show? Make sure that you explain your analysis in detail but don't go into top much mathematics or statistics. The audience for this page is the general public (to the extent possible). Your thesis should be a statement, not a question.
+#   * Each figure should be very polished and also not too complicated. There should be a clear interpretation of the figure so the figure has a clear purpose. Even something like a histogram can be difficult to interpret for non-experts.
+# * Creativity
+#   * Do your best to make things interesting. Think of a story. Think of how each part of your analysis supports the previous part or provides a different perspective.
+# * Interactive component
+#   * Quality and ease of use of the interactive components.
+# Is it clear what can be explored using your interactive components?
+# Does it enhance and reinforce your conclusions?
+# * This page should be self-contained.
+
+# **Note**: This page should have no code visible, i.e. use `#| echo: FALSE`.  
+
+
+
+
+# ## Rubric: Other components
+
+# ### Video Recording
+
+# Make a video recording (probably using Zoom) demonstrating your interactive components.
+# You should provide a quick explanation of your data and demonstrate some of the conclusions from your EDA.
+# This video should be no longer than 4 minutes.
+# Include a link to your video (and password if needed) in your README.md file on your Github repository. You are not required to provide a link on the website.
+# This can be presented by any subset of the team members.
+
+
+# ### Rest of the Site
+
+# Finally, here are important things to keep in mind for the rest of the site. 
+
+# The main title of your page is informative.
+# Each post has an author/description/informative title.
+# All lab required posts are present.
+# Each page (including the home page) has a nice featured image associated with it.
+# Your about page is up to date and clean.
+# You have removed the generic posts from the initial site template.
+```
