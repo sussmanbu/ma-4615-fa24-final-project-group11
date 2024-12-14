@@ -28,7 +28,9 @@ suppressMessages(suppressWarnings(library(tidycensus)))
 
 #Combining joint data with census data to create maps
 
-joint_data <- read.csv("dataset/joint_data.csv")
+joint_data <- read.csv("dataset/joint_data.csv") |>
+  mutate(total_mentalhealth = Anxious_Frequency + Worry_Frequency + 
+         Little_Interest_Frequency + Depressed_Frequency)
 
 joint_data <- joint_data |>
   group_by(region) |>
@@ -113,7 +115,7 @@ Used [Stack Overflow] (https://stackoverflow.com/questions/1330989/rotating-and-
 #| warning: false
 #| results: 'hide'
 
-data_clean <- read_rds("dataset/data_clean.rds") |>
+data_clean <- read_rds("dataset/pulse_data.rds") |>
   mutate(total_mentalhealth = Anxious_Frequency + Worry_Frequency + 
          Little_Interest_Frequency + Depressed_Frequency)
 

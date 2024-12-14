@@ -69,42 +69,49 @@ source("scripts/pulse_data_cleaning.R")
 The script kept 43 out of the 220 relevant variables (columns) and recoded variable values from “-88” and “-99” to NA and 0. “-88” indicates “Missing / Did not report”, which can be interpreted as NA, and “-99” indicates “Question seen but category not selected”, which was converted to 0. This makes histograms concise (and makes regression easier). Then, columns were renamed to be more intuitive. This was saved as `pulse_data`. An additional column called `region` was added, which converted the numerical state value to the full state name.
 
 ```{r eval=FALSE}
-NA_VALUE <- "-88"     # value indicating "Missing / Did not report"
-ZERO_VALUE <- -99     # value indicating "Question seen but not selected"
+NA_VALUE <- "-88" # value indicating "Missing / Did not report"
+ZERO_VALUE <- -99 # value indicating "Question seen but not selected"
 
 suppressWarnings(suppressMessages({
-  pulse_data <- read.csv("dataset/data_unclean.csv", na = c(NA_VALUE))
+    pulse_data <- read.csv("dataset/data_unclean.csv", na = c(NA_VALUE))
 }))
 pulse_data[pulse_data == ZERO_VALUE] <- 0
 
 pulse_data <- pulse_data |>
-  mutate(region = recode(as.character(State_Living_in), !!!state_lookup))
+    mutate(region = recode(as.character(State_Living_in), !!!state_lookup))
 ```
 
 Another version of the clean data was created by converting the name of each state to a number, which is better for mapping. This version was saved as `data_by_state`.
 
 #### Area Health Resource Data
-The Area Health Resource Data was cleaned using this [cleaning script](/scripts/care_data_cleaning.R). The script filtered the data down to the 5 variables (columns), `st_abbrev`, `psychol_21`, `socwk_21`, `conslrs_21`, `popn_pums_21` and recoded the state abbreviations to the full name of the state in lower case. This data was saved as `care_data_sum`.
+The Area Health Resource Data was cleaned using this [cleaning script](/scripts/care_data_cleaning.R). The script filtered the data down to the 5 variables (columns), `st_abbrev`, `psychol_21`, `socwk_21`, `conslrs_21`, `popn_pums_21` and recoded the state abbreviations to the full name of the state in lower case. This data was saved as `care_data`.
+
+Finally, we will create a joined data set by state, using the `region` variable.
 
 ```{r}
 source("scripts/care_data_cleaning.R")
+
+joint_data <- pulse_data |>
+  left_join(care_data, by = "region")
+
+write_rds(joint_data, "dataset/joint_data.rds")
 ```
 
+```{r}
 ## Rubric: On this page
-
-You will
-
-* Describe where/how to find data.
-  * You must include a link to the original data source(s). Make sure to provide attribution to those who collected the data.
-  * Why was the data collected/curated? Who put it together? (This is important, if you don't know why it was collected then that might not be a good dataset to look at.
-* Describe the different data files used and what each variable means. 
-  * If you have many variables then only describe the most relevant ones and summarize the rest.
-* Describe any cleaning you had to do for your data.
-  * You *must* include a link to your `load_and_clean_data.R` file.
-  * Rrename variables and recode factors to make data more clear.
-  * Also, describe any additional R packages you used outside of those covered in class.
-  * Describe and show code for how you combined multiple data files and any cleaning that was necessary for that.
-  * Some repetition of what you do in your `load_and_clean_data.R` file is fine and encouraged if it helps explain what you did.
-* Organization, clarity, cleanliness of the page
-  * Make sure to remove excessive warnings, use clean easy-to-read code (without side scrolling), organize with sections, use bullets and other organization tools, etc.
-  * This page should be self-contained.
+# You will
+# * Describe where/how to find data.
+#   * You must include a link to the original data source(s). Make sure to provide attribution to those who collected the data.
+#   * Why was the data collected/curated? Who put it together? (This is important, if you don't know why it was collected then that might not be a good dataset to look at.
+# * Describe the different data files used and what each variable means.
+#   * If you have many variables then only describe the most relevant ones and summarize the rest.
+# * Describe any cleaning you had to do for your data.
+#   * You *must* include a link to your `load_and_clean_data.R` file.
+#   * Rrename variables and recode factors to make data more clear.
+#   * Also, describe any additional R packages you used outside of those covered in class.
+#   * Describe and show code for how you combined multiple data files and any cleaning that was necessary for that.
+#   * Some repetition of what you do in your `load_and_clean_data.R` file is fine and encouraged if it helps explain what you did.
+# * Organization, clarity, cleanliness of the page
+#   * Make sure to remove excessive warnings, use clean easy-to-read code (without side scrolling), organize with sections, use bullets and other organization tools, etc.
+#   * This page should be self-contained.
+```
