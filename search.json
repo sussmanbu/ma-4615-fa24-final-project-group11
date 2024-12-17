@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "data.html",
+    "href": "data.html",
+    "title": "Data",
+    "section": "",
+    "text": "Image Source: The Livingston Parish News"
+  },
+  {
     "objectID": "data.html#overview-of-household-pulse-survey-data",
     "href": "data.html#overview-of-household-pulse-survey-data",
     "title": "Data",
@@ -19,6 +26,13 @@
     "title": "Data",
     "section": "Cleaning the Data",
     "text": "Cleaning the Data\n\nHousehold Pulse Survey\nThe Household Pulse Survey was cleaned using this cleaning script.\n\nsource(\"scripts/pulse_data_cleaning.R\")\n\nThe script kept 43 out of the 220 relevant variables (columns) and recoded variable values from “-88” and “-99” to NA and 0. “-88” indicates “Missing / Did not report”, which can be interpreted as NA, and “-99” indicates “Question seen but category not selected”, which was converted to 0. This makes histograms concise (and makes regression easier). Then, columns were renamed to be more intuitive. This was saved as pulse_data. An additional column called region was added, which converted the numerical state value to the full state name.\n\nNA_VALUE &lt;- \"-88\" # value indicating \"Missing / Did not report\"\nZERO_VALUE &lt;- -99 # value indicating \"Question seen but not selected\"\n\nsuppressWarnings(suppressMessages({\n    pulse_data &lt;- read.csv(\"dataset/data_unclean.csv\", na = c(NA_VALUE))\n}))\npulse_data[pulse_data == ZERO_VALUE] &lt;- 0\n\npulse_data &lt;- pulse_data |&gt;\n    mutate(region = recode(as.character(State_Living_in), !!!state_lookup))\n\nAnother version of the clean data was created by converting the name of each state to a number, which is better for mapping. This version was saved as data_by_state.\n\n\nArea Health Resource Data\nThe Area Health Resource Data was cleaned using this cleaning script. The script filtered the data down to the 5 variables (columns), st_abbrev, psychol_21, socwk_21, conslrs_21, popn_pums_21 and recoded the state abbreviations to the full name of the state in lower case. This data was saved as care_data.\nFinally, we will create a joined data set by state, using the region variable.\n\nsource(\"scripts/care_data_cleaning.R\")\n\njoint_data &lt;- pulse_data |&gt;\n  left_join(care_data, by = \"region\")\n\nwrite_rds(joint_data, \"dataset/joint_data.rds\")"
+  },
+  {
+    "objectID": "analysis.html",
+    "href": "analysis.html",
+    "title": "Analysis",
+    "section": "",
+    "text": "Image Source: US Census Bureau"
   },
   {
     "objectID": "analysis.html#data-analysis",
@@ -53,7 +67,7 @@
     "href": "index.html",
     "title": "MA [46]15 Final Project",
     "section": "",
-    "text": "Blog Post 7\n\n\nAdvancement in Analysis and Visuals\n\n\n\n\n\n\n\n\nDec 7, 2024\n\n\nAll\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 6\n\n\n“Exploring the Joint Data”\n\n\n\n\n\n\n\n\nNov 17, 2024\n\n\nAll\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 5\n\n\nDescriptions of Combined Datasets\n\n\n\n\n\n\n\n\nNov 9, 2024\n\n\nAll\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 4\n\n\nLinear Modeling Test & Final Cleaning\n\n\n\n\n\n\n\n\nNov 6, 2024\n\n\nAll\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 3\n\n\nData Cleaning and Exploration\n\n\n\n\n\n\n\n\nOct 27, 2024\n\n\nAll\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 2\n\n\nFinalized Data Set Research and Initial Cleaning\n\n\n\n\n\n\n\n\nOct 18, 2024\n\n\nAll\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 1\n\n\nExploring Three Data Sets\n\n\n\n\n\n\n\n\nOct 9, 2024\n\n\nAll\n\n\n\n\n\n\n\n\n\n\n\n\nExamples\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 26, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\n\n\n\n\n\n\nGetting started\n\n\n\n\n\n\n\n\nDirections to set up your website and create your first post. \n\n\n\n\n\nFeb 23, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\n\n\n\n\n\n\nFirst Team Meeting\n\n\n\n\n\n\n\n\nThis post details the steps you’ll take for your first team meeting. \n\n\n\n\n\nFeb 21, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\nNo matching items"
+    "text": "Image Source: Intermountain Health\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 7\n\n\nAdvancement in Analysis and Visuals\n\n\n\n\n\n\n\n\nDec 7, 2024\n\n\nAll\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 6\n\n\n“Exploring the Joint Data”\n\n\n\n\n\n\n\n\nNov 17, 2024\n\n\nAll\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 5\n\n\nDescriptions of Combined Datasets\n\n\n\n\n\n\n\n\nNov 9, 2024\n\n\nAll\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 4\n\n\nLinear Modeling Test & Final Cleaning\n\n\n\n\n\n\n\n\nNov 6, 2024\n\n\nAll\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 3\n\n\nData Cleaning and Exploration\n\n\n\n\n\n\n\n\nOct 27, 2024\n\n\nAll\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 2\n\n\nFinalized Data Set Research and Initial Cleaning\n\n\n\n\n\n\n\n\nOct 18, 2024\n\n\nAll\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 1\n\n\nExploring Three Data Sets\n\n\n\n\n\n\n\n\nOct 9, 2024\n\n\nAll\n\n\n\n\n\n\n\n\n\n\n\n\nExamples\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 26, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\n\n\n\n\n\n\nGetting started\n\n\n\n\n\n\n\n\nDirections to set up your website and create your first post. \n\n\n\n\n\nFeb 23, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\n\n\n\n\n\n\nFirst Team Meeting\n\n\n\n\n\n\n\n\nThis post details the steps you’ll take for your first team meeting. \n\n\n\n\n\nFeb 21, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/2024-11-17-blog-post-6/blog-post-6.html",
