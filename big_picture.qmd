@@ -26,6 +26,7 @@ Mental well-being is measured through the Household Pulse Survey, where families
 #| column: screen
 #| out-width: 100%
 
+
 suppressMessages(suppressWarnings(library(tidyverse)))
 suppressMessages(suppressWarnings(library(sf)))
 suppressMessages(suppressWarnings(library(tidycensus)))
@@ -77,17 +78,19 @@ We will look at each individual factor more closely and see if these correlation
 
 The coord_sf element was found using [Stack Overflow](https://stackoverflow.com/questions/76121455/select-adequate-x-axis-limits-to-center-an-sf-object-plotted-with-ggplot-and-geo )
 
+
 ``` {r}
 #| echo: false
 #| message: false
 #| warning: false
 #| results: 'hide'
 
+
 ggplot(map_data) + 
  geom_sf(aes(fill = prop_high_income)) +
  coord_sf(xlim=c(-60, -170)) + 
  scale_fill_gradient(low = "red",high = "white") + 
- theme_void()
+ theme_void() 
 
 ggplot(map_data) + 
  geom_sf(aes(fill = prop_high_edu)) +
@@ -111,7 +114,7 @@ ggplot(map_data) +
 ```
 In order to get a more accurate relationships between income, education level and mental well being, we can now plot mental well being against each of these factors. 
 
-Used [Stack Overflow] (https://stackoverflow.com/questions/1330989/rotating-and-spacing-axis-labels-in-ggplot2) to edit the lables.
+Used [Stack Overflow](https://stackoverflow.com/questions/1330989/rotating-and-spacing-axis-labels-in-ggplot2) to edit the labels.
 
 ```{r}
 #| echo: false
@@ -119,7 +122,8 @@ Used [Stack Overflow] (https://stackoverflow.com/questions/1330989/rotating-and-
 #| warning: false
 #| results: 'hide'
 
-data_clean <- read_rds("dataset/data_clean.rds") |>
+
+data_clean <- read_rds("dataset/joint_data.rds") |>
   mutate(total_mentalhealth = Anxious_Frequency + Worry_Frequency + 
          Little_Interest_Frequency + Depressed_Frequency)
 
@@ -143,16 +147,6 @@ ggplot(income_sorted) +
   ) +
     theme (legend.position = "none")
 
-#ggplot(income_sorted) +
-#  geom_point(aes(x=Household_Income, y = mean_total_mh), alpha = 0.01) +
-#  geom_smooth(aes(x=Household_Income, y = mean_total_mh), method = "lm", se = FALSE) +
-#  theme (legend.position = "none") +
-#  labs(
-#    x = "Household Income",
-#    y = "Average Mental Wellbeing",
-#    title = "Relationship Between Income and Mental Health"
-#  )
-
 edu_sorted <- data_clean |>
   group_by(Educational_Attainment) |>
   summarize(mean_total_mh = mean(total_mentalhealth, na.rm = TRUE))
@@ -171,15 +165,6 @@ ggplot(edu_sorted) +
   ) +
     theme (legend.position = "none")
 
-#ggplot(edu_sorted) +
-#  geom_point(aes(x=Educational_Attainment, y = mean_total_mh), alpha = 0.01) +
-#  geom_smooth(aes(x=Educational_Attainment, y = mean_total_mh), method = "lm", se = FALSE) +
-#  theme (legend.position = "none") +
-#  labs(
-#    x = "Level of Education",
-#    y = "Average Mental Wellbeing",
-#    title = "Relationship Between Education Level and Mental Health"
-#  )
 ```
 
 Clearly, educational attainment and household income play a role in people’s mental health, but these are not the only contributors. If a state, for instance, had high averages of educational attainment and household income, there is still a chance that their frequency of undergoing mental health concerns is high. Let us look at New Hampshire in the maps that we just examined. New Hampshire has high averages in educational attainment and household income, yet it exhibits a relatively high frequency of mental health concerns when compared to other states with high averages in education levels and income, i.e., New Hampshirites’ well-beings are not ideal. With this said, we determined that access to care has an effect on mental health. This notions aligns with the example of New Hampshire, as the number of psychologists they have per 100,000 is relatively low. We evaluated how access to mental health care is impacted by educational attainment and income to emphasize the correlation between all these variables. 
@@ -228,6 +213,8 @@ There is a negative correlation, where as the number of psychologists per 100,00
 #| message: false
 #| warning: false
 #| results: 'hide'
+
+
 ggplot(joint_data) +
   geom_point(aes(x=mean_total_mh, y = psychol), alpha = 0.01) +
   geom_smooth(aes(x=mean_total_mh, y = psychol), method = "lm", se = FALSE) +
