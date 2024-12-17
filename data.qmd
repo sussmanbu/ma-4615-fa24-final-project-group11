@@ -52,6 +52,8 @@ The Household Pulse Survey dataset includes a broad range of variables, from vet
 
 - **Mental Health**: Anxiousness, Worry, Interest (or lack thereof), Feeling Down, Children's Mental Health Treatment (Need for treatment, Receiving treatment, Difficulty obtaining treatment, Satisfaction with treatment), Social Support, Loneliness, Public vs. Private Health Care
 
+In addition to the packages taught in MA415, the `patchwork` library was imported for graph visualization.
+
 ### Overview of Area Health Resource Data
 We also compared the Household Pulse Survey to the Area Health Resource Data for [2022-2023 at the State and National Level](https://data.hrsa.gov/data/download?hmpgtitle=hmpg-hrsa-data) from the Health Resources & Services Administration (HRSA). The Area Health Resources Files (AHRF) dataset has over 6,000 variables with current and historical data at county, state, and national levels, covering health care professions, facilities, population characteristics, economics, and more. It is designed for planners, policymakers, and researchers, and includes geographic codes for linking with other datasets and aggregating data by region.
 
@@ -98,6 +100,8 @@ write_rds(joint_data, "dataset/joint_data.rds")
 ```
 
 ```{r}
+#| echo: false
+
 ## Rubric: On this page
 # You will
 # * Describe where/how to find data.
