@@ -235,6 +235,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong>Active Duty and Veteran Status</strong>: Active Duty, Veteran</p></li>
 <li><p><strong>Mental Health</strong>: Anxiousness, Worry, Interest (or lack thereof), Feeling Down, Children’s Mental Health Treatment (Need for treatment, Receiving treatment, Difficulty obtaining treatment, Satisfaction with treatment), Social Support, Loneliness, Public vs.&nbsp;Private Health Care</p></li>
 </ul>
+<p>In addition to the packages taught in MA415, the <code>patchwork</code> library was imported for graph visualization.</p>
 <section id="overview-of-area-health-resource-data" class="level3">
 <h3 class="anchored" data-anchor-id="overview-of-area-health-resource-data">Overview of Area Health Resource Data</h3>
 <p>We also compared the Household Pulse Survey to the Area Health Resource Data for <a href="https://data.hrsa.gov/data/download?hmpgtitle=hmpg-hrsa-data">2022-2023 at the State and National Level</a> from the Health Resources &amp; Services Administration (HRSA). The Area Health Resources Files (AHRF) dataset has over 6,000 variables with current and historical data at county, state, and national levels, covering health care professions, facilities, population characteristics, economics, and more. It is designed for planners, policymakers, and researchers, and includes geographic codes for linking with other datasets and aggregating data by region.</p>
@@ -276,24 +277,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(care_data, <span class="at">by =</span> <span class="st">"region"</span>)</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(joint_data, <span class="st">"dataset/joint_data.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Rubric: On this page</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># You will</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># * Describe where/how to find data.</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   * You must include a link to the original data source(s). Make sure to provide attribution to those who collected the data.</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   * Why was the data collected/curated? Who put it together? (This is important, if you don't know why it was collected then that might not be a good dataset to look at.</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># * Describe the different data files used and what each variable means.</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   * If you have many variables then only describe the most relevant ones and summarize the rest.</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># * Describe any cleaning you had to do for your data.</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#   * You *must* include a link to your `load_and_clean_data.R` file.</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#   * Rrename variables and recode factors to make data more clear.</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#   * Also, describe any additional R packages you used outside of those covered in class.</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#   * Describe and show code for how you combined multiple data files and any cleaning that was necessary for that.</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#   * Some repetition of what you do in your `load_and_clean_data.R` file is fine and encouraged if it helps explain what you did.</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># * Organization, clarity, cleanliness of the page</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#   * Make sure to remove excessive warnings, use clean easy-to-read code (without side scrolling), organize with sections, use bullets and other organization tools, etc.</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#   * This page should be self-contained.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

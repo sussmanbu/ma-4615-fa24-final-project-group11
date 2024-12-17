@@ -184,9 +184,6 @@ ul.task-list li input[type="checkbox"] {
 <p>The Household Pulse Survey collects data on how frequently respondents experience various mental health symptoms, including anxiety, worry, disinterest, and depression. For each symptom, respondents choose from four possible values: <code>1</code> (Not at all), <code>2</code> (Several days), <code>3</code> (More than half the days), and <code>4</code> (Nearly every day). These individual responses are then summed to create a mental health score, with a lower score indicating less frequent experience of mental health symptoms.</p>
 <section id="basic-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="basic-analysis">Basic Analysis</h3>
-<p>When examining mental health trends across demographics, younger adults (18-24) report higher levels of mental health challenges compared to older age groups, with mental health scores gradually improving as age increases. This may be due to life transitions, academic or career pressures, and the impact of social media, while older individuals may experience more stability in their personal and professional lives, leading to better mental health. However, older adults may also be less likely to admit mental health struggles due to historically stronger stigmas surrounding mental health. It is also important to note that the age category of 18-24 has the least amount of data</p>
-<p>The relationship between income and mental health changes: individuals with lower income initially report better mental health, but the mental health score peaks in the lower mid-range incomes. Education levels show a relatively stable relationship with mental health, with a slight downward trend as individuals attain higher levels of education, likely due to cumulative stress and life challenges over time.</p>
-<p>These findings highlight the need for further investigation into how age and income intersect with mental health.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -196,11 +193,13 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<p>When examining mental health trends across demographics, younger adults (18-24) report higher levels of mental health challenges compared to older age groups, with mental health scores gradually improving as age increases. This may be due to life transitions, academic or career pressures, and the impact of social media, while older individuals may experience more stability in their personal and professional lives, leading to better mental health.</p>
+<p>However, older adults may also be less likely to admit mental health struggles due to historically stronger stigmas surrounding mental health. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2875324/pdf/nihms181113.pdf">Research</a> on the impact of stigma and race in older individuals with depression found that perceived public stigma among older adults is fairly high. In addition, it is also important to note that the age category of 18-24 has the least amount of data, and there is no data for individuals under the age of 18.</p>
+<p>The relationship between income and mental health changes: individuals with lower income initially report better mental health, but the mental health score peaks in the lower mid-range incomes. Education levels show a relatively stable relationship with mental health, with a slight downward trend as individuals attain higher levels of education, likely due to cumulative stress and life challenges over time.</p>
+<p>These findings highlight the need for further investigation into how age and income intersect with mental health.</p>
 </section>
 <section id="linear-regression-model" class="level3">
 <h3 class="anchored" data-anchor-id="linear-regression-model">Linear Regression Model</h3>
-<p>Before performing linear regression, the data is prepared via the <a href="./scripts/analysis_prepare_data.R">prepare_data function</a>. This function processes mental health survey data by calculating the average frequencies of anxiety, worry, loss of interest, and depression across age, income, and education level. Then it restructures the data into a long format, where each row represents a specific mental health metric for a particular demographic value.</p>
-<p>After the data is prepared for linear regression, the plots are created using the <a href="./scripts/analysis_create_plot.R">create_plot function</a>. This creates a line plot showing the relationships between mental health metrics and demographic variables (age, income, and education), and Q-Q plots for each relationship.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -210,6 +209,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<p>Before performing linear regression, the data is prepared via the <a href="./scripts/analysis_prepare_data.R">prepare_data function</a>. This function processes mental health survey data by calculating the average frequencies of anxiety, worry, loss of interest, and depression across age, income, and education level. Then it restructures the data into a long format, where each row represents a specific mental health metric for a particular demographic value.</p>
+<p>After the data is prepared for linear regression, the plots are created using the <a href="./scripts/analysis_create_plot.R">create_plot function</a>. This creates a line plot showing the relationships between mental health metrics and demographic variables (age, income, and education), and Q-Q plots for each relationship.</p>
 </section>
 <section id="linear-regression-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="linear-regression-analysis">Linear Regression Analysis</h3>
@@ -228,9 +229,6 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="ii.-access-to-mental-health-services">II. Access to Mental Health Services</h2>
 <section id="basic-analysis-1" class="level3">
 <h3 class="anchored" data-anchor-id="basic-analysis-1">Basic Analysis</h3>
-<p>The Area Health Resource Data gives insights into access to mental health services across the United States. The map of providers per 100k by state reveals significant geographic disparities in mental health provider distribution across the United States, with notably higher provider concentrations in northeastern states and lower concentrations in southern states.</p>
-<p>Economic and educational differences between regions may play a role in these findings - Northeastern states tend to have higher average incomes, more prestigious universities and teaching hospitals, which helps attract and retain mental health professionals. These states often offer better salaries and career opportunities for providers compared to southern states.</p>
-<p>In addition, culture and policy differences surrounding mental health may affect variation in the number of mental health providers. Northeastern states historically have had more progressive policies around mental healthcare access and less stigma around seeking mental health treatment. For example, Vermont was one of the first states to require insurance companies to cover mental health treatment the same as physical health. In contrast, some southern states have traditionally had more conservative approaches to mental health funding and services.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -240,12 +238,12 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<p>The Area Health Resource Data gives insights into access to mental health services across the United States. The map of providers per 100k by state reveals significant geographic disparities in mental health provider distribution across the United States, with notably higher provider concentrations in northeastern states and lower concentrations in southern states.</p>
+<p>Economic and educational differences between regions may play a role in these findings - Northeastern states tend to have higher average incomes, more prestigious universities and teaching hospitals, which helps attract and retain mental health professionals. These states often offer better salaries and career opportunities for providers compared to southern states.</p>
+<p>In addition, culture and policy differences surrounding mental health may affect variation in the number of mental health providers. Northeastern states historically have had more progressive policies around mental healthcare access and less stigma around seeking mental health treatment. For example, Vermont was one of the first states to require insurance companies to cover mental health treatment the same as physical health. In contrast, some southern states have traditionally had more conservative approaches to mental health funding and services.</p>
 </section>
 <section id="linear-regression-analysis-1" class="level3">
 <h3 class="anchored" data-anchor-id="linear-regression-analysis-1">Linear Regression Analysis</h3>
-<p>Linear regression was performed on the number of psychologists, social workers and counselors in total in the United States, and shows that there is a weak negative correlation between provider availability and mental health scores across all three provider types, suggesting that areas with more providers tend to have slightly better mental health outcomes (lower scores).</p>
-<p>Psychologists have the strongest relationship with mental health outcomes, with a statistically significant effect (p &lt; 0.02). However, social workers and counselors do not have a statistically significant relationship with mental health outcomes. The Q-Q plots show that the data has a lot of outliers and is heavy-tailed.</p>
-<p>The map of healthcare providers across states combined with the findings of the linear regression model suggest that while provider availability affects mental health outcomes, other socioeconomic and demographic factors have more substantial impacts. In addition, increasing provider numbers may not be sufficient to dramatically improve population mental health outcomes without addressing other contributing factors.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -255,15 +253,12 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<p>Linear regression was performed on the number of psychologists, social workers and counselors in total in the United States, and shows that there is a weak negative correlation between provider availability and mental health scores across all three provider types, suggesting that areas with more providers tend to have slightly better mental health outcomes (lower scores).</p>
+<p>Psychologists have the strongest relationship with mental health outcomes, with a statistically significant effect (p &lt; 0.02). However, social workers and counselors do not have a statistically significant relationship with mental health outcomes. The Q-Q plots show that the data has a lot of outliers and is heavy-tailed.</p>
+<p>The map of healthcare providers across states combined with the findings of the linear regression model suggest that while provider availability affects mental health outcomes, other socioeconomic and demographic factors have more substantial impacts. In addition, increasing provider numbers may not be sufficient to dramatically improve population mental health outcomes without addressing other contributing factors.</p>
 </section>
 <section id="investigating-income-and-psychologist-availability" class="level3">
 <h3 class="anchored" data-anchor-id="investigating-income-and-psychologist-availability">Investigating Income and Psychologist Availability</h3>
-<p>The previous section revealed that while provider availability, more specifically psychologists, can affect mental health outcomes, there may be other socioeconomic factors that have more substantial impact. The investigation into the relationship between income and psychologists suggests:</p>
-<ol type="1">
-<li><p><strong>High Income</strong>: This population has the only statistically relationship (p &lt; 0.03) with psychologist availability, suggesting that higher income individuals benefit the most from psychologist availability.</p></li>
-<li><p><strong>Middle/Low Income</strong>: Neither low-income (p ≈ 0.94) nor middle-income (p ≈ 0.58) groups show statistically significant relationships between psychologist availability and mental health outcomes. The middle-income population has a slope of -0.000116 and the low-income has a slope -0.000022, which is the flattest slope of the group.</p></li>
-</ol>
-<p>The data suggests that merely increasing the number of psychologists in an area will only significantly benefit the high-income populations. This population tends to have fewer barriers to accessing care (flexible work schedules, transportation, etc.). This analysis highlights the need for more comprehensive approaches to mental healthcare that address not just provider availability, but also affordability, accessibility, and other socioeconomic barriers that may prevent lower-income populations from benefiting from increased mental health resources.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -273,6 +268,13 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<p>The previous section revealed that while provider availability, more specifically psychologists, can affect mental health outcomes, there may be other socioeconomic factors that have more substantial impact. The investigation into the relationship between income and psychologists suggests:</p>
+<ol type="1">
+<li><p><strong>High Income</strong>: This population has the only statistically relationship (p &lt; 0.03) with psychologist availability, suggesting that higher income individuals benefit the most from psychologist availability</p></li>
+<li><p><strong>Middle/Low Income</strong>: Neither low-income (p ≈ 0.94) nor middle-income (p ≈ 0.58) groups show statistically significant relationships between psychologist availability and mental health outcomes. The middle-income population has a slope of -0.000116 and the low-income has a slope -0.000022, which is the flattest slope of the group.</p></li>
+</ol>
+<p>The data suggests that merely increasing the number of psychologists in an area will only significantly benefit the high-income populations. This population tends to have fewer barriers to accessing care (flexible work schedules, transportation, etc.). This analysis highlights the need for more comprehensive approaches to mental healthcare that address not just provider availability, but also affordability, accessibility, and other socioeconomic barriers that may prevent lower-income populations from benefiting from increased mental health resources.</p>
+<p>These findings are also supported by a <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8214217/pdf/main.pdf">study</a> conducted in 2021 about barriers to healthcare access among U.S. adults with mental health challenges, which found that those worried about affording normal healthcare had 1.60 times higher odds of no usual source of care.</p>
 </section>
 </section>
 <section id="flaws-and-limitations" class="level2">
