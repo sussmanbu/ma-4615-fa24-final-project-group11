@@ -6,6 +6,7 @@ draft: false
 ---
 
 ![](images/Data_Census_Bureau.png)
+[Image Source: The Livingston Parish News](https://www.livingstonparishnews.com/stories/reminder-us-census-bureau-pushing-residents-to-fill-out-their-census-online-over-phone-by,23630)
 
 ## Overview of Household Pulse Survey Data
 

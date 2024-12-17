@@ -69,10 +69,11 @@ create_map <- function(data, fill_var, title) {
     )
 }
 
+#(0 = No Symptoms and 16 = All Symptoms Nearly Everyday)
 # Create individual plots with viridis scales
 p1 <- create_map(map_data, "prop_high_income", "High Income Distribution")
 p2 <- create_map(map_data, "prop_high_edu", "Higher Education Distribution")
-p3 <- create_map(map_data, "mean_total_mh", "Mental Health Score")
+p3 <- create_map(map_data, "mean_total_mh", "Average Frequency of Symptoms Over Past 2 Weeks")
 p4 <- create_map(map_data, "psychol", "Psychology Services")
 
 # Combine plots with annotations
@@ -157,7 +158,7 @@ ggplot(combined_data) +
   scale_fill_manual(values = c("Income Level" = "red", "Educational Level" = "blue")) +
   labs(
     x = "",
-    y = "Average Mental Wellbeing",
+    y = "Average Frequency of Symptoms Over Past 2 Weeks",
     title = "Relationship Between Socioeconomic Factors and Mental Health"
   ) +
   theme_minimal() +
@@ -213,7 +214,7 @@ ggplot(joint_data) +
   geom_smooth(aes(x=mean_total_mh, y = psychol), method = "lm", se = FALSE) +
   theme (legend.position = "none") +
   labs(
-    x = "Mental Wellbeing",
+    x = "Average Frequency of Symptoms Over Past 2 Weeks",
     y = "Psychologists Per 100K",
     title = "Relationship Between Mental Wellbeing and Access to Mental Health Care"
   )
