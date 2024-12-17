@@ -25,9 +25,12 @@ library(shiny)
 
 Millions of Americans are struggling with their mental health, but why do some communities seem to fare better than others? The answer may lie in three key factors: **income**, **education**, and **access to care**.
 
-In 2022, the [World Health Organization (WHO)](https://www.who.int/news-room/fact-sheets/detail/mental-disorders#:~:text=In%202019%2C%201%20in%20every,of%20the%20COVID%2D19%20pandemic.) reported that one in eight people—approximately 970 million individuals worldwide—were living with a mental disorder. In the United States, the proportion is even higher: more than one in five adults, or 59.3 million people (23.1% of the adult population), according to the [National Institute of Mental Health (NIHM)](https://www.nimh.nih.gov/health/statistics/mental-illness).
+An analysis of the Household Pulse Survey and Area Health Resource Data reveals significant disparities in mental health outcomes across the United States. Addressing these inequities requires comprehensive policies that go beyond simply increasing provider availability.
 
-Numerous factors contribute to this issue, including physical mobility, physical activity, life experiences, substance use, and biological influences. While these variables significantly impact well-being, most remain beyond an individual's control. Moreover, access to healthcare is a critical factor that cannot be overlooked. Many elements affect mental health, but here, we will focus on three key factors.
+#### The Scope of the Crisis
+In 2022, the [World Health Organization (WHO)](https://www.who.int/news-room/fact-sheets/detail/mental-disorders#:~:text=In%202019%2C%201%20in%20every,of%20the%20COVID%2D19%20pandemic) reported that one in eight people worldwide—approximately 970 million individuals—live with a mental disorder. The situation is even more pressing in the United States, where over one in five adults, or 59.3 million people, experience mental health challenges annually, according to the [National Institute of Mental Health (NIHM)](https://www.nimh.nih.gov/health/statistics/mental-illness).
+
+These numbers are driven by complex factors, including life experiences, substance use, physical health, and biological predispositions. However, many of these influences are beyond an individual’s control. What can be addressed is the socioeconomic landscape that underpins mental health: income, education, and healthcare access.
 
 ## Key Findings
 
@@ -216,6 +219,7 @@ ggplot(joint_data) +
   )
 
 ```
+## Conclusion
 
 After doing in-depth analyses of the variables educational attainment, household income, and mental healthcare accessibility to assess their impact on people's well-beings, we reaffirmed our thesis stating those variables can predict individuals' mental health and well-being.
 
