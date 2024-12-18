@@ -40,85 +40,29 @@ source("scripts/big_picture_map_data.R")
 ```
 
 ### Mapping the Mental Health Landscape
-![](images/socioeconomic_map.png)
-![Data: National Institute of Mental Health (NIMH). Credit: USA TODAY Network/Mary Bowerman](images/health_metrics_map.png)
-
-```{r create_maps}
-create_map <- function(data, fill_var, title) {
-  mainland <- data[data$NAME != "Alaska", ]
-  
-  ggplot() +
-    geom_sf(data = mainland, aes(fill = .data[[fill_var]])) +
-    coord_sf(xlim = c(-130, -65),
-            ylim = c(25, 50),
-            expand = FALSE,
-            datum = NA) +
-    scale_fill_viridis_c(option = "viridis") +
-    theme_void() +
-    theme(
-      plot.title = element_text(size = 12, face = "bold", hjust = 0.5),
-      legend.title = element_text(size = 10),
-      legend.text = element_text(size = 8),
-      plot.margin = margin(0, 0, 0, 0),
-      legend.position = "right",
-      legend.box.margin = margin(0, 0, 0, 0),
-    ) +
-    labs(
-      title = title,
-      fill = "Proportion"
-    )
-}
-
-#(0 = No Symptoms and 16 = All Symptoms Nearly Everyday)
-# Create individual plots with viridis scales
-p1 <- create_map(map_data, "prop_high_income", "High Income Distribution")
-p2 <- create_map(map_data, "prop_high_edu", "Higher Education Distribution")
-p3 <- create_map(map_data, "mean_total_mh", "Average Frequency of Symptoms Over Past 2 Weeks")
-p4 <- create_map(map_data, "psychol", "Psychology Services")
-
-# Combine plots with annotations
-socioeconomic_plot <- p1 + p2 +
-  plot_annotation(
-    title = "US Geographic Distribution of Socioeconomic Metrics"
-  )
-
-health_plot <- p3 + p4 +
-  plot_annotation(
-    title = "US Geographic Distribution of Health Metrics"
-  )
-
-# save plots as img and crop so they are the right dimension
-# ggsave("images/socioeconomic_map.png", plot = socioeconomic_plot)
-# ggsave("images/health_metrics_map.png", plot = health_plot)
-```
-
-These maps demonstrate clear relationships between income, education, and access to mental health professionals. States with higher average incomes and educational attainment tend to have better access to care. However, these factors alone do not always correlate with better mental well-being.
-
-For Example:
-
--   New York has high income, educational attainment, and access to care, with lower-than-average mental health concerns.
--   Utah, despite high income and education levels, exhibits a high frequency of mental health concerns.
--   South Carolina, with lower averages in income, education, and psychologist availability, also has relatively low mental health concerns.
-
-These maps show that income and education appear to be correlated at the state level, as many states with higher average incomes also have higher average levels of education. Additionally, areas with higher average incomes and levels of education appear to also have improved access to care. However, the maps show no clear correlation with mental well-being.
-
 ```{r eval=FALSE}
-# For instance, New York has a high mean income, educational attainment, and psychology count, reaffirming two of our beliefs: states with higher average incomes tend to have higher average levels of educational attainment (1), and states with high averages of income and educations levels tend to have better access to psychologists (2). New York's frequency level of mental health concern is also on the lower end of the scale. With this said, there is no definitive correlation between those three factors and mental well-being. Let us look at Utah, for example. Utah has relatively high averages in income, educational attainment, and psychologist count compared to other states. However, they have a high frequency of mental health concerns compared to other states. In a similar manner, South Carolina has low averages in income, educational attainment, and psychologist count, yet has a low frequency of mental health concerns when compared to other states with low means in income, educational levels, and psychologist count. Given these three state examples, it is evident there are correlations between average income, educational attainment, and psychologist count, but no trends with mental well-being can be certainly established.
-
-# We will look at each individual factor more closely and see if these correlations continue throughout our analysis.
-
-# [*Stack Overflow*](https://stackoverflow.com/questions/76121455/select-adequate-x-axis-limits-to-center-an-sf-object-plotted-with-ggplot-and-geo) *was used to find the coord_sf function which was used to create the maps*
-
-# In order to get a more accurate relationships between income, education level and mental well being, we can now plot mental well being against each of these factors.
-
-# Used [Stack Overflow](https://stackoverflow.com/questions/1330989/rotating-and-spacing-axis-labels-in-ggplot2) to edit the labels.
-
-# Clearly, educational attainment and household income play a role in people’s mental health, but these are not the only contributors. If a state, for instance, had high averages of educational attainment and household income, there is still a chance that their frequency of undergoing mental health concerns is high. Let us look at New Hampshire in the maps that we just examined. New Hampshire has high averages in educational attainment and household income, yet it exhibits a relatively high frequency of mental health concerns when compared to other states with high averages in education levels and income, i.e., New Hampshirites’ well-beings are not ideal. With this said, we determined that access to care has an effect on mental health. This notions aligns with the example of New Hampshire, as the number of psychologists they have per 100,000 is relatively low. We evaluated how access to mental health care is impacted by educational attainment and income to emphasize the correlation between all these variables.
+source("scripts/big_picture_create_maps.R")
 ```
+Recent data from the US Census' [Household Pulse Survey](https://www.census.gov/data/experimental-data-products/household-pulse-survey.html) and the US Department of Human Resources & Services Administration's [Area Health Resource Files](https://data.hrsa.gov/topics/health-workforce/ahrf) show striking geographic patterns in mental health across the United States. The following visualization maps income distribution, educational attainment, mental health symptom frequency, and access to mental healthcare providers across America.
+
+![](images/socioeconomic_map.png)
+
+![](images/health_metrics_map.png)
+*Stack Overflow was referenced to create this map ([coord_sf function](https://stackoverflow.com/questions/76121455/select-adequate-x-axis-limits-to-center-an-sf-object-plotted-with-ggplot-and-geo), [map labels](https://stackoverflow.com/questions/1330989/rotating-and-spacing-axis-labels-in-ggplot2)).*
+
+Two regions in this geographic distribution stand out -- the South and the Northeast.
+
+The South generally exhibits lower income levels, lower completion of higher education, and fewer mental health providers per capita, and higher frequency of mental health symptom. In contrast, the Northeast have higher concentrations of mental health professionals (over 100 per 100,000 residents in some areas), better socioeconomic indicators and lower reported frequency of mental health symptoms.
+
+This raises concerns about healthcare equity, since the areas with the greatest need has the fewest resources. In addition, the overlap between lower income, lower education, and limited healthcare access points to systemic issues in mental healthcare system.
+
+However, the relationship between socioeconomic factors and mental health across the states is very complicated and outliers exist. Utah challenges the pattern above -- despite having higher income, more higher education, and provider access, it reports notably high frequencies of mental health concerns. Conversely, South Carolina has lower rates of mental health concerns despite having fewer providers and lower socioeconomic indicators.
+
 ### Income and Education vs. Mental Well-Being
+To better understand the geographic patterns, we can examine how education and income levels correlate with mental health symptoms to find relationships that are not immediately apparently from the state-level maps.
 
 ```{r}
-
+#| fig-cap: "Frequency of mental health symptoms decrease slightly with higher income and education levels."
 data_clean <- read_rds("dataset/joint_data.rds") |>
   mutate(total_mentalhealth = Anxious_Frequency + Worry_Frequency + 
          Little_Interest_Frequency + Depressed_Frequency)
@@ -168,17 +112,18 @@ ggplot(combined_data) +
     axis.text = element_text(size = 8)
   )
 ```
+States with higher educational attainment and household incomes consistently show greater availability of mental health providers, suggesting systemic barriers to care in less advantaged regions.
 
-Below are the plots illustrating the relationships between access to mental health professionals against education level and income. Following our analysis of the maps, there appears to be a positive correlation between both education level and income and access to mental health. In other words, states with higher educational attainment are more likely to have better access to mental health providers; and states with higher household incomes are more likely to have better access to mental health providers.
-
-However, this data is also limited as it only looks at the state level, and not a more micro-scale, such as by city or county. These other factors could have more variation in the number of psychologists, income, and education level.
+This raises more critical questions about healthcare equity. However, this data is also limited as it only looks at the state level, and not a more micro-scale, such as by city or county. These other factors could have more variation in the number of psychologists, income, and education level. These micro-level disparities may reveal even starker contrasts when comparing urban areas to suburban areas.
 
 ```{r}
-x_range <- range(c(joint_data$prop_high_income, joint_data$prop_high_edu))
+#| fig-cap: "Areas with higher income and education levels show greater access to mental health providers, revealing socioeconomic disparities in healthcare availability."
 
+x_range <- range(c(joint_data$prop_high_income, joint_data$prop_high_edu))
 p1 <- ggplot(joint_data) +
   geom_point(aes(x=prop_high_income, y = psychol), alpha = 0.01) +
   geom_smooth(aes(x=prop_high_income, y = psychol), method = "lm", se = FALSE) +
+  theme_minimal() +
   theme(legend.position = "none") +
   labs(
     x = "Proportion of Families with Income over $200,000",
@@ -189,6 +134,7 @@ p1 <- ggplot(joint_data) +
 p2 <- ggplot(joint_data) +
   geom_point(aes(x=prop_high_edu, y = psychol), alpha = 0.01) +
   geom_smooth(aes(x=prop_high_edu, y = psychol), method = "lm", se = FALSE) +
+  theme_minimal() +
   theme(legend.position = "none") +
   labs(
     x = "Proportion of Individuals with a College Degree",
@@ -201,25 +147,31 @@ p1 / p2 +
     title = "Relationship Between Socioeconomic Factors and Access to Mental Health Care"
   )
 ```
+While the bar graphs show the overall relationship between socioeconomic factors and mental health symptoms, examining the direct correlation between these factors and provider access reveals an even more striking pattern. The above plots show a clear strong positive correlation with both education and income levels and the availability of mental health professionals.
 
-We know that from a state level, educational attainment, income, and the number of psychologists per 100,000 are all correlated, and educational attainment and income affect mental well-being. As mentioned in the example of New Hampshire, access to care also has a role in mental well-being. Given this, in the plot below, we evaluated the relationship between average frequency of mental health concerns in a state against the number of psychologists in the state per 100,000.
-
-There is a negative correlation, where as the number of psychologists per 100,000 increases, the frequency of mental health concerns decreases. Based on this, we know there is a correlation between the two variables, and states with a higher count of psychologists per 100,000 are more likely to have better well-beings since the frequency in experiencing mental health concerns decreases. Thus, similar to educational attainment and household income, it is evident that access to mental health professions influences mental well-being.
+There is a fundamental inequity in mental healthcare distribution: provider availability is driven more by socioeconomic status than by community need. 
 
 ### Access to Mental Health Providers and Well-Being
 
 ```{r}
+#| fig-cap: "A negative correlation exists between mental health symptom frequency and access to mental healthcare providers, suggesting areas with greater need have fewer resources."
+
 ggplot(joint_data) +
   geom_point(aes(x=mean_total_mh, y = psychol), alpha = 0.01) +
   geom_smooth(aes(x=mean_total_mh, y = psychol), method = "lm", se = FALSE) +
-  theme (legend.position = "none") +
+  theme_minimal() +
+  theme(legend.position = "none") +
   labs(
     x = "Average Frequency of Symptoms Over Past 2 Weeks",
     y = "Psychologists Per 100K",
     title = "Relationship Between Mental Wellbeing and Access to Mental Health Care"
   )
-
 ```
+
+We know that from a state level, educational attainment, income, and the number of psychologists per 100,000 are all correlated, and educational attainment and income affect mental well-being. Given this, in the plot above, we evaluated the relationship between average frequency of mental health concerns in a state against the number of psychologists in the state per 100,000.
+
+This inverse relationship highlights a critical gap in mental healthcare delivery: the places with the greatest need for mental health support appear to have the lowest access to professional help. Thus, similar to educational attainment and household income, it is evident that access to mental health professions influences mental well-being.
+
 ## Conclusion
 
 After doing in-depth analyses of the variables educational attainment, household income, and mental healthcare accessibility to assess their impact on people's well-beings, we reaffirmed our thesis stating those variables can predict individuals' mental health and well-being.
