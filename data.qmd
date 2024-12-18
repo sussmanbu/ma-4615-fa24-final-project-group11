@@ -1,12 +1,12 @@
 ---
 title: Data
-description: We describe the sources of our data and the cleaning process. The data and information on the data was found through the census website (www.census.gov) 
+description: We describe the sources of our data and the cleaning process. The data and information on the data was found through the [US Census](www.census.gov).
 toc: true
 draft: false
 ---
 
-![](images/Data_Census_Bureau.png)
-[Image Source: The Livingston Parish News](https://www.livingstonparishnews.com/stories/reminder-us-census-bureau-pushing-residents-to-fill-out-their-census-online-over-phone-by,23630)
+![Image Source: [The Livingston Parish News](https://www.livingstonparishnews.com/stories/reminder-us-census-bureau-pushing-residents-to-fill-out-their-census-online-over-phone-by,23630)](images/Data_Census_Bureau.png)
+
 
 ## Overview of Household Pulse Survey Data
 

@@ -8,9 +8,9 @@ execute:
   warning: false
   message: false
 ---
-![](images/analysis_header.png)
-[Image Source: US Census Bureau](https://www.census.gov/data-tools/demo/hhp/#/)
+![Image Source: [Our World In Data](https://ourworldindata.org/grapher/importance-government-funding-research-anxiety-depression)](images/analysis-header.png)
 
+Research on mental health is widely regarded as critically important by people around the world. This includes not only exploring its biological aspects but also finding ways to enhance mental health systems.
 
 ## Data Analysis
 

@@ -11,8 +11,7 @@ page-layout: full
 title-block-banner: true
 ---
 
-![](images/images2.jpeg)
-[Image Source: Intermountain Health](https://intermountainhealthcare.org/services/behavioral-health)
+![Image Credit: [Intermountain Health](https://intermountainhealthcare.org/services/behavioral-health)](images/index-header.png)
 
 
 
