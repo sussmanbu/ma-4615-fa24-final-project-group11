@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MA [46]15 Final Project – MA [46]15 Group 11 Final Project</title>
+<title>MA [46]15 Group 11 Final Project - MA [46]15 Final Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -47,13 +47,7 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -62,10 +56,8 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-submit-button-title": "Submit"
   }
 }</script>
 <script>
@@ -98,35 +90,8 @@ ul.task-list li input[type="checkbox"] {
   })
   </script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -134,40 +99,40 @@ window.Quarto = {
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
+      <div class="navbar-brand-container">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">MA [46]15 Group 11 Final Project</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
-<span class="menu-text">About</span></a>
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./big_picture.html"> 
-<span class="menu-text">America’s Mental Health Crisis</span></a>
+    <a class="nav-link" href="./big_picture.html" rel="" target="">
+ <span class="menu-text">America’s Mental Health Crisis</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./analysis.html"> 
-<span class="menu-text">Analysis</span></a>
+    <a class="nav-link" href="./analysis.html" rel="" target="">
+ <span class="menu-text">Analysis</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./data.html"> 
-<span class="menu-text">Data</span></a>
+    <a class="nav-link" href="./data.html" rel="" target="">
+ <span class="menu-text">Data</span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
+          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -180,7 +145,7 @@ window.Quarto = {
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
       
     
@@ -200,11 +165,10 @@ window.Quarto = {
 
 
 
-
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/index-header.png" class="img-fluid figure-img"></p>
-<figcaption>Image Credit: <a href="https://intermountainhealthcare.org/services/behavioral-health">Intermountain Health</a></figcaption>
+<figcaption class="figure-caption">Image Credit: <a href="https://intermountainhealthcare.org/services/behavioral-health">Intermountain Health</a></figcaption>
 </figure>
 </div>
 
@@ -213,25 +177,25 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1733547600000" data-listing-file-modified-sort="1733764155919" data-listing-date-modified-sort="1733547600000" data-listing-reading-time-sort="4" data-listing-word-count-sort="753">
+<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1733547600000" data-listing-file-modified-sort="1734508448045" data-listing-date-modified-sort="1733547600000" data-listing-reading-time-sort="4">
 <div class="thumbnail">
-<p><a href="./posts/2024-12-07-blog-post-7/blog-post-7.html" class="no-external"></a></p><a href="./posts/2024-12-07-blog-post-7/blog-post-7.html" class="no-external">
-<p class="card-img-top"><img src="posts/2024-12-07-blog-post-7/blog-post-7_files/figure-html/unnamed-chunk-2-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/2024-12-07-blog-post-7/blog-post-7.html" class="no-external"></a></p>
+<p><a href="./posts/2024-12-07-blog-post-7/blog-post-7.html"> <p class="card-img-top"><img src="posts\2024-12-07-blog-post-7\blog-post-7_files\figure-html\unnamed-chunk-2-1.png"  class="thumbnail-image card-img"/></p> </a></p>
 </div>
 <div class="body">
+<a href="./posts/2024-12-07-blog-post-7/blog-post-7.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/2024-12-07-blog-post-7/blog-post-7.html" class="no-external">Blog Post 7</a>
+Blog Post 7
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/2024-12-07-blog-post-7/blog-post-7.html" class="no-external">Advancement in Analysis and Visuals</a>
+Advancement in Analysis and Visuals
 </div>
 <div class="listing-description">
-<a href="./posts/2024-12-07-blog-post-7/blog-post-7.html" class="no-external">Since our last blog post, we have fully incorporated our second dataset about specialist counts into our analysis, and have begun to use it to aid our narratives surrounding…</a>
+Since our last blog post, we have fully incorporated our second dataset about specialist counts into our analysis, and have begun to use it to aid our narratives surrounding…
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/2024-12-07-blog-post-7/blog-post-7.html" class="no-external">
+<a href="./posts/2024-12-07-blog-post-7/blog-post-7.html">
 <div class="listing-date">
 Dec 7, 2024
 </div>
@@ -241,25 +205,25 @@ All
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-listing-date-sort="1731819600000" data-listing-file-modified-sort="1733148844892" data-listing-date-modified-sort="1731819600000" data-listing-reading-time-sort="3" data-listing-word-count-sort="520">
+<div class="quarto-post image-right" data-index="1" data-listing-date-sort="1731819600000" data-listing-file-modified-sort="1734508448044" data-listing-date-modified-sort="1731819600000" data-listing-reading-time-sort="3">
 <div class="thumbnail">
-<p><a href="./posts/2024-11-17-blog-post-6/blog-post-6.html" class="no-external"></a></p><a href="./posts/2024-11-17-blog-post-6/blog-post-6.html" class="no-external">
-<p class="card-img-top"><img src="posts/2024-11-17-blog-post-6/blog-post-6_files/figure-html/unnamed-chunk-1-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/2024-11-17-blog-post-6/blog-post-6.html" class="no-external"></a></p>
+<p><a href="./posts/2024-11-17-blog-post-6/blog-post-6.html"> <p class="card-img-top"><img src="posts\2024-11-17-blog-post-6\blog-post-6_files\figure-html\unnamed-chunk-1-1.png"  class="thumbnail-image card-img"/></p> </a></p>
 </div>
 <div class="body">
+<a href="./posts/2024-11-17-blog-post-6/blog-post-6.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/2024-11-17-blog-post-6/blog-post-6.html" class="no-external">Blog Post 6</a>
+Blog Post 6
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/2024-11-17-blog-post-6/blog-post-6.html" class="no-external">“Exploring the Joint Data”</a>
+“Exploring the Joint Data”
 </div>
 <div class="listing-description">
-<a href="./posts/2024-11-17-blog-post-6/blog-post-6.html" class="no-external">This week, we finished merging our two datasets. We had some initial issues because we had to make adjustments to our primary dataset by assigning new values to a column.…</a>
+This week, we finished merging our two datasets. We had some initial issues because we had to make adjustments to our primary dataset by assigning new values to a column.…
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/2024-11-17-blog-post-6/blog-post-6.html" class="no-external">
+<a href="./posts/2024-11-17-blog-post-6/blog-post-6.html">
 <div class="listing-date">
 Nov 17, 2024
 </div>
@@ -269,25 +233,25 @@ All
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-listing-date-sort="1731128400000" data-listing-file-modified-sort="1731530639560" data-listing-date-modified-sort="1731301200000" data-listing-reading-time-sort="3" data-listing-word-count-sort="517">
+<div class="quarto-post image-right" data-index="2" data-listing-date-sort="1731128400000" data-listing-file-modified-sort="1734508448043" data-listing-date-modified-sort="1731301200000" data-listing-reading-time-sort="3">
 <div class="thumbnail">
-<p><a href="./posts/2024-11-09-blog-post-5/blog-post-5.html" class="no-external"></a></p><a href="./posts/2024-11-09-blog-post-5/blog-post-5.html" class="no-external">
-<p class="card-img-top"><img src="posts/2024-11-09-blog-post-5/blog-post-5_files/figure-html/unnamed-chunk-1-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/2024-11-09-blog-post-5/blog-post-5.html" class="no-external"></a></p>
+<p><a href="./posts/2024-11-09-blog-post-5/blog-post-5.html"> <p class="card-img-top"><img src="posts\2024-11-09-blog-post-5\blog-post-5_files\figure-html\unnamed-chunk-1-1.png"  class="thumbnail-image card-img"/></p> </a></p>
 </div>
 <div class="body">
+<a href="./posts/2024-11-09-blog-post-5/blog-post-5.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/2024-11-09-blog-post-5/blog-post-5.html" class="no-external">Blog Post 5</a>
+Blog Post 5
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/2024-11-09-blog-post-5/blog-post-5.html" class="no-external">Descriptions of Combined Datasets</a>
+Descriptions of Combined Datasets
 </div>
 <div class="listing-description">
-<a href="./posts/2024-11-09-blog-post-5/blog-post-5.html" class="no-external">We looked into various datasets that could be joined with ours, allowing a more in-depth analysis. Some of our ideas included joining datasets concerning COVID-19, healthcare…</a>
+We looked into various datasets that could be joined with ours, allowing a more in-depth analysis. Some of our ideas included joining datasets concerning COVID-19, healthcare…
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/2024-11-09-blog-post-5/blog-post-5.html" class="no-external">
+<a href="./posts/2024-11-09-blog-post-5/blog-post-5.html">
 <div class="listing-date">
 Nov 9, 2024
 </div>
@@ -297,25 +261,25 @@ All
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-listing-date-sort="1730869200000" data-listing-file-modified-sort="1730904390276" data-listing-date-modified-sort="1730869200000" data-listing-reading-time-sort="2" data-listing-word-count-sort="348">
+<div class="quarto-post image-right" data-index="3" data-listing-date-sort="1730869200000" data-listing-file-modified-sort="1734508448042" data-listing-date-modified-sort="1730869200000" data-listing-reading-time-sort="2">
 <div class="thumbnail">
-<p><a href="./posts/2024-11-06-blog-post-4/blog-post-4.html" class="no-external"></a></p><a href="./posts/2024-11-06-blog-post-4/blog-post-4.html" class="no-external">
-<p class="card-img-top"><img src="posts/2024-11-06-blog-post-4/blog-post-4_files/figure-html/unnamed-chunk-1-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/2024-11-06-blog-post-4/blog-post-4.html" class="no-external"></a></p>
+<p><a href="./posts/2024-11-06-blog-post-4/blog-post-4.html"> <p class="card-img-top"><img src="posts\2024-11-06-blog-post-4\blog-post-4_files\figure-html\unnamed-chunk-1-1.png"  class="thumbnail-image card-img"/></p> </a></p>
 </div>
 <div class="body">
+<a href="./posts/2024-11-06-blog-post-4/blog-post-4.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/2024-11-06-blog-post-4/blog-post-4.html" class="no-external">Blog Post 4</a>
+Blog Post 4
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/2024-11-06-blog-post-4/blog-post-4.html" class="no-external">Linear Modeling Test &amp; Final Cleaning</a>
+Linear Modeling Test &amp; Final Cleaning
 </div>
 <div class="listing-description">
-<a href="./posts/2024-11-06-blog-post-4/blog-post-4.html" class="no-external">During this week, we have further cleaned the data to prepare it for modeling and analysis. Some of the changes we have made to the data are to make the data more…</a>
+During this week, we have further cleaned the data to prepare it for modeling and analysis. Some of the changes we have made to the data are to make the data more…
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/2024-11-06-blog-post-4/blog-post-4.html" class="no-external">
+<a href="./posts/2024-11-06-blog-post-4/blog-post-4.html">
 <div class="listing-date">
 Nov 6, 2024
 </div>
@@ -325,25 +289,25 @@ All
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-listing-date-sort="1730001600000" data-listing-file-modified-sort="1730069639782" data-listing-date-modified-sort="1730001600000" data-listing-reading-time-sort="2" data-listing-word-count-sort="396">
+<div class="quarto-post image-right" data-index="4" data-listing-date-sort="1730001600000" data-listing-file-modified-sort="1734508448042" data-listing-date-modified-sort="1730001600000" data-listing-reading-time-sort="2">
 <div class="thumbnail">
-<p><a href="./posts/2024-10-27 blogpost3/blogpost3.html" class="no-external"></a></p><a href="./posts/2024-10-27 blogpost3/blogpost3.html" class="no-external">
-<p class="card-img-top"><img src="posts/2024-10-27 blogpost3/blogpost3_files/figure-html/unnamed-chunk-2-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/2024-10-27 blogpost3/blogpost3.html" class="no-external"></a></p>
+<p><a href="./posts/2024-10-27 blogpost3/blogpost3.html"> <p class="card-img-top"><img src="posts\2024-10-27 blogpost3\blogpost3_files\figure-html\unnamed-chunk-2-1.png"  class="thumbnail-image card-img"/></p> </a></p>
 </div>
 <div class="body">
+<a href="./posts/2024-10-27 blogpost3/blogpost3.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/2024-10-27 blogpost3/blogpost3.html" class="no-external">Blog Post 3</a>
+Blog Post 3
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/2024-10-27 blogpost3/blogpost3.html" class="no-external">Data Cleaning and Exploration</a>
+Data Cleaning and Exploration
 </div>
 <div class="listing-description">
-<a href="./posts/2024-10-27 blogpost3/blogpost3.html" class="no-external">During this week, we continued to clean and explore the Household Pulse Survey data that we chose. Within the cleaning procedure, we have removed all columns that do not…</a>
+During this week, we continued to clean and explore the Household Pulse Survey data that we chose. Within the cleaning procedure, we have removed all columns that do not…
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/2024-10-27 blogpost3/blogpost3.html" class="no-external">
+<a href="./posts/2024-10-27 blogpost3/blogpost3.html">
 <div class="listing-date">
 Oct 27, 2024
 </div>
@@ -353,25 +317,25 @@ All
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-listing-date-sort="1729224000000" data-listing-file-modified-sort="1729690602918" data-listing-date-modified-sort="1729656000000" data-listing-reading-time-sort="2" data-listing-word-count-sort="365">
+<div class="quarto-post image-right" data-index="5" data-listing-date-sort="1729224000000" data-listing-file-modified-sort="1734508448041" data-listing-date-modified-sort="1729656000000" data-listing-reading-time-sort="2">
 <div class="thumbnail">
-<p><a href="./posts/2024-10-18-blog-post-2/blog-post-2.html" class="no-external"></a></p><a href="./posts/2024-10-18-blog-post-2/blog-post-2.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/2024-10-18-blog-post-2/blog-post-2.html" class="no-external"></a></p>
+<p><a href="./posts/2024-10-18-blog-post-2/blog-post-2.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
 </div>
 <div class="body">
+<a href="./posts/2024-10-18-blog-post-2/blog-post-2.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/2024-10-18-blog-post-2/blog-post-2.html" class="no-external">Blog Post 2</a>
+Blog Post 2
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/2024-10-18-blog-post-2/blog-post-2.html" class="no-external">Finalized Data Set Research and Initial Cleaning</a>
+Finalized Data Set Research and Initial Cleaning
 </div>
 <div class="listing-description">
-<a href="./posts/2024-10-18-blog-post-2/blog-post-2.html" class="no-external">This past week, we finalized our data set, the Household Pulse Survey, and have been focused on fine-tuning our data. We had an issue last week where our blog post wasn’t…</a>
+This past week, we finalized our data set, the Household Pulse Survey, and have been focused on fine-tuning our data. We had an issue last week where our blog post wasn’t…
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/2024-10-18-blog-post-2/blog-post-2.html" class="no-external">
+<a href="./posts/2024-10-18-blog-post-2/blog-post-2.html">
 <div class="listing-date">
 Oct 18, 2024
 </div>
@@ -381,25 +345,25 @@ All
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-listing-date-sort="1728446400000" data-listing-file-modified-sort="1729690602918" data-listing-date-modified-sort="1728446400000" data-listing-reading-time-sort="3" data-listing-word-count-sort="518">
+<div class="quarto-post image-right" data-index="6" data-listing-date-sort="1728446400000" data-listing-file-modified-sort="1734508448040" data-listing-date-modified-sort="1728446400000" data-listing-reading-time-sort="3">
 <div class="thumbnail">
-<p><a href="./posts/2024-10-09-blogpost1/blogpost1.html" class="no-external"></a></p><a href="./posts/2024-10-09-blogpost1/blogpost1.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/2024-10-09-blogpost1/blogpost1.html" class="no-external"></a></p>
+<p><a href="./posts/2024-10-09-blogpost1/blogpost1.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
 </div>
 <div class="body">
+<a href="./posts/2024-10-09-blogpost1/blogpost1.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/2024-10-09-blogpost1/blogpost1.html" class="no-external">Blog Post 1</a>
+Blog Post 1
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/2024-10-09-blogpost1/blogpost1.html" class="no-external">Exploring Three Data Sets</a>
+Exploring Three Data Sets
 </div>
 <div class="listing-description">
-<a href="./posts/2024-10-09-blogpost1/blogpost1.html" class="no-external">Three data sets that we are interested in working on are Cardiovascular Disease Mortality, Household Pulse Survey, and Drug Overdose Death Rates.</a>
+Three data sets that we are interested in working on are Cardiovascular Disease Mortality, Household Pulse Survey, and Drug Overdose Death Rates.
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/2024-10-09-blogpost1/blogpost1.html" class="no-external">
+<a href="./posts/2024-10-09-blogpost1/blogpost1.html">
 <div class="listing-date">
 Oct 9, 2024
 </div>
@@ -409,28 +373,30 @@ All
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-categories="" data-listing-date-sort="1708923600000" data-listing-file-modified-sort="1728306941073" data-listing-date-modified-sort="1708923600000" data-listing-reading-time-sort="1" data-listing-word-count-sort="56">
+<div class="quarto-post image-right" data-index="7" data-categories="" data-listing-date-sort="1708923600000" data-listing-file-modified-sort="1734508448039" data-listing-date-modified-sort="1708923600000" data-listing-reading-time-sort="1">
 <div class="thumbnail">
-<p><a href="./posts/2023-12-20-examples/examples.html" class="no-external"></a></p><a href="./posts/2023-12-20-examples/examples.html" class="no-external">
-<p class="card-img-top"><img src="posts/2023-12-20-examples/examples_files/figure-html/unnamed-chunk-1-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/2023-12-20-examples/examples.html" class="no-external"></a></p>
+<p><a href="./posts/2023-12-20-examples/examples.html"> <p class="card-img-top"><img src="posts\2023-12-20-examples\examples_files\figure-html\unnamed-chunk-1-1.png"  class="thumbnail-image card-img"/></p> </a></p>
 </div>
 <div class="body">
+<a href="./posts/2023-12-20-examples/examples.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/2023-12-20-examples/examples.html" class="no-external">Examples</a>
+Examples
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/2023-12-20-examples/examples.html" class="no-external"></a>
+
 </div>
+</a>
 <div class="listing-categories">
 
 </div>
+<a href="./posts/2023-12-20-examples/examples.html">
 <div class="listing-description">
-<a href="./posts/2023-12-20-examples/examples.html" class="no-external">Here are some examples of changing the size of a figure.</a>
+Here are some examples of changing the size of a figure.
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/2023-12-20-examples/examples.html" class="no-external">
+<a href="./posts/2023-12-20-examples/examples.html">
 <div class="listing-date">
 Feb 26, 2024
 </div>
@@ -440,28 +406,30 @@ Daniel Sussman
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="8" data-categories="" data-listing-date-sort="1708664400000" data-listing-file-modified-sort="1728306941073" data-listing-date-modified-sort="1708664400000" data-listing-reading-time-sort="3" data-listing-word-count-sort="402">
+<div class="quarto-post image-right" data-index="8" data-categories="" data-listing-date-sort="1708664400000" data-listing-file-modified-sort="1734508448038" data-listing-date-modified-sort="1708664400000" data-listing-reading-time-sort="3">
 <div class="thumbnail">
-<p><a href="./posts/2023-10-15-getting-started/getting-started.html" class="no-external"></a></p><a href="./posts/2023-10-15-getting-started/getting-started.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/2023-10-15-getting-started/getting-started.html" class="no-external"></a></p>
+<p><a href="./posts/2023-10-15-getting-started/getting-started.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
 </div>
 <div class="body">
+<a href="./posts/2023-10-15-getting-started/getting-started.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/2023-10-15-getting-started/getting-started.html" class="no-external">Getting started</a>
+Getting started
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/2023-10-15-getting-started/getting-started.html" class="no-external"></a>
+
 </div>
+</a>
 <div class="listing-categories">
 
 </div>
+<a href="./posts/2023-10-15-getting-started/getting-started.html">
 <div class="listing-description">
-<a href="./posts/2023-10-15-getting-started/getting-started.html" class="no-external">Directions to set up your website and create your first post. </a>
+<p>Directions to set up your website and create your first post.</p>
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/2023-10-15-getting-started/getting-started.html" class="no-external">
+<a href="./posts/2023-10-15-getting-started/getting-started.html">
 <div class="listing-date">
 Feb 23, 2024
 </div>
@@ -471,28 +439,30 @@ Daniel Sussman
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="9" data-categories="" data-listing-date-sort="1708491600000" data-listing-file-modified-sort="1728306941073" data-listing-date-modified-sort="1708491600000" data-listing-reading-time-sort="3" data-listing-word-count-sort="404">
+<div class="quarto-post image-right" data-index="9" data-categories="" data-listing-date-sort="1708491600000" data-listing-file-modified-sort="1734508448036" data-listing-date-modified-sort="1708491600000" data-listing-reading-time-sort="3">
 <div class="thumbnail">
-<p><a href="./posts/2023-10-13-first-team-meeting/first-team-meeting.html" class="no-external"></a></p><a href="./posts/2023-10-13-first-team-meeting/first-team-meeting.html" class="no-external">
-<p><img loading="lazy" src="./posts/2023-10-13-first-team-meeting/a-business-team-giving-fist-bump-in-agreement.jpg" class="thumbnail-image"></p>
-</a><p><a href="./posts/2023-10-13-first-team-meeting/first-team-meeting.html" class="no-external"></a></p>
+<p><a href="./posts/2023-10-13-first-team-meeting/first-team-meeting.html"> <img src="./posts/2023-10-13-first-team-meeting/a-business-team-giving-fist-bump-in-agreement.jpg" class="thumbnail-image"> </a></p>
 </div>
 <div class="body">
+<a href="./posts/2023-10-13-first-team-meeting/first-team-meeting.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/2023-10-13-first-team-meeting/first-team-meeting.html" class="no-external">First Team Meeting</a>
+First Team Meeting
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/2023-10-13-first-team-meeting/first-team-meeting.html" class="no-external"></a>
+
 </div>
+</a>
 <div class="listing-categories">
 
 </div>
+<a href="./posts/2023-10-13-first-team-meeting/first-team-meeting.html">
 <div class="listing-description">
-<a href="./posts/2023-10-13-first-team-meeting/first-team-meeting.html" class="no-external">This post details the steps you’ll take for your first team meeting. </a>
+<p>This post details the steps you’ll take for your first team meeting.</p>
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/2023-10-13-first-team-meeting/first-team-meeting.html" class="no-external">
+<a href="./posts/2023-10-13-first-team-meeting/first-team-meeting.html">
 <div class="listing-date">
 Feb 21, 2024
 </div>
@@ -542,7 +512,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -574,50 +555,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/sussmanbu\.github\.io\/ma-4615-fa24-final-project-group11\/");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -627,17 +569,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -649,130 +582,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
+      return note.innerHTML;
     });
   }
       let selectedAnnoteEl;
@@ -816,7 +626,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -842,32 +651,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -928,7 +711,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-
 
 
 
